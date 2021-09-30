@@ -1,0 +1,28 @@
+<!-- <nz-card [nzBordered]="true" nzTitle="Título de la tarjeta">
+  <nz-card style="width: 100%" nzTitle="Card title" [nzExtra]="extraTemplate">
+    <nz-card-tab>
+      <nz-tabset>
+        <nz-tab nzTitle="Tab 1">Content of Tab Pane 1</nz-tab>
+        <nz-tab nzTitle="Tab 2">Content of Tab Pane 2</nz-tab>
+        <nz-tab nzTitle="Tab 3">Content of Tab Pane 3</nz-tab>
+      </nz-tabset>
+    </nz-card-tab>
+    <ng-template #extraTemplate>
+      <a>More</a>
+    </ng-template>
+    <router-outlet></router-outlet>
+  </nz-card>
+</nz-card>
+ -->
+<nz-card [nzBordered]="true" nzTitle="COTIZACIÓN">
+  <nz-tabset nzLinkRouter nzType="card">
+    <nz-tab *ngFor="let link of navLinks">
+      <a *nzTabLink nz-tab-link [routerLink]="link.path">
+        {{ link.label }}
+      </a>
+    </nz-tab>
+  </nz-tabset>
+  <router-outlet></router-outlet>
+</nz-card>
+<!-- <tab-general></tab-general>
+<tab-involucrados></tab-involucrados> -->

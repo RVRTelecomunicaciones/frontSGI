@@ -11,7 +11,9 @@ const routes: Routes = [
   {
     path: 'coordinacion',
     loadChildren: () =>
-      import('./pages/coordinacion/coordinacion.module').then((m) => m.CoordinacionModule)
+      import('./pages/coordinacion/coordinacion.module').then(
+        (m) => m.CoordinacionModule
+      ),
   },
 ];
 
@@ -19,4 +21,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -1,0 +1,17 @@
+/*.inner-box {
+  background: #0092ff;
+  padding: 8px 0;
+}
+
+.inner-box2 {
+  background: #ff0000;
+  padding: 8px 0;
+}*/
+
+nz-date-picker {
+  display: block;
+}
+
+nz-input-number {
+  width: 100%;
+}

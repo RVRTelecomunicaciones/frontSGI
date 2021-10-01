@@ -16,6 +16,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzRadioModule } from 'ng-zorro-antd/radio';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 
 @NgModule({
   imports: [
@@ -30,6 +36,12 @@ import { NzInputModule } from 'ng-zorro-antd/input';
     ReactiveFormsModule,
     FormsModule,
     NzGridModule,
+    NzDividerModule,
+    NzDatePickerModule,
+    NzInputNumberModule,
+    NzSelectModule,
+    NzRadioModule,
+    NzCheckboxModule,
   ],
   declarations: [
     WelcomeComponent,

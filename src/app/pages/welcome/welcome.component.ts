@@ -6,6 +6,7 @@ import {
   Routes,
 } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NzModalService } from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'app-welcome',
@@ -21,7 +22,8 @@ export class WelcomeComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private changeDetector: ChangeDetectorRef,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private modal: NzModalService
   ) {}
 
   ngOnInit() {
@@ -38,6 +40,11 @@ export class WelcomeComponent implements OnInit {
       servicioTipoCotizacion: [null, [Validators.required]],
       codigocs: [''],
       adjuntocs: [''],
+
+      solicitante: [null, [Validators.required]],
+      cliente: [null, [Validators.required]],
+      propietario: [null, [Validators.required]],
+      vendedor: [null, [Validators.required]],
     });
   }
 
@@ -69,5 +76,18 @@ export class WelcomeComponent implements OnInit {
         this.validateForm.controls[i].updateValueAndValidity();
       }
     }
+  }
+
+  showDeleteConfirm(): void {
+    this.modal.confirm({
+      nzTitle: '¿ Esta seguro de cancelar la operación ?',
+      //nzContent: ' <b style="color: red;">Some descriptions</b>',
+      nzOkText: 'Aceptar',
+      nzOkType: 'primary',
+      nzOkDanger: true,
+      nzOnOk: () => console.log('OK'),
+      nzCancelText: 'Cancelar',
+      nzOnCancel: () => console.log('Cancel'),
+    });
   }
 }

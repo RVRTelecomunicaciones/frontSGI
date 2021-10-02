@@ -22,6 +22,7 @@ import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 
 @NgModule({
   imports: [
@@ -42,6 +43,7 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
     NzSelectModule,
     NzRadioModule,
     NzCheckboxModule,
+    NzModalModule,
   ],
   declarations: [
     WelcomeComponent,

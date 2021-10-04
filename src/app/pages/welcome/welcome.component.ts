@@ -5,8 +5,6 @@ import {
   RouterLinkActive,
   Routes,
 } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NzModalService } from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'app-welcome',
@@ -16,14 +14,11 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 export class WelcomeComponent implements OnInit {
   isViewInitialized = false;
   navLinks: any[] = [];
-  validateForm!: FormGroup;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private changeDetector: ChangeDetectorRef,
-    private fb: FormBuilder,
-    private modal: NzModalService
+    private changeDetector: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -31,21 +26,6 @@ export class WelcomeComponent implements OnInit {
       this.route.routeConfig && this.route.routeConfig.children
         ? this.buildNavItems(this.route.routeConfig.children)
         : [];
-
-    this.validateForm = this.fb.group({
-      codigoCotizacion: [null, [Validators.required]],
-      cantidadInforme: [null, [Validators.required]],
-      tipoCotizacion: [null, [Validators.required]],
-      estadoCotizacion: [null, [Validators.required]],
-      servicioTipoCotizacion: [null, [Validators.required]],
-      codigocs: [''],
-      adjuntocs: [''],
-
-      solicitante: [null, [Validators.required]],
-      cliente: [null, [Validators.required]],
-      propietario: [null, [Validators.required]],
-      vendedor: [null, [Validators.required]],
-    });
   }
 
   ngAfterViewInit() {
@@ -67,27 +47,5 @@ export class WelcomeComponent implements OnInit {
     const routerLink = rla.linksWithHrefs.first;
 
     return this.router.isActive(routerLink.urlTree, false);
-  }
-
-  submitForm(): void {
-    for (const i in this.validateForm.controls) {
-      if (this.validateForm.controls.hasOwnProperty(i)) {
-        this.validateForm.controls[i].markAsDirty();
-        this.validateForm.controls[i].updateValueAndValidity();
-      }
-    }
-  }
-
-  showDeleteConfirm(): void {
-    this.modal.confirm({
-      nzTitle: '¿ Esta seguro de cancelar la operación ?',
-      //nzContent: ' <b style="color: red;">Some descriptions</b>',
-      nzOkText: 'Aceptar',
-      nzOkType: 'primary',
-      nzOkDanger: true,
-      nzOnOk: () => console.log('OK'),
-      nzCancelText: 'Cancelar',
-      nzOnCancel: () => console.log('Cancel'),
-    });
   }
 }

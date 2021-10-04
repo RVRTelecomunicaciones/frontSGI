@@ -6,8 +6,8 @@
 }
 
 .app-layout {
-  /*height: 100vh;*/
-  height: auto;
+  height: 100vh;
+  /*height: auto;*/
 }
 
 .menu-sidebar {

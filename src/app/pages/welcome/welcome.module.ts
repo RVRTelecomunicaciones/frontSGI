@@ -23,6 +23,9 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { MantenimientoComponent } from './mantenimiento/mantenimiento.component';
+import { ListadoComponent } from './listado/listado.component';
 
 @NgModule({
   imports: [
@@ -44,6 +47,7 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
     NzRadioModule,
     NzCheckboxModule,
     NzModalModule,
+    NzTableModule,
   ],
   declarations: [
     WelcomeComponent,
@@ -51,6 +55,8 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
     TabInvolucradosComponent,
     TabServiciosComponent,
     TabCostosComponent,
+    MantenimientoComponent,
+    ListadoComponent,
   ],
   exports: [WelcomeComponent],
 })

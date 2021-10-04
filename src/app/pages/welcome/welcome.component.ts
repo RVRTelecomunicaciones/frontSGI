@@ -43,6 +43,10 @@ export class WelcomeComponent implements OnInit {
       }));
   }
 
+  onClick() {
+    this.router.navigateByUrl('/cotizacion/listado');
+  }
+
   isLinkActive(rla: RouterLinkActive): boolean {
     const routerLink = rla.linksWithHrefs.first;
 

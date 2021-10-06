@@ -7,11 +7,3 @@
   background: #ff0000;
   padding: 8px 0;
 }*/
-
-nz-date-picker, nz-select {
-  display: block;
-}
-
-nz-input-number {
-  width: 100%;
-}

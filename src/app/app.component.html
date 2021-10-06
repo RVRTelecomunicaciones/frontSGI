@@ -8,7 +8,20 @@
       </a>
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-      <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
+      <li nz-submenu nzTitle="MANTENIMIENTO" nzIcon="appstore">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/usuario">USUARIOS</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/rol">ROLES</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/involucrado">INVOLUCRADOS</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzOpen nzTitle="COMERCIAL" nzIcon="appstore">
         <ul>
           <li nz-menu-item nzMatchRouter>
             <a routerLink="/cotizacion">COTIZACIÓN</a>
@@ -17,14 +30,30 @@
             <a routerLink="/coordinacion">COORDINACIÓN</a>
           </li>
           <li nz-menu-item nzMatchRouter>
-            <a>Workplace</a>
+            <a routerLink="/inspeccion">INSPECCIONES</a>
           </li>
         </ul>
       </li>
-      <li nz-submenu nzOpen nzTitle="Form" nzIcon="form">
+      <li nz-submenu nzTitle="TASACIONES" nzIcon="appstore">
         <ul>
           <li nz-menu-item nzMatchRouter>
-            <a>Basic Form</a>
+            <a routerLink="/por_registrar">POR REGISTRAR</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/registradas">REGISTRADAS</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="REPORTES" nzIcon="appstore">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/comercial">COMERCIAL</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/operaciones">OPERACIONES</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/sistemas">SISTEMAS</a>
           </li>
         </ul>
       </li>

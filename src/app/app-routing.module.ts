@@ -15,6 +15,11 @@ const routes: Routes = [
         (m) => m.CoordinacionModule
       ),
   },
+  {
+    path: 'usuario',
+    loadChildren: () =>
+      import('./pages/usuario/usuario.module').then((m) => m.UsuarioModule),
+  },
 ];
 
 @NgModule({

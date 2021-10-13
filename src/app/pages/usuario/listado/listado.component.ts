@@ -89,6 +89,7 @@ export class ListadoComponent implements OnInit {
       area: '',
     },
   ];
+
   listOfDisplayData = [...this.listOfData];
 
   constructor() {}
@@ -97,13 +98,13 @@ export class ListadoComponent implements OnInit {
 
   reset(): void {
     this.searchValue = '';
-    this.search();
+    //this.search();
   }
 
-  search(): void {
+  /*search(): void {
     this.visible = false;
     this.listOfDisplayData = this.listOfData.filter(
-      (item: Usuario) => item.name.indexOf(this.searchValue) !== -1
+      (item: Usuario) => item.name.indexOf(this.searchValue) !== -2
     );
-  }
+  }*/
 }

@@ -1,29 +1,51 @@
-<nz-table #nzTable [nzData]="listOfData" nzTableLayout="fixed">
+<a nz-button nzType="primary" [routerLink]="['/usuario/mantenimiento']"
+  ><i nz-icon nzType="plus" nzTheme="outline"></i> Nuevo usuario</a
+>
+<nz-table #nzTable nzSize="small" [nzData]="listOfData" nzTableLayout="fixed">
   <thead>
     <tr>
+      <th>#</th>
       <th nzCustomFilter>
         APELLDIOS Y NOMBRES
-        <nz-filter-trigger
+        <!--<nz-filter-trigger
           [(nzVisible)]="visible"
           [nzActive]="searchValue.length > 0"
           [nzDropdownMenu]="menu"
         >
           <i nz-icon nzType="search"></i>
-        </nz-filter-trigger>
+        </nz-filter-trigger>-->
       </th>
       <th>EMAIL</th>
       <th>AREA</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let data of nzTable.data">
+      <td>{{ data.id }}</td>
       <td>{{ data.name }}</td>
       <td>{{ data.email }}</td>
       <td>{{ data.area }}</td>
+      <td>
+        <button nz-button nz-dropdown nzSize="small" [nzDropdownMenu]="menu">
+          Actions
+          <i nz-icon nzType="down"></i>
+        </button>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+          <ul nz-menu>
+            <li nz-menu-item>
+              <a><i nz-icon nzType="edit" nzTheme="outline"></i> Modificar</a>
+            </li>
+            <li nz-menu-item>
+              <a><i nz-icon nzType="key" nzTheme="outline"></i> Permisos</a>
+            </li>
+          </ul>
+        </nz-dropdown-menu>
+      </td>
     </tr>
   </tbody>
 </nz-table>
-<nz-dropdown-menu #menu="nzDropdownMenu">
+<!--<nz-dropdown-menu #menu="nzDropdownMenu">
   <div class="ant-table-filter-dropdown">
     <div class="search-box">
       <input
@@ -39,9 +61,9 @@
         (click)="search()"
         class="search-button"
       >
-        Search
+        Buscar
       </button>
-      <button nz-button nzSize="small" (click)="reset()">Reset</button>
+      <button nz-button nzSize="small" (click)="reset()">Limpiar</button>
     </div>
   </div>
-</nz-dropdown-menu>
+</nz-dropdown-menu>-->

@@ -17,25 +17,10 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzCascaderModule } from 'ng-zorro-antd/cascader';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [UsuarioComponent, ListadoComponent, MantenimientoComponent],
-  imports: [
-    CommonModule,
-    UsuarioRoutingModule,
-    NzCardModule,
-    NzTableModule,
-    NzDropDownModule,
-    FormsModule,
-    NzButtonModule,
-    NzIconModule,
-    NzFormModule,
-    NzSelectModule,
-    ReactiveFormsModule,
-    NzInputModule,
-    NzGridModule,
-    NzSpinModule,
-    NzCascaderModule,
-  ],
+  imports: [CommonModule, UsuarioRoutingModule, SharedModule],
 })
 export class UsuarioModule {}

@@ -11,20 +11,10 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [DesgloseComponent],
-  imports: [
-    CommonModule,
-    DesgloseRoutingModule,
-    NzCardModule,
-    NzTableModule,
-    NzDropDownModule,
-    NzIconModule,
-    NzButtonModule,
-    NzModalModule,
-    NzFormModule,
-    NzInputModule,
-  ],
+  imports: [CommonModule, DesgloseRoutingModule, SharedModule],
 })
 export class DesgloseModule {}

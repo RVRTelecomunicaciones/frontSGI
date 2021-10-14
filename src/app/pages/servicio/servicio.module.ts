@@ -13,23 +13,10 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [ServicioComponent],
-  imports: [
-    CommonModule,
-    ServicioRoutingModule,
-    NzCardModule,
-    NzTableModule,
-    NzDropDownModule,
-    NzIconModule,
-    NzButtonModule,
-    NzModalModule,
-    NzFormModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NzInputModule,
-    NzSelectModule,
-  ],
+  imports: [CommonModule, ServicioRoutingModule, SharedModule],
 })
 export class ServicioModule {}

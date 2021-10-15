@@ -1,4 +1,5 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 
 interface Tiposervicio {
@@ -55,9 +56,19 @@ export class TiposervicioComponent implements OnInit {
   ];
   listOfDisplayData = [...this.listOfData];
 
-  constructor(private modal: NzModalService) {}
+  constructor(private modal: NzModalService, private formBuilder: FormBuilder) {
+    this.entryForm = formBuilder.group({
+      descripcion: ['', [Validators.required]],
+    });
+  }
 
-  ngOnInit(): void {}
+  entryForm: FormGroup;
+
+  ngOnInit(): void {
+    this.createForm();
+
+    this.entryForm.disable();
+  }
 
   createTplModal(
     tplTitle: TemplateRef<{}>,
@@ -83,5 +94,16 @@ export class TiposervicioComponent implements OnInit {
       this.tplModalButtonLoading = false;
       modelRef.destroy();
     }, 1000);
+  }
+
+  probando() {
+    console.log('Click');
+  }
+
+  // FORMULARIO REACTIVO
+  private createForm() {
+    this.entryForm = this.formBuilder.group({
+      descripcion: ['', Validators.required],
+    });
   }
 }

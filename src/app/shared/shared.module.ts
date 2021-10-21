@@ -18,6 +18,7 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzAlertModule } from 'ng-zorro-antd/alert';
 
 @NgModule({
   declarations: [],
@@ -42,6 +43,7 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
     NzInputNumberModule,
     NzRadioModule,
     NzCheckboxModule,
+    NzAlertModule,
   ],
   exports: [
     CommonModule,
@@ -64,6 +66,7 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
     NzInputNumberModule,
     NzRadioModule,
     NzCheckboxModule,
+    NzAlertModule,
   ],
 })
 export class SharedModule {}

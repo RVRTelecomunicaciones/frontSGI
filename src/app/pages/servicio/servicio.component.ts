@@ -1,17 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  ViewContainerRef,
+} from '@angular/core';
 import {
   FormBuilder,
   FormControl,
+  FormControlName,
   FormGroup,
   ValidationErrors,
   Validators,
 } from '@angular/forms';
-
-interface Servicio {
-  id: number;
-  tiposervicio: string;
-  name: string;
-}
+import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
+import { FormResult } from 'src/app/shared/models/form-result-modal';
+import { ModalFormComponent } from './modal-form-servicio/servicio-modal-form.component';
+import { Servicio } from './servicio.interface';
 
 @Component({
   selector: 'app-servicio',
@@ -19,86 +26,114 @@ interface Servicio {
   styleUrls: ['./servicio.component.css'],
 })
 export class ServicioComponent implements OnInit {
-  validateForm: FormGroup;
-  isVisible = false;
-  isOkLoading = false;
+  position!: Servicio;
+  nzModalref = NzModalRef;
 
   listOfData: Servicio[] = [
     {
       id: 1,
-      tiposervicio: 'BIENES INMUEBLES',
-      name: 'VALUACIÓN DE TERRENO',
+      tiposervicio: 2,
+      descripcion: 'VALUACIÓN DE TERRENO',
     },
     {
       id: 2,
-      tiposervicio: 'BIENES INMUEBLES',
-      name: 'VALUACIÓN DE CASA',
+      tiposervicio: 1,
+      descripcion: 'VALUACIÓN DE CASA',
     },
     {
       id: 3,
-      tiposervicio: 'BIENES INMUEBLES',
-      name: 'VALUACIÓN DE DEPARTAMENTO',
+      tiposervicio: 1,
+      descripcion: 'VALUACIÓN DE DEPARTAMENTO',
     },
     {
       id: 4,
-      tiposervicio: 'BIENES INMUEBLES',
-      name: 'VALUACIÓN DE OFICINA',
+      tiposervicio: 2,
+      descripcion: 'VALUACIÓN DE OFICINA',
     },
     {
       id: 5,
-      tiposervicio: 'BIENES INMUEBLES',
-      name: 'VALUACIÓN DE LOCAL COMERCIAL',
+      tiposervicio: 3,
+      descripcion: 'VALUACIÓN DE LOCAL COMERCIAL',
     },
     {
       id: 6,
-      tiposervicio: 'BIENES INMUEBLES',
-      name: 'VALUACIÓN DE LOCAL INDUSTRIAL',
+      tiposervicio: 2,
+      descripcion: 'VALUACIÓN DE LOCAL INDUSTRIAL',
     },
     {
       id: 7,
-      tiposervicio: 'BIENES INMUEBLES',
-      name: 'VALUACIÓN DE VEHICULOS',
+      tiposervicio: 1,
+      descripcion: 'VALUACIÓN DE VEHICULOS',
     },
     {
       id: 8,
-      tiposervicio: 'BIENES INMUEBLES',
-      name: 'VALUACIÓN DE MAQUINARÍAS',
+      tiposervicio: 3,
+      descripcion: 'VALUACIÓN DE MAQUINARÍAS',
     },
   ];
   listOfDisplayData = [...this.listOfData];
 
-  constructor(private fb: FormBuilder) {
-    this.validateForm = this.fb.group({
-      tiposervicio: ['', [Validators.required]],
-      name: ['', [Validators.required]],
-    });
+  constructor(private modalService: NzModalService) {
+    console.log('YO EJECUTE PRIMERO CONSTRUCTOR');
   }
 
-  ngOnInit(): void {}
-
-  showModal(): void {
-    this.isVisible = true;
+  ngOnInit(): void {
+    console.log('YO EJECUTE PRIMERO NGONINIT');
+    this.addRow();
   }
 
-  handleOk(): void {
-    this.isOkLoading = true;
-    setTimeout(() => {
-      this.isVisible = false;
-      this.isOkLoading = false;
-    }, 3000);
-  }
-
-  handleCancel(): void {
-    this.isVisible = false;
-  }
-
-  submitForm(value: { tiposervicio: number; name: string }): void {
-    for (const key in this.validateForm.controls) {
-      if (this.validateForm.controls.hasOwnProperty(key)) {
-        this.validateForm.controls[key].markAsDirty();
-        this.validateForm.controls[key].updateValueAndValidity();
-      }
+  addRow(): void {
+    if (this.listOfData === undefined) {
+      return;
     }
-    console.log(value);
+    this.listOfData = [...this.listOfData];
+  }
+
+  openModalWithComponent(
+    position: Servicio,
+    formMode: string,
+    isAddNew: boolean
+  ) {
+    const nzModalref = this.modalService.create({
+      nzTitle: 'AAAA',
+      nzContent: ModalFormComponent,
+      nzMaskClosable: false,
+      nzClosable: false,
+    });
+
+    nzModalref.componentInstance!.position = position;
+    nzModalref.componentInstance!.formMode = formMode;
+    nzModalref.componentInstance!.isAddNew = isAddNew;
+
+    /*  nzModalref.result
+      .then((result: FormResult) => {
+        if (result === undefined) {
+          return;
+        }
+        console.log(result);
+        if (result.crudType === 'u') {
+          if (result.status) {
+            // toaster for CRUD\Update
+            console.log('Actualizo Correctamente');
+          }
+        }
+        if (result.crudType == 'c') {
+          if (result.status) {
+            this.addRow();
+            // toaster for CRUD\Create
+          }
+        }
+      })
+      .catch(() => {
+        // user click outside of the modal form
+      }); */
+
+    nzModalref.afterClose.subscribe((res) => {
+      if (res === undefined) {
+        return;
+      }
+      this.listOfData.push(res.data.value);
+      this.addRow();
+    });
   }
 }

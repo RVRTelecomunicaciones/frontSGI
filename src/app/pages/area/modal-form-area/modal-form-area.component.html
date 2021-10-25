@@ -1,0 +1,80 @@
+<!-- <div *nzModalTitle>
+    <div class="primary-col-text">CREAR SERVICIO</div>
+  </div> -->
+<form nz-form [formGroup]="validateForm">
+  <div nz-row [nzGutter]="8">
+    <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="24" [nzLg]="8">
+      <nz-form-item>
+        <nz-form-label
+          [nzXs]="24"
+          [nzSm]="24"
+          [nzMd]="24"
+          nzFor="id"
+          nzRequired
+          >ID</nz-form-label
+        >
+        <nz-form-control [nzXs]="24" [nzSm]="24" [nzMd]="24" [nzXl]="24">
+          <input
+            nz-input
+            name="id"
+            type="number"
+            [placeholder]="'Auto Assigned Id'"
+            formControlName="id"
+            id="id"
+          />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="24" [nzLg]="8">
+      <nz-form-item>
+        <nz-form-label
+          [nzXs]="24"
+          [nzSm]="24"
+          [nzMd]="24"
+          [nzXl]="24"
+          nzFor="descripcion"
+          nzRequired
+          >Descripción</nz-form-label
+        >
+        <nz-form-control [nzXs]="24" [nzSm]="24" [nzMd]="24" [nzXl]="24">
+          <input
+            nz-input
+            name="descripcion"
+            type="text"
+            id="descripcion"
+            formControlName="descripcion"
+          />
+
+          <div
+            *ngIf="
+              myForm.descripcion.invalid &&
+              (myForm.descripcion.dirty || myForm.descripcion.touched)
+            "
+            class="invalid-touched"
+          >
+            <div *ngIf="myForm.descripcion.errors?.required">
+              Campo Obligatorio
+            </div>
+          </div>
+
+          <!--   <ng-template #errorTpl let-control>
+                  <ng-container *ngIf="control.hasError('required')"
+                    >Debe ingresar el servicio</ng-container
+                  >
+                </ng-template> -->
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+</form>
+<div *nzModalFooter>
+  <button nz-button nzType="default" (click)="destroyModal()">Cancelar</button>
+  <button
+    nz-button
+    nzType="primary"
+    [disabled]="!validateForm.valid"
+    (click)="submitForm(validateForm)"
+  >
+    Grabar
+  </button>
+</div>

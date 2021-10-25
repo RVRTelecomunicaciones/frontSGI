@@ -95,7 +95,7 @@ export class ServicioComponent implements OnInit {
     isAddNew: boolean
   ) {
     const nzModalref = this.modalService.create({
-      nzTitle: 'AAAA',
+      nzTitle: 'MANTENIMIENTO DE SERVICIOS',
       nzContent: ModalFormComponent,
       nzMaskClosable: false,
       nzClosable: false,

@@ -1,10 +1,7 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-
-interface Area {
-  id: number;
-  name: string;
-}
+import { Area } from './area.interface';
+import { ModalFormAreaComponent } from './modal-form-area/modal-form-area.component';
 
 @Component({
   selector: 'app-area',
@@ -12,60 +9,87 @@ interface Area {
   styleUrls: ['./area.component.css'],
 })
 export class AreaComponent implements OnInit {
-  tplModalButtonLoading = false;
-  disabled = false;
+  position!: Area;
+  nzModalref = NzModalRef;
 
   listOfData: Area[] = [
     {
       id: 1,
-      name: 'GERENCIA',
+      descripcion: 'GERENCIA',
     },
     {
       id: 2,
-      name: 'AUDITORIA',
+      descripcion: 'AUDITORIA',
     },
     {
       id: 3,
-      name: 'COMERCIAL',
+      descripcion: 'COMERCIAL',
     },
     {
       id: 4,
-      name: 'OPERACIONES',
+      descripcion: 'OPERACIONES',
     },
     {
       id: 5,
-      name: 'SISTEMAS',
+      descripcion: 'SISTEMAS',
     },
   ];
   listOfDisplayData = [...this.listOfData];
 
   constructor(private modal: NzModalService) {}
 
-  ngOnInit(): void {}
-
-  createTplModal(
-    tplTitle: TemplateRef<{}>,
-    tplContent: TemplateRef<{}>,
-    tplFooter: TemplateRef<{}>
-  ): void {
-    this.modal.create({
-      nzTitle: tplTitle,
-      nzContent: tplContent,
-      nzFooter: tplFooter,
-      nzMaskClosable: false,
-      nzClosable: false,
-      nzComponentParams: {
-        value: 'Template Context',
-      },
-      nzOnOk: () => console.log('Click ok'),
-    });
+  ngOnInit(): void {
+    this.addRow();
   }
 
-  destroyTplModal(modelRef: NzModalRef): void {
-    this.tplModalButtonLoading = true;
-    setTimeout(() => {
-      this.tplModalButtonLoading = false;
-      modelRef.destroy();
-    }, 1000);
+  addRow(): void {
+    if (this.listOfData === undefined) {
+      return;
+    }
+    this.listOfData = [...this.listOfData];
+  }
+
+  openModalWithComponent(position: Area, formMode: string, isAddNew: boolean) {
+    const nzModalref = this.modal.create({
+      nzTitle: 'MANTENIMIENTO DE AREAS',
+      nzContent: ModalFormAreaComponent,
+      nzMaskClosable: false,
+      nzClosable: false,
+    });
+
+    nzModalref.componentInstance!.position = position;
+    nzModalref.componentInstance!.formMode = formMode;
+    nzModalref.componentInstance!.isAddNew = isAddNew;
+
+    /*  nzModalref.result
+      .then((result: FormResult) => {
+        if (result === undefined) {
+          return;
+        }
+        console.log(result);
+        if (result.crudType === 'u') {
+          if (result.status) {
+            // toaster for CRUD\Update
+            console.log('Actualizo Correctamente');
+          }
+        }
+        if (result.crudType == 'c') {
+          if (result.status) {
+            this.addRow();
+            // toaster for CRUD\Create
+          }
+        }
+      })
+      .catch(() => {
+        // user click outside of the modal form
+      }); */
+
+    nzModalref.afterClose.subscribe((res) => {
+      if (res === undefined) {
+        return;
+      }
+      this.listOfData.push(res.data.value);
+      this.addRow();
+    });
   }
 }

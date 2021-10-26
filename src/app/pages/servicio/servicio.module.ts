@@ -15,10 +15,9 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ModalFormComponent } from './modal-form-servicio/servicio-modal-form.component';
-import { ModalFormModule } from './modal-form-servicio/servicio-modal-form.module';
 
 @NgModule({
-  declarations: [ServicioComponent],
+  declarations: [ServicioComponent, ModalFormComponent],
   imports: [CommonModule, ServicioRoutingModule, SharedModule],
 })
 export class ServicioModule {}

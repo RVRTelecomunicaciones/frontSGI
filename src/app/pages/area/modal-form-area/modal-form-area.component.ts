@@ -6,7 +6,6 @@ import { Area } from '../area.interface';
 
 @Component({
   selector: 'app-modal-form-area',
-  templateUrl: './modal-form-area.component.html',
   styles: [
     `
       .invalid-touched {
@@ -14,6 +13,7 @@ import { Area } from '../area.interface';
       }
     `,
   ],
+  templateUrl: './modal-form-area.component.html',
 })
 export class ModalFormAreaComponent implements OnInit {
   @Input() public position!: Area;
@@ -33,7 +33,7 @@ export class ModalFormAreaComponent implements OnInit {
     if (this.position != undefined) {
       this.validateForm.setValue({
         id: this.position.id,
-        descripcion: this.position.descripcion.toString(),
+        descripcion: this.position.descripcion,
       });
     }
   }

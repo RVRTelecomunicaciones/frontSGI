@@ -40,8 +40,8 @@ export class ModalFormComponent implements OnInit {
     if (this.position != undefined) {
       this.validateForm.setValue({
         id: this.position.id,
-        descripcion: this.position.descripcion.toString(),
-        tiposervicio: this.position.tiposervicio,
+        descripcion: this.position.descripcion,
+        tiposervicio: this.position.tiposervicio.toString(),
       });
     }
   }

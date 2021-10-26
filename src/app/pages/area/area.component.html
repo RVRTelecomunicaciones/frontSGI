@@ -13,11 +13,11 @@
     </thead>
     <tbody>
       <tr
-        *ngFor="let data of nzTable.data"
+        *ngFor="let position of nzTable.data"
         (dblclick)="openModalWithComponent(position, 'Edit', false)"
       >
-        <td>{{ data.id }}</td>
-        <td>{{ data.descripcion }}</td>
+        <td>{{ position.id }}</td>
+        <td>{{ position.descripcion }}</td>
         <td>
           <button nz-button nz-dropdown nzSize="small" [nzDropdownMenu]="menu">
             Actions

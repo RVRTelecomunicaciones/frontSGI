@@ -1,7 +1,7 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-import { Area } from './area.interface';
 import { ModalFormAreaComponent } from './modal-form-area/modal-form-area.component';
+import { Area } from './area.interface';
 
 @Component({
   selector: 'app-area',

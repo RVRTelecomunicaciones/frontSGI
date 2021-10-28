@@ -1,6 +1,6 @@
 <form nz-form [formGroup]="validateForm">
   <div nz-row [nzGutter]="8">
-    <div nz-col [nzXs]="24" [nzSm]="6" [nzMd]="8" [nzLg]="8">
+    <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="12">
       <nz-form-item>
         <nz-form-label
           [nzXs]="24"
@@ -23,7 +23,47 @@
         </nz-form-control>
       </nz-form-item>
     </div>
-    <div nz-col [nzXs]="24" [nzSm]="18" [nzMd]="16" [nzLg]="16">
+    <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="12">
+      <nz-form-item>
+        <nz-form-label
+          [nzXs]="24"
+          [nzSm]="24"
+          [nzMd]="24"
+          [nzXl]="24"
+          nzFor="simbolo"
+          nzRequired
+          >Simbolo</nz-form-label
+        >
+        <nz-form-control [nzXs]="24" [nzSm]="24" [nzMd]="24" [nzXl]="24">
+          <input
+            nz-input
+            name="simbolo"
+            type="text"
+            id="simbolo"
+            formControlName="simbolo"
+          />
+
+          <div
+            *ngIf="
+              myForm.simbolo.invalid &&
+              (myForm.simbolo.dirty || myForm.simbolo.touched)
+            "
+            class="invalid-touched"
+          >
+            <div *ngIf="myForm.simbolo.errors?.required">
+              Campo Obligatorio
+            </div>
+          </div>
+
+          <!--   <ng-template #errorTpl let-control>
+                  <ng-container *ngIf="control.hasError('required')"
+                    >Debe ingresar el servicio</ng-container
+                  >
+                </ng-template> -->
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="24" [nzLg]="24">
       <nz-form-item>
         <nz-form-label
           [nzXs]="24"

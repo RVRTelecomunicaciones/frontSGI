@@ -1,11 +1,7 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-
-interface Moneda {
-  id: number;
-  simbolo: string;
-  name: string;
-}
+import { ModalFormMonedaComponent } from './modal-form-moneda/modal-form-moneda.component';
+import { Moneda } from './moneda.interface';
 
 @Component({
   selector: 'app-moneda',
@@ -13,55 +9,86 @@ interface Moneda {
   styleUrls: ['./moneda.component.css'],
 })
 export class MonedaComponent implements OnInit {
-  tplModalButtonLoading = false;
-  disabled = false;
+  position!: Moneda;
+  nzModalref = NzModalRef;
 
   listOfData: Moneda[] = [
     {
       id: 1,
       simbolo: 'S/.',
-      name: 'Sol',
+      descripcion: 'Sol',
     },
     {
       id: 2,
       simbolo: '$',
-      name: 'Dolares Americanos',
+      descripcion: 'Dolares Americanos',
     },
     {
       id: 2,
       simbolo: '€',
-      name: 'Euro',
+      descripcion: 'Euro',
     },
   ];
   listOfDisplayData = [...this.listOfData];
 
   constructor(private modal: NzModalService) {}
 
-  ngOnInit(): void {}
-
-  createTplModal(
-    tplTitle: TemplateRef<{}>,
-    tplContent: TemplateRef<{}>,
-    tplFooter: TemplateRef<{}>
-  ): void {
-    this.modal.create({
-      nzTitle: tplTitle,
-      nzContent: tplContent,
-      nzFooter: tplFooter,
-      nzMaskClosable: false,
-      nzClosable: false,
-      nzComponentParams: {
-        value: 'Template Context',
-      },
-      nzOnOk: () => console.log('Click ok'),
-    });
+  ngOnInit(): void {
+    this.addRow();
   }
 
-  destroyTplModal(modelRef: NzModalRef): void {
-    this.tplModalButtonLoading = true;
-    setTimeout(() => {
-      this.tplModalButtonLoading = false;
-      modelRef.destroy();
-    }, 1000);
+  addRow(): void {
+    if (this.listOfData === undefined) {
+      return;
+    }
+    this.listOfData = [...this.listOfData];
+  }
+
+  openModalWithComponent(
+    position: Moneda,
+    formMode: string,
+    isAddNew: boolean
+  ) {
+    const nzModalref = this.modal.create({
+      nzTitle: 'MANTENIMIENTO DE MONEDAS',
+      nzContent: ModalFormMonedaComponent,
+      nzMaskClosable: false,
+      nzClosable: false,
+    });
+
+    nzModalref.componentInstance!.position = position;
+    nzModalref.componentInstance!.formMode = formMode;
+    nzModalref.componentInstance!.isAddNew = isAddNew;
+
+    /*  nzModalref.result
+      .then((result: FormResult) => {
+        if (result === undefined) {
+          return;
+        }
+        console.log(result);
+        if (result.crudType === 'u') {
+          if (result.status) {
+            // toaster for CRUD\Update
+            console.log('Actualizo Correctamente');
+          }
+        }
+        if (result.crudType == 'c') {
+          if (result.status) {
+            this.addRow();
+            // toaster for CRUD\Create
+          }
+        }
+      })
+      .catch(() => {
+        // user click outside of the modal form
+      }); */
+
+    nzModalref.afterClose.subscribe((res) => {
+      if (res === undefined) {
+        return;
+      }
+      this.listOfData.push(res.data.value);
+      this.addRow();
+    });
   }
 }

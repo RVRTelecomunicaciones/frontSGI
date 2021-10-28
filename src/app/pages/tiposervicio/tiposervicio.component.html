@@ -12,9 +12,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let data of nzTable.data">
-        <td>{{ data.id }}</td>
-        <td>{{ data.name }}</td>
+      <tr
+        *ngFor="let position of nzTable.data"
+        (dblclick)="openModalWithComponent(position, 'Edit', false)"
+      >
+        <td>{{ position.id }}</td>
+        <td>{{ position.descripcion }}</td>
         <td>
           <button nz-button nz-dropdown nzSize="small" [nzDropdownMenu]="menu">
             Actions
@@ -37,58 +40,13 @@
     </tbody>
   </nz-table>
 </nz-card>
-<form [formGroup]="entryForm" novalidate>
-  <ng-template #extraTemplate>
-    <button
-      nz-button
-      nzType="primary"
-      (click)="createTplModal(tplTitle, tplContent, tplFooter)"
-    >
-      <i nz-icon nzType="plus" nzTheme="outline"></i>
-      Nuevo Tipo de Servicio
-    </button>
-    <ng-template #tplTitle>
-      <span>MANTENIMIENTO</span>
-    </ng-template>
-    <ng-template #tplContent let-params>
-      <nz-form-item>
-        <nz-form-label
-          [nzXs]="24"
-          [nzSm]="24"
-          [nzMd]="24"
-          [nzXl]="4"
-          nzFor="descripcion"
-          >Descripción</nz-form-label
-        >
-        <nz-form-control [nzXs]="24" [nzSm]="24" [nzMd]="24" [nzXl]="20">
-          <input
-            nz-input
-            name="descripcion"
-            type="text"
-            id="descripcion"
-            0="descripcion"
-          />
-          <ng-template #errorTpl let-control>
-            <ng-container *ngIf="control.hasError('required')"
-              >Please confirm your descripcion!</ng-container
-            >
-          </ng-template>
-        </nz-form-control>
-      </nz-form-item>
-    </ng-template>
-    <ng-template #tplFooter let-ref="modalRef">
-      <button nz-button nzType="primary" nzDanger (click)="ref.destroy()">
-        CERRAR
-      </button>
-      <button
-        nz-button
-        nzType="primary"
-        (click)="probando()"
-        [disabled]="entryForm.invalid"
-        [nzLoading]="tplModalButtonLoading"
-      >
-        <i nz-icon nzType="save" nzTheme="outline"></i> GRABAR
-      </button>
-    </ng-template>
-  </ng-template>
-</form>
+<ng-template #extraTemplate>
+  <button
+    nz-button
+    nzType="primary"
+    (click)="openModalWithComponent(position, 'New', true)"
+  >
+    <i nz-icon nzType="plus" nzTheme="outline"></i>
+    Nuevo Tipo de servicio
+  </button>
+</ng-template>

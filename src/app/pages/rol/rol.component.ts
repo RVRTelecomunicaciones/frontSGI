@@ -1,10 +1,8 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-
-interface Rol {
-  id: number;
-  name: string;
-}
+import { ModalFormAreaComponent } from '../area/modal-form-area/modal-form-area.component';
+import { ModalFormRolComponent } from './modal-form-rol/modal-form-rol.component';
+import { Rol } from './rol.interface';
 
 @Component({
   selector: 'app-rol',
@@ -12,72 +10,99 @@ interface Rol {
   styleUrls: ['./rol.component.css'],
 })
 export class RolComponent implements OnInit {
-  tplModalButtonLoading = false;
-  disabled = false;
+  position!: Rol;
+  nzModalref = NzModalRef;
 
   listOfData: Rol[] = [
     {
       id: 1,
-      name: 'GERENTE',
+      descripcion: 'GERENTE',
     },
     {
       id: 2,
-      name: 'SUB GERENTE',
+      descripcion: 'SUB GERENTE',
     },
     {
       id: 3,
-      name: 'JEFE',
+      descripcion: 'JEFE',
     },
     {
       id: 4,
-      name: 'COORDINADOR',
+      descripcion: 'COORDINADOR',
     },
     {
       id: 5,
-      name: 'VENDEDOR',
+      descripcion: 'VENDEDOR',
     },
     {
       id: 6,
-      name: 'PERITO',
+      descripcion: 'PERITO',
     },
     {
       id: 7,
-      name: 'ASISTENTE',
+      descripcion: 'ASISTENTE',
     },
     {
       id: 8,
-      name: 'PRACTICANTE',
+      descripcion: 'PRACTICANTE',
     },
   ];
   listOfDisplayData = [...this.listOfData];
 
   constructor(private modal: NzModalService) {}
 
-  ngOnInit(): void {}
-
-  createTplModal(
-    tplTitle: TemplateRef<{}>,
-    tplContent: TemplateRef<{}>,
-    tplFooter: TemplateRef<{}>
-  ): void {
-    this.modal.create({
-      nzTitle: tplTitle,
-      nzContent: tplContent,
-      nzFooter: tplFooter,
-      nzMaskClosable: false,
-      nzClosable: false,
-      nzComponentParams: {
-        value: 'Template Context',
-      },
-      nzOnOk: () => console.log('Click ok'),
-    });
+  ngOnInit(): void {
+    this.addRow();
   }
 
-  destroyTplModal(modelRef: NzModalRef): void {
-    this.tplModalButtonLoading = true;
-    setTimeout(() => {
-      this.tplModalButtonLoading = false;
-      modelRef.destroy();
-    }, 1000);
+  addRow(): void {
+    if (this.listOfData === undefined) {
+      return;
+    }
+    this.listOfData = [...this.listOfData];
+  }
+
+  openModalWithComponent(position: Rol, formMode: string, isAddNew: boolean) {
+    const nzModalref = this.modal.create({
+      nzTitle: 'MANTENIMIENTO DE ROLES',
+      nzContent: ModalFormRolComponent,
+      nzMaskClosable: false,
+      nzClosable: false,
+    });
+
+    nzModalref.componentInstance!.position = position;
+    nzModalref.componentInstance!.formMode = formMode;
+    nzModalref.componentInstance!.isAddNew = isAddNew;
+
+    /*  nzModalref.result
+      .then((result: FormResult) => {
+        if (result === undefined) {
+          return;
+        }
+        console.log(result);
+        if (result.crudType === 'u') {
+          if (result.status) {
+            // toaster for CRUD\Update
+            console.log('Actualizo Correctamente');
+          }
+        }
+        if (result.crudType == 'c') {
+          if (result.status) {
+            this.addRow();
+            // toaster for CRUD\Create
+          }
+        }
+      })
+      .catch(() => {
+        // user click outside of the modal form
+      }); */
+
+    nzModalref.afterClose.subscribe((res) => {
+      if (res === undefined) {
+        return;
+      }
+      this.listOfData.push(res.data.value);
+      this.addRow();
+    });
   }
 }

@@ -1,10 +1,7 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-
-interface Desglose {
-  id: number;
-  name: string;
-}
+import { Desglose } from './desglose.interface';
+import { ModalFormDesgloseComponent } from './modal-form-desglose/modal-form-desglose.component';
 
 @Component({
   selector: 'app-desglose',
@@ -12,68 +9,99 @@ interface Desglose {
   styleUrls: ['./desglose.component.css'],
 })
 export class DesgloseComponent implements OnInit {
-  tplModalButtonLoading = false;
-  disabled = false;
+  position!: Desglose;
+  nzModalref = NzModalRef;
 
   listOfData: Desglose[] = [
     {
       id: 1,
-      name: '100%',
+      descripcion: '100%',
     },
     {
       id: 2,
-      name: '50% - 50%',
+      descripcion: '50% - 50%',
     },
     {
       id: 3,
-      name: '50% - 30% - 20%',
+      descripcion: '50% - 30% - 20%',
     },
     {
       id: 4,
-      name: '40% - 30% - 30%',
+      descripcion: '40% - 30% - 30%',
     },
     {
       id: 5,
-      name: '30 Días',
+      descripcion: '30 Días',
     },
     {
       id: 6,
-      name: '60 Días',
+      descripcion: '60 Días',
     },
     {
       id: 7,
-      name: 'Al Finalizar',
+      descripcion: 'Al Finalizar',
     },
   ];
   listOfDisplayData = [...this.listOfData];
 
   constructor(private modal: NzModalService) {}
 
-  ngOnInit(): void {}
-
-  createTplModal(
-    tplTitle: TemplateRef<{}>,
-    tplContent: TemplateRef<{}>,
-    tplFooter: TemplateRef<{}>
-  ): void {
-    this.modal.create({
-      nzTitle: tplTitle,
-      nzContent: tplContent,
-      nzFooter: tplFooter,
-      nzMaskClosable: false,
-      nzClosable: false,
-      nzComponentParams: {
-        value: 'Template Context',
-      },
-      nzOnOk: () => console.log('Click ok'),
-    });
+  ngOnInit(): void {
+    this.addRow();
   }
 
-  destroyTplModal(modelRef: NzModalRef): void {
-    this.tplModalButtonLoading = true;
-    setTimeout(() => {
-      this.tplModalButtonLoading = false;
-      modelRef.destroy();
-    }, 1000);
+  addRow(): void {
+    if (this.listOfData === undefined) {
+      return;
+    }
+    this.listOfData = [...this.listOfData];
+  }
+
+  openModalWithComponent(
+    position: Desglose,
+    formMode: string,
+    isAddNew: boolean
+  ) {
+    const nzModalref = this.modal.create({
+      nzTitle: 'MANTENIMIENTO DE DESGLOSE',
+      nzContent: ModalFormDesgloseComponent,
+      nzMaskClosable: false,
+      nzClosable: false,
+    });
+
+    nzModalref.componentInstance!.position = position;
+    nzModalref.componentInstance!.formMode = formMode;
+    nzModalref.componentInstance!.isAddNew = isAddNew;
+
+    /*  nzModalref.result
+      .then((result: FormResult) => {
+        if (result === undefined) {
+          return;
+        }
+        console.log(result);
+        if (result.crudType === 'u') {
+          if (result.status) {
+            // toaster for CRUD\Update
+            console.log('Actualizo Correctamente');
+          }
+        }
+        if (result.crudType == 'c') {
+          if (result.status) {
+            this.addRow();
+            // toaster for CRUD\Create
+          }
+        }
+      })
+      .catch(() => {
+        // user click outside of the modal form
+      }); */
+
+    nzModalref.afterClose.subscribe((res) => {
+      if (res === undefined) {
+        return;
+      }
+      this.listOfData.push(res.data.value);
+      this.addRow();
+    });
   }
 }

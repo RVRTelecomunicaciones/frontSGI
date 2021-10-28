@@ -12,9 +12,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let data of nzTable.data">
-        <td>{{ data.id }}</td>
-        <td>{{ data.name }}</td>
+      <tr
+        *ngFor="let position of nzTable.data"
+        (dblclick)="openModalWithComponent(position, 'Edit', false)"
+      >
+        <td>{{ position.id }}</td>
+        <td>{{ position.descripcion }}</td>
         <td>
           <button nz-button nz-dropdown nzSize="small" [nzDropdownMenu]="menu">
             Actions
@@ -41,38 +44,9 @@
   <button
     nz-button
     nzType="primary"
-    (click)="createTplModal(tplTitle, tplContent, tplFooter)"
+    (click)="openModalWithComponent(position, 'New', true)"
   >
     <i nz-icon nzType="plus" nzTheme="outline"></i>
     Nuevo desglose
   </button>
-  <ng-template #tplTitle>
-    <span>MANTENIMIENTO</span>
-  </ng-template>
-  <ng-template #tplContent let-params>
-    <nz-form-item>
-      <nz-form-label
-        [nzXs]="24"
-        [nzSm]="24"
-        [nzMd]="24"
-        [nzXl]="4"
-        nzFor="descripcion"
-        >Descripción</nz-form-label
-      >
-      <nz-form-control [nzXs]="24" [nzSm]="24" [nzMd]="24" [nzXl]="20">
-        <input nz-input name="descripcion" type="text" id="descripcion" />
-      </nz-form-control>
-    </nz-form-item>
-  </ng-template>
-  <ng-template #tplFooter let-ref="modalRef">
-    <button nz-button nzType="primary" nzDanger (click)="ref.destroy()">CERRAR</button>
-    <button
-      nz-button
-      nzType="primary"
-      (click)="destroyTplModal(ref)"
-      [nzLoading]="tplModalButtonLoading"
-    >
-      <i nz-icon nzType="save" nzTheme="outline"></i> GRABAR
-    </button>
-  </ng-template>
 </ng-template>

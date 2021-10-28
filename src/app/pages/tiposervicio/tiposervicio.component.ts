@@ -1,109 +1,114 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-
-interface Tiposervicio {
-  id: number;
-  name: string;
-}
-
+import { ModalFormTipoServicioComponent } from './modal-form-tipo-servicio/modal-form-tipo-servicio.component';
+import { Tiposervicio } from './tiposervicio.interface';
 @Component({
   selector: 'app-tiposervicio',
   templateUrl: './tiposervicio.component.html',
   styleUrls: ['./tiposervicio.component.css'],
 })
 export class TiposervicioComponent implements OnInit {
-  tplModalButtonLoading = false;
-  disabled = false;
+  position!: Tiposervicio;
+  nzModalref = NzModalRef;
 
   listOfData: Tiposervicio[] = [
     {
       id: 1,
-      name: 'ANALISIS DE ACTIVOS',
+      descripcion: 'ANALISIS DE ACTIVOS',
     },
     {
       id: 2,
-      name: 'CATALOGACIÓN DE MATERIALES',
+      descripcion: 'CATALOGACIÓN DE MATERIALES',
     },
     {
       id: 3,
-      name: 'ESTUDIO TECNICO DE MERMAS',
+      descripcion: 'ESTUDIO TECNICO DE MERMAS',
     },
     {
       id: 4,
-      name: 'INFORME PERICIAL',
+      descripcion: 'INFORME PERICIAL',
     },
     {
       id: 5,
-      name: 'INVENTARIO Y CONCILIACIÓN',
+      descripcion: 'INVENTARIO Y CONCILIACIÓN',
     },
     {
       id: 6,
-      name: 'PROYECTOS',
+      descripcion: 'PROYECTOS',
     },
     {
       id: 7,
-      name: 'VALUACION DE BIENES MUEBLES',
+      descripcion: 'VALUACION DE BIENES MUEBLES',
     },
     {
       id: 8,
-      name: 'VALUACION DE INMUEBLES',
+      descripcion: 'VALUACION DE INMUEBLES',
     },
     {
       id: 9,
-      name: 'VALUACION DE INTANGIGLES',
+      descripcion: 'VALUACION DE INTANGIGLES',
     },
   ];
   listOfDisplayData = [...this.listOfData];
 
-  constructor(private modal: NzModalService, private formBuilder: FormBuilder) {
-    this.entryForm = formBuilder.group({
-      descripcion: ['', [Validators.required]],
-    });
-  }
-
-  entryForm: FormGroup;
+  constructor(private modal: NzModalService) {}
 
   ngOnInit(): void {
-    this.createForm();
-
-    this.entryForm.disable();
+    this.addRow();
   }
 
-  createTplModal(
-    tplTitle: TemplateRef<{}>,
-    tplContent: TemplateRef<{}>,
-    tplFooter: TemplateRef<{}>
-  ): void {
-    this.modal.create({
-      nzTitle: tplTitle,
-      nzContent: tplContent,
-      nzFooter: tplFooter,
+  addRow(): void {
+    if (this.listOfData === undefined) {
+      return;
+    }
+    this.listOfData = [...this.listOfData];
+  }
+
+  openModalWithComponent(
+    position: Tiposervicio,
+    formMode: string,
+    isAddNew: boolean
+  ) {
+    const nzModalref = this.modal.create({
+      nzTitle: 'MANTENIMIENTO DE TIPO DE SERVICIOS',
+      nzContent: ModalFormTipoServicioComponent,
       nzMaskClosable: false,
       nzClosable: false,
-      nzComponentParams: {
-        value: 'Template Context',
-      },
-      nzOnOk: () => console.log('Click ok'),
     });
-  }
 
-  destroyTplModal(modelRef: NzModalRef): void {
-    this.tplModalButtonLoading = true;
-    setTimeout(() => {
-      this.tplModalButtonLoading = false;
-      modelRef.destroy();
-    }, 1000);
-  }
+    nzModalref.componentInstance!.position = position;
+    nzModalref.componentInstance!.formMode = formMode;
+    nzModalref.componentInstance!.isAddNew = isAddNew;
 
-  probando() {
-    console.log('Click');
-  }
+    /*  nzModalref.result
+      .then((result: FormResult) => {
+        if (result === undefined) {
+          return;
+        }
+        console.log(result);
+        if (result.crudType === 'u') {
+          if (result.status) {
+            // toaster for CRUD\Update
+            console.log('Actualizo Correctamente');
+          }
+        }
+        if (result.crudType == 'c') {
+          if (result.status) {
+            this.addRow();
+            // toaster for CRUD\Create
+          }
+        }
+      })
+      .catch(() => {
+        // user click outside of the modal form
+      }); */
 
-  // FORMULARIO REACTIVO
-  private createForm() {
-    this.entryForm = this.formBuilder.group({
-      descripcion: ['', Validators.required],
+    nzModalref.afterClose.subscribe((res) => {
+      if (res === undefined) {
+        return;
+      }
+      this.listOfData.push(res.data.value);
+      this.addRow();
     });
   }
 }

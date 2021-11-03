@@ -12,7 +12,7 @@ const routes: Routes = [
         path: 'login',
         component: LoginComponent,
       },
-      /*{ path: '', pathMatch: 'full', redirectTo: '/cotizacion' },
+      /*{ path: '', pathMatch: 'full', redirectTo: '/cotizacion' },*/
       {
         path: 'usuario',
         loadChildren: () =>
@@ -79,7 +79,7 @@ const routes: Routes = [
           import('./pages/coordinacion/coordinacion.module').then(
             (m) => m.CoordinacionModule
           ),
-      },*/
+      },
     ],
   },
 ];

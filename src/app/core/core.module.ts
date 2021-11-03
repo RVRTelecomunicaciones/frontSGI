@@ -7,6 +7,7 @@ import { CoreRoutingModule } from './core-routing.module';
 import { IconsProviderModule } from '../icons-provider.module';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [CoreComponent, LoginComponent],
@@ -16,6 +17,7 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
     IconsProviderModule,
     NzLayoutModule,
     NzMenuModule,
+    SharedModule,
   ],
 
   exports: [

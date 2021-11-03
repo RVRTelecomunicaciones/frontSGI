@@ -1,0 +1,52 @@
+<nz-card
+  [nzBordered]="true"
+  nzTitle="LISTADO DE REQUISITOS"
+  [nzExtra]="extraTemplate"
+>
+  <nz-table #nzTable nzSize="small" [nzData]="listOfData" nzTableLayout="fixed">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th nzCustomFilter>DESCRIPCIÓN</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let position of nzTable.data"
+        (dblclick)="openModalWithComponent(position, 'Edit', false)"
+      >
+        <td>{{ position.id }}</td>
+        <td>{{ position.descripcion }}</td>
+        <td>
+          <button nz-button nz-dropdown nzSize="small" [nzDropdownMenu]="menu">
+            Actions
+            <i nz-icon nzType="down"></i>
+          </button>
+          <nz-dropdown-menu #menu="nzDropdownMenu">
+            <ul nz-menu>
+              <li nz-menu-item>
+                <a><i nz-icon nzType="edit" nzTheme="outline"></i> Modificar</a>
+              </li>
+              <li nz-menu-item>
+                <a
+                  ><i nz-icon nzType="delete" nzTheme="outline"></i> Eliminar</a
+                >
+              </li>
+            </ul>
+          </nz-dropdown-menu>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</nz-card>
+<ng-template #extraTemplate>
+  <button
+    nz-button
+    nzType="primary"
+    (click)="openModalWithComponent(position, 'New', true)"
+  >
+    <i nz-icon nzType="plus" nzTheme="outline"></i>
+    Nuevo Requisito
+  </button>
+</ng-template>

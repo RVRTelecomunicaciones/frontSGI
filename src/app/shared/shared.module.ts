@@ -19,6 +19,9 @@ import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { IconsProviderModule } from '../icons-provider.module';
 
 @NgModule({
   declarations: [],
@@ -44,6 +47,9 @@ import { NzAlertModule } from 'ng-zorro-antd/alert';
     NzRadioModule,
     NzCheckboxModule,
     NzAlertModule,
+    IconsProviderModule,
+    NzLayoutModule,
+    NzMenuModule,
   ],
   exports: [
     CommonModule,
@@ -67,6 +73,9 @@ import { NzAlertModule } from 'ng-zorro-antd/alert';
     NzRadioModule,
     NzCheckboxModule,
     NzAlertModule,
+    IconsProviderModule,
+    NzLayoutModule,
+    NzMenuModule,
   ],
 })
 export class SharedModule {}

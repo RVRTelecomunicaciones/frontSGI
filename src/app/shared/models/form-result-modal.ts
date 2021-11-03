@@ -1,4 +1,4 @@
-import { Servicio } from 'src/app/pages/servicio/servicio.interface';
+import { Servicio } from 'src/app/core/pages/servicio/servicio.interface';
 
 export interface FormResult {
   position: Servicio;

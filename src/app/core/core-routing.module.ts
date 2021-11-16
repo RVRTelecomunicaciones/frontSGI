@@ -8,11 +8,7 @@ const routes: Routes = [
     path: '',
     component: CoreComponent,
     children: [
-      {
-        path: 'login',
-        component: LoginComponent,
-      },
-      /*{ path: '', pathMatch: 'full', redirectTo: '/cotizacion' },*/
+      { path: '', pathMatch: 'full', redirectTo: 'login' },
       {
         path: 'usuario',
         loadChildren: () =>

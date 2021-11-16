@@ -8,12 +8,12 @@ import { IconsProviderModule } from '../icons-provider.module';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { SharedModule } from '../shared/shared.module';
+import { PageLoginComponent } from './pages/page-login/page-login.component';
 
 @NgModule({
-  declarations: [CoreComponent, LoginComponent],
+  declarations: [CoreComponent, LoginComponent, PageLoginComponent],
   imports: [
     CommonModule,
-    CoreRoutingModule,
     IconsProviderModule,
     NzLayoutModule,
     NzMenuModule,
@@ -22,7 +22,7 @@ import { SharedModule } from '../shared/shared.module';
 
   exports: [
     CoreComponent,
-    LoginComponent,
+    PageLoginComponent,
     IconsProviderModule,
     NzLayoutModule,
     NzMenuModule,

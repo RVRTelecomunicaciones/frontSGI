@@ -8,12 +8,14 @@ import es from '@angular/common/locales/es';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { es_ES, NZ_I18N } from 'ng-zorro-antd/i18n';
+import { CoreModule } from './core/core.module';
 
 registerLocaleData(es);
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    CoreModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

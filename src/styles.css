@@ -1,2 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap");
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 @import "~ng-zorro-antd/ng-zorro-antd.min.css";
 /* You can add global styles to this file, and also import other style files */
+
+body {
+  height: 100%;
+  font-family: Poppins, Poppins-Regular, Poppins-Light, Poppins-Medium,
+    Poppins-Bold;
+  margin: 0;
+}

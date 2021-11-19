@@ -1,50 +1,110 @@
-<form
-  nz-form
-  [formGroup]="validateForm"
-  class="login-form"
-  (ngSubmit)="submitForm()"
->
-  <nz-form-item>
-    <nz-form-control nzErrorTip="Please input your username!">
-      <nz-input-group nzPrefixIcon="user">
-        <input
-          type="text"
-          nz-input
-          formControlName="userName"
-          placeholder="Username"
-        />
-      </nz-input-group>
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item>
-    <nz-form-control nzErrorTip="Please input your Password!">
-      <nz-input-group nzPrefixIcon="lock">
-        <input
-          type="password"
-          nz-input
-          formControlName="password"
-          placeholder="Password"
-        />
-      </nz-input-group>
-    </nz-form-control>
-  </nz-form-item>
-  <div nz-row class="login-form-margin">
-    <div nz-col [nzSpan]="12">
-      <label nz-checkbox formControlName="remember">
-        <span>Remember me</span>
+<form class="mt-8 space-y-7" action="#" method="POST">
+  <input type="hidden" name="remember" value="true" />
+
+  <div class="mt-8 content-center">
+    <label class="text-sm text-labelColorInput font-normal tracking-semi_normal"
+      >Correo electrónico
+    </label>
+    <input
+      class="
+        w-full
+        text-base
+        px-4
+        rounded-lg
+        hover:border-allemantBlue
+        border-gray-300
+      "
+      type="email"
+      placeholder="Ingresa tu correo electrónico"
+    />
+  </div>
+
+  <div class="mt-8 content-center">
+    <label
+      class="text-sm text-labelColorInput font-normal tracking-semi_normal"
+    >
+      Contraseña
+    </label>
+    <input
+      class="
+        w-full
+        content-center
+        text-base
+        px-4
+        py-2
+        rounded-lg
+        border-gray-300
+      "
+      type="password"
+      placeholder="Ingresa tu contraseña"
+    />
+  </div>
+  <div class="flex items-center justify-between">
+    <div class="flex items-center">
+      <input
+        id="remember_me"
+        name="remember_me"
+        type="checkbox"
+        class="h-4 w-4 bg-blue-500 focus:ring-blue-400 border-gray-300 rounded"
+      />
+      <label for="remember_me" class="ml-2 block text-sm text-gray-900">
+        Recordar
       </label>
     </div>
-    <div nz-col [nzSpan]="12">
-      <a class="login-form-forgot">Forgot password</a>
+    <div class="text-sm">
+      <a href="#" class="text-allemantBlue font-normal tracking-semi_normal">
+        Olvidé mi contraseña
+      </a>
     </div>
   </div>
-  <button
-    nz-button
-    class="login-form-button login-form-margin"
-    [nzType]="'primary'"
+  <div>
+    <button
+      type="submit"
+      class="
+        w-full
+        flex
+        justify-center
+        bg-allemantBlue
+        hover:bg-gradient-to-l hover:from-blue-500 hover:to-indigo-600
+        text-gray-100
+        p-4
+        rounded-full
+        tracking-wide
+        font-semibold
+        shadow-lg
+        cursor-pointer
+        transition
+        ease-in
+        duration-500
+      "
+    >
+      Ingresar
+    </button>
+  </div>
+  <p
+    class="
+      flex flex-col
+      items-center
+      justify-center
+      mt-10
+      text-center text-md text-gray-500
+    "
   >
-    Log in
-  </button>
-  Or
-  <a>register now!</a>
+    <span class="font-normal tracking-semi_normal">¿No tienes cuenta?</span>
+    <a
+      href="#"
+      class="
+        text-allemantBlue
+        font-normal
+        tracking-semi_normal
+        no-underline
+        hover:underline
+        cursor-pointer
+        transition
+        ease-in
+        duration-300
+      "
+      >Regístrate</a
+    >
+  </p>
 </form>

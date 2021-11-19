@@ -1,4 +1,5 @@
 const { guessProductionMode } = require("@ngneat/tailwind");
+const { spacing } = require("tailwindcss/defaultTheme");
 
 module.exports = {
   prefix: "",
@@ -12,6 +13,14 @@ module.exports = {
       fontFamily: {
         poppins: ["Poppins"],
       },
+      colors: {
+        allemantBlue : '#253F75',
+        labelColorInput : '#697191'
+
+      },
+      letterSpacing: {
+        semi_normal: '0.015em'
+      }
     },
   },
   variants: {

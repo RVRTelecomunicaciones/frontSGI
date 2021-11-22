@@ -9,7 +9,7 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { SharedModule } from '../shared/shared.module';
 import { PageLoginComponent } from './pages/page-login/page-login.component';
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @NgModule({
   declarations: [CoreComponent, LoginComponent, PageLoginComponent],
   imports: [
@@ -18,6 +18,7 @@ import { PageLoginComponent } from './pages/page-login/page-login.component';
     NzLayoutModule,
     NzMenuModule,
     SharedModule,
+    FontAwesomeModule,
   ],
 
   exports: [

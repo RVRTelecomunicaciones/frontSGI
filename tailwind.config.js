@@ -9,6 +9,10 @@ module.exports = {
   },
   darkMode: false, // or 'media' or 'class'
   theme: {
+    inset: {
+      '0': '0px',
+      '22px':'22px'
+    },
     extend: {
       fontFamily: {
         poppins: ["Poppins"],

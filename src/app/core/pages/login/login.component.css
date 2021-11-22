@@ -1,15 +1,22 @@
-.login-form {
-  max-width: 300px;
+.is-invalidad {
+  border-color: red;
 }
-
-.login-form-margin {
-  margin-bottom: 16px;
+.invalid-feedback {
+  color: red;
 }
+/* input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea,
+select {
+  outline: none;
+  box-shadow: none;
+} */
+input:focus {
+  outline: none !important;
+  /*   background-color: salmon;
+  color: mediumorchid; */
+  border-color: #253f75;
 
-.login-form-forgot {
-  float: right;
-}
-
-.login-form-button {
-  width: 100%;
+  box-shadow: none;
 }

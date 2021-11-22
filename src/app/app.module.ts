@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { es_ES, NZ_I18N } from 'ng-zorro-antd/i18n';
 import { CoreModule } from './core/core.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 registerLocaleData(es);
 
@@ -20,6 +21,7 @@ registerLocaleData(es);
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    FontAwesomeModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: es_ES }],
   bootstrap: [AppComponent],

@@ -34,9 +34,13 @@
             "styles": [
               "node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
               "src/theme.less",
+              "./node_modules/@fortawesome/fontawesome-free/css/fontawesome.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/@fortawesome/fontawesome-free/js/regular.js"
+
+            ]
           },
           "configurations": {
             "production": {
@@ -102,9 +106,13 @@
             ],
             "styles": [
               "node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
+
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/@fortawesome/fontawesome-free/js/regular.js"
+
+            ]
           }
         }
       }

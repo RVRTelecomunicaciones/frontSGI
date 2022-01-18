@@ -1,1 +1,235 @@
+<nz-layout class="app-layout">
+  <!--   <div class="common-layout is-default">
+ -->
+  <nz-header>
+    <div
+      class="logo logo-dark"
+      [ngClass]="{ 'logo-in': isCollapsed, 'logo-out': !isCollapsed }"
+    >
+      <a href="">
+        <img
+          src="assets/images/logo/logo.png"
+          alt="Logo"
+          class="logo"
+          [ngClass]="{ 'logo-unfold': isCollapsed }"
+        />
+        <img
+          src="assets/images/logo/logo-fold.png"
+          alt="Logo"
+          class="logo-fold"
+          [ngClass]="{ 'logo-fold': !isCollapsed }"
+        />
+      </a>
+    </div>
+    <div class="logo logo-white">
+      <a href=""
+        ><img src="assets/images/logo/logo-white.png" alt="Logo" /><img
+          src="assets/images/logo/logo-fold-white.png"
+          alt="Logo"
+          class="logo-fold"
+      /></a>
+    </div>
+
+    <div class="nav-wrap">
+      <ul class="nav-left">
+        <li class="desktop-toggle">
+          <a class="header-trigger" (click)="isCollapsed = !isCollapsed"
+            ><i
+              nz-icon
+              theme="outline"
+              class="trigger"
+              [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+            ></i
+          ></a>
+        </li>
+        <!-- <li class="mobile-toggle">
+          <a class="header-trigger" (click)="isCollapsed = !isCollapsed"
+            ><i
+              nz-icon
+              theme="outline"
+              [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+            ></i
+          ></a>
+        </li> -->
+        <li>
+          <a><i nz-icon nzType="search" nzTheme="outline"></i></a>
+        </li>
+      </ul>
+      <ul class="nav-right">
+        <li>
+          <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu1">
+            <nz-badge [nzDot]="true">
+              <i nz-icon nzType="bell" nzTheme="outline"></i>
+            </nz-badge>
+          </a>
+          <nz-dropdown-menu #menu1="nzDropdownMenu">
+            <ul nz-menu>
+              <li nz-menu-item>menu1 1st menu item</li>
+              <li nz-menu-item>menu1 2nd menu item</li>
+              <li nz-menu-item>menu1 3rd menu item</li>
+            </ul>
+          </nz-dropdown-menu>
+        </li>
+        <li>
+          <span
+            nz-dropdown
+            nzTrigger="click"
+            [nzDropdownMenu]="menu2"
+            class="px-3 !important cursor-pointer"
+          >
+            <nz-avatar
+              nzIcon="user"
+              nzSrc="assets/images/profile/thumb-3.jpg"
+            ></nz-avatar>
+          </span>
+          <nz-dropdown-menu #menu2="nzDropdownMenu">
+            <ul nz-menu class="pt-5 pb-4">
+              <li class="px-5 pb-4 mb-2">
+                <div class="flex mr-12">
+                  <nz-avatar
+                    nzIcon="user"
+                    nzSrc="assets/images/profile/thumb-3.jpg"
+                  ></nz-avatar>
+                  <div class="ml-3">
+                    <p class="mb-0 font-medium text-textdark">
+                      Marshall Nichols
+                    </p>
+                    <p class="mb-0 opacity-5">UI/UX Desinger</p>
+                  </div>
+                </div>
+              </li>
+              <li nz-menu-item>CERRAR SESIÓN</li>
+              <li nz-menu-item>menu2 2nd menu item</li>
+              <li nz-menu-item>menu2 3rd menu item</li>
+            </ul>
+          </nz-dropdown-menu>
+        </li>
+      </ul>
+    </div>
+
+    <!-- <div class="app-header">
+      <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+        <i
+          class="trigger"
+          nz-icon
+          [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+        ></i>
+      </span>
+    </div> -->
+  </nz-header>
+  <nz-sider
+    class="menu-sidebar"
+    nzCollapsible
+    nzWidth="280px"
+    nzBreakpoint="lg"
+    [(nzCollapsed)]="isCollapsed"
+    [class.verify]="!isCollapsed"
+    [nzTrigger]="null"
+  >
+    <!--   <di v class="sidebar-logo">
+      <a href="https://ng.ant.design/" target="_blank">
+        <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo" />
+        <h1>Ant Design Of A</h1>
+      </a>
+    </di> -->
+    <ul nz-menu nzMode="inline" [nzInlineCollapsed]="isCollapsed" class="">
+      <li nz-submenu nzTitle="SEGURIDAD" nzIcon="lock">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/usuario">USUARIOS</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/area">AREAS</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/rol">ROLES</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/rol-area">ROLES POR AREA</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="MANTENIMIENTO" nzIcon="appstore">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/desglose">DESGLOSES</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/moneda">MONEDAS</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/tipo-servicio">TIPO DE SERVICIOS</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/servicio">SERVICIOS</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/requisito">REQUISITOS</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/requisito-por-servicio">REQUISITOS POR SERVICIO</a>
+          </li>
+          <li nz-submenu nzOpen nzTitle="INVOLUCRADOS">
+            <ul>
+              <li nz-menu-item nzMatchRouter>
+                <a routerLink="/involucrado-natural">NATURAL</a>
+              </li>
+              <li nz-menu-item nzMatchRouter>
+                <a routerLink="/involucrado-naturals">JURIDICO</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzOpen nzTitle="COMERCIAL" nzIcon="appstore">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/cotizacion">COTIZACIÓN</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/coordinacion">COORDINACIÓN</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/inspeccion">INSPECCIONES</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="TASACIONES" nzIcon="appstore">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/por_registrar">POR REGISTRAR</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/registradas">REGISTRADAS</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="REPORTES" nzIcon="appstore">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/comercial">COMERCIAL</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/operaciones">OPERACIONES</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/sistemas">SISTEMAS</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nz-sider>
+  <!--   </div>
+ -->
+  <!-- <nz-content>
+    <div class="inner-content">
+      <router-outlet></router-outlet>
+    </div>
+  </nz-content> -->
+</nz-layout>
+<!-- <nz-layout> </nz-layout>
+ -->
+<!-- background: #fff; height: 70px; border-bottom: 1px solid #edf2f9; position:
+fixed; top: 0; width: 100%; z-index: 1000; display: flex; -->
+
 <router-outlet></router-outlet>

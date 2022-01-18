@@ -20,7 +20,7 @@ import { IconsProviderModule } from '../icons-provider.module';
     SharedModule,
   ],
   exports: [
-    /*PageReportComponent,*/
+    PageReportComponent,
     IconsProviderModule,
     NzLayoutModule,
     NzAvatarModule,

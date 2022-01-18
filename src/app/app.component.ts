@@ -14,6 +14,7 @@ export class AppComponent {
   showAdminBoard = false;
   showModeratorBoard = false;
   username?: string;
+  isCollapsed = false;
 
   constructor(private AuthUseCase: AuthUseCase) {}
 

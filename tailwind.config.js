@@ -25,7 +25,8 @@ module.exports = {
       },
       colors: {
         allemantBlue : '#253F75',
-        labelColorInput : '#697191'
+        labelColorInput : '#697191',
+        textdark: '#2a2a2a!important'
 
       },
       letterSpacing: {

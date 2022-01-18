@@ -17,6 +17,11 @@ import { StorageInfraestructure } from './core/infraestructure/storage.infraestr
 import { TokenInterceptor } from './shared/interceptor/token.interceptor';
 import { NewComponentComponent } from './new-component/new-component.component';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { SharedModule } from './shared/shared.module';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+import { NzBadgeModule } from 'ng-zorro-antd/badge';
 
 registerLocaleData(es);
 
@@ -29,6 +34,11 @@ registerLocaleData(es);
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    NzLayoutModule,
+    NzMenuModule,
+    NzAvatarModule,
+    NzBadgeModule,
+    SharedModule,
   ],
   providers: [
     {

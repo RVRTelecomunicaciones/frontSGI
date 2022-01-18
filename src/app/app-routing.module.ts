@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: '', component: PageLoginComponent },
   {
     path: 'dashboard',
-    canLoad: [],
+    canLoad: [AuthenticationGuard],
     loadChildren: () =>
       import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
   },

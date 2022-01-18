@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./page-report.component.css'],
 })
 export class PageReportComponent implements OnInit {
+  isCollapsed = false;
+
   constructor() {}
 
   ngOnInit(): void {}

@@ -4,24 +4,26 @@ import { PageLoginComponent } from './core/pages/page-login/page-login.component
 import { AuthenticationGuard } from './shared/guards/authentication.guard';
 
 const routes: Routes = [
-  {
+  /*   {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full',
-  },
-  { path: 'login', component: PageLoginComponent },
+  }, */
+  { path: '', component: PageLoginComponent },
   {
     path: 'dashboard',
-    canLoad: [AuthenticationGuard],
-    loadChildren: () => import('./core/core.module').then((m) => m.CoreModule),
+    canLoad: [],
+    loadChildren: () =>
+      import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
   },
-  /* {
-    path: 'medics',
+  {
+    path: 'user',
     canLoad: [AuthenticationGuard],
     loadChildren: () =>
-      import('./medics/medics.module').then((m) => m.MedicsModule),
-  }, */
-  { path: '**', redirectTo: 'login' },
+      import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
+  },
+
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({

@@ -15,13 +15,16 @@ import { AuthUseCase } from './core/application/auth.usecase';
 import { StorageRepository } from './core/application/storage.repository';
 import { StorageInfraestructure } from './core/infraestructure/storage.infraestructure';
 import { TokenInterceptor } from './shared/interceptor/token.interceptor';
+import { NewComponentComponent } from './new-component/new-component.component';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 registerLocaleData(es);
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, NewComponentComponent],
   imports: [
     CoreModule,
+    DashboardModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

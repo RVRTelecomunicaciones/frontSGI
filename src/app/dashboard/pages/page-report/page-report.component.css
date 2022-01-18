@@ -1,0 +1,237 @@
+nz-header {
+  background: #fff;
+  display: flex;
+  padding: 0;
+  top: 0;
+  width: 100%;
+  position: fixed;
+  z-index: 1000;
+  border-bottom: 1px solid #edf2f9;
+  height: 70px;
+}
+nz-header .logo-in {
+  width: 80px;
+}
+
+nz-header .logo-out {
+  width: 280px;
+}
+nz-header .logo .logo-unfold {
+  display: none;
+}
+
+nz-header .logo {
+  /*   width: 280px;
+ */
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+nz-header .logo > a {
+  display: block;
+  text-align: center;
+  height: 100%;
+}
+
+img {
+  border-style: none;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: auto;
+  margin-left: auto;
+}
+nz-header .logo .logo-fold,
+nz-header .logo.logo-white {
+  display: none;
+}
+
+nz-header .nav-wrap {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+}
+
+nz-header .nav-wrap .nav-left {
+  margin-left: 10px;
+}
+
+nz-header .nav-wrap .nav-left,
+nz-header .nav-wrap .nav-right {
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 0;
+  align-items: center;
+  display: flex;
+}
+
+nz-header .nav-wrap .nav-right {
+  margin-right: 10px;
+}
+
+nz-header .nav-wrap .nav-left li > a,
+nz-header .nav-wrap .nav-left li nz-dropdown > a,
+nz-header .nav-wrap .nav-right li > a,
+nz-header .nav-wrap .nav-right li nz-dropdown > a .app-header {
+  position: relative;
+  height: 64px;
+  padding: 0;
+  background: #fff;
+}
+.anticon {
+  color: inherit;
+  line-height: 0;
+  text-align: center;
+}
+
+nz-header .nav-wrap .nav-left li > a,
+nz-header .nav-wrap .nav-left li nz-dropdown > a,
+nz-header .nav-wrap .nav-right li > a,
+nz-header .nav-wrap .nav-right li nz-dropdown > a {
+  padding: 5px 15px;
+  font-size: 18px;
+  color: #53535f;
+  display: block;
+  transition: background-color 0.3s;
+  -webkit-transition: background-color 0.3s;
+  -moz-transition: background-color 0.3s;
+  -o-transition: background-color 0.3s;
+  -ms-transition: background-color 0.3s;
+  border-radius: 0.25rem;
+}
+
+@media only screen and (min-width: 992px) {
+  nz-header .nav-wrap .mobile-toggle {
+    display: none;
+  }
+}
+@media only screen and (min-width: 992px) {
+  nz-header .logo {
+    display: block;
+  }
+}
+@media only screen and (min-width: 992px) {
+  nz-header .logo .logo-fold {
+    width: 80px;
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  nz-header .logo {
+    display: none;
+    width: 80px;
+    border-right: 1px solid #edf2f9;
+    /*   -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease; */
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1440px) {
+  nz-header .logo {
+    width: 230px;
+  }
+  nz-sider {
+    width: 230px;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  nz-header .logo .logo-fold {
+    width: 80px;
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  nz-sider {
+    display: none;
+  }
+}
+
+.verify {
+  display: block;
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+/* @media only screen and (max-width: 992px) {
+  nz-header .logo {
+    display: none;
+  }
+} */
+
+/* @media only screen and (min-width: 576px) {
+  // volver hacer algo
+} */
+
+nz-header .nav-wrap .nav-left li > a .ant-badge,
+nz-header .nav-wrap .nav-left li nz-dropdown > a .ant-badge,
+nz-header .nav-wrap .nav-right li > a .ant-badge,
+nz-header .nav-wrap .nav-right li nz-dropdown > a .ant-badge {
+  color: #53535f;
+  font-size: 18px;
+  line-height: 1.5;
+  position: relative;
+}
+nz-header .ant-dropdown-link .anticon:not(.anticon-ellipsis),
+nz-header .ant-dropdown-trigger .anticon:not(.anticon-ellipsis) {
+  font-size: 18px;
+  transform: none;
+}
+
+nz-avatar {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #53535f;
+  text-align: center;
+  background: #f1f2f3;
+  color: #fff;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  vertical-align: middle;
+  width: 2.5rem;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  border-radius: 50%;
+}
+/* nz-badge {
+  margin-right: 20px;
+} */
+nz-sider {
+  position: fixed;
+  top: 70px;
+  width: 280px;
+  background-color: #fff;
+  border-right: 1px solid #edf2f9;
+  height: 100%;
+  z-index: 1000;
+  overflow-y: auto;
+  /* -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  transition: all 0.2s ease; */
+}
+.menu-sidebar {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+}
+.side-nav .side-nav-menu {
+  margin-bottom: 70px;
+}
+
+nz-content {
+  margin: 24px;
+}
+
+.inner-content {
+  padding: 24px;
+  background: #fff;
+  height: 100%;
+}

@@ -1,9 +1,9 @@
 <div class="relative flex min-h-screen">
   <div
-    class="flex items-center flex-auto min-w-0 bg-white  sm:flex-row md:items-start sm:justify-center md:justify-start"
+    class="flex items-center flex-auto min-w-0 bg-white sm:flex-row md:items-start sm:justify-center md:justify-start"
   >
     <div
-      class="relative items-center justify-center flex-auto hidden h-full p-10 overflow-hidden text-white bg-no-repeat bg-cover  sm:w-auto xl:w-1/3 md:flex bg-allemantBlue"
+      class="relative items-center justify-center flex-auto hidden h-full p-10 overflow-hidden text-white bg-no-repeat bg-cover sm:w-auto xl:w-1/3 md:flex bg-allemantBlue"
     >
       <div class="z-10 w-full max-w-md">
         <div class="mb-6 font-bold leading-tight sm:text-4xl xl:text-5xl">
@@ -18,14 +18,14 @@
       </div>
     </div>
     <div
-      class="flex items-center justify-center w-full p-8 bg-white  sm:w-2/3 md:h-full xl:w-2/3 md:p-10 lg:p-14 sm:rounded-lg md:rounded-none"
+      class="flex items-center justify-center w-full p-8 bg-white sm:w-2/3 md:h-full xl:w-2/3 md:p-10 lg:p-14 sm:rounded-lg md:rounded-none"
     >
       <div class="w-full max-w-sm space-y-8">
         <div class="text-center">
           <h2 class="mt-6 text-3xl font-bold text-gray-900">Inicia sesión</h2>
         </div>
 
-        <app-login></app-login>
+        <app-login (onLogin)="login($event)"></app-login>
       </div>
     </div>
   </div>

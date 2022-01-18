@@ -22,6 +22,7 @@ import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { IconsProviderModule } from '../icons-provider.module';
+import { PasswordInputComponent } from './component/password-input.component';
 
 @NgModule({
   declarations: [],

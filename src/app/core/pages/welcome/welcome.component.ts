@@ -4,6 +4,7 @@ import {
   Router,
   RouterLinkActive,
   Routes,
+  UrlTree,
 } from '@angular/router';
 
 @Component({
@@ -47,9 +48,9 @@ export class WelcomeComponent implements OnInit {
     this.router.navigateByUrl('/cotizacion/listado');
   }
 
-  isLinkActive(rla: RouterLinkActive): boolean {
+  /* isLinkActive(rla: RouterLinkActive): boolean {
     const routerLink = rla.linksWithHrefs.first;
 
-    return this.router.isActive(routerLink.urlTree, false);
-  }
+    return this.router.isActive();
+  } */
 }

@@ -9,16 +9,20 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { SharedModule } from '../shared/shared.module';
 import { PageLoginComponent } from './pages/page-login/page-login.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+import { NzBadgeModule } from 'ng-zorro-antd/badge';
+
 @NgModule({
   declarations: [CoreComponent, LoginComponent, PageLoginComponent],
   imports: [
+    CoreRoutingModule,
     CommonModule,
     IconsProviderModule,
     NzLayoutModule,
     NzMenuModule,
+    NzAvatarModule,
+    NzBadgeModule,
     SharedModule,
-    FontAwesomeModule,
   ],
 
   exports: [
@@ -26,6 +30,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     PageLoginComponent,
     IconsProviderModule,
     NzLayoutModule,
+    NzAvatarModule,
+    NzBadgeModule,
     NzMenuModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: es_ES }],

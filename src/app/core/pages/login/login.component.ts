@@ -1,7 +1,20 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { faCoffee, faEye } from '@fortawesome/free-solid-svg-icons';
+import { AuthModel } from '../../domain/auth.model';
 
 @Component({
   selector: 'app-login',
@@ -9,23 +22,30 @@ import { faCoffee, faEye } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  faCoffee = faCoffee;
-  faEyes = faEye;
-
   formLogin!: FormGroup;
+  @Output() onLogin: EventEmitter<AuthModel> = new EventEmitter<AuthModel>();
 
   isFormSubmitted = false;
 
   @ViewChild('focusInitial')
   focusInitial!: ElementRef<HTMLInputElement>;
 
+  password: any;
+
+  public showPassword?: boolean = false;
+
   async submitLogin() {
+    console.log('A');
+    // Set flag to true
+    this.isFormSubmitted = true;
     // Return if form is invalid
     if (this.formLogin.invalid) {
       return;
     }
-    // Set flag to true
-    this.isFormSubmitted = true;
+    const userInfo: AuthModel = this.formLogin.value;
+    console.log(userInfo);
+
+    this.onLogin.emit(userInfo);
   }
 
   constructor(
@@ -35,14 +55,13 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.showPassword;
+
     // Patterns
     const PAT_EMAIL = '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+[.][a-zA-Z]{2,4}$';
 
     this.formLogin = this.formBuilder.group({
-      usernameOrEmail: [
-        '',
-        [Validators.required, Validators.pattern(PAT_EMAIL)],
-      ],
+      username: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
 
@@ -52,11 +71,11 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  ngAfterViewInit(): void {
-    requestAnimationFrame(() => this.focusInitial.nativeElement.focus());
+  get f(): { [key: string]: AbstractControl } {
+    return this.formLogin.controls;
   }
 
-  get f() {
-    return this.formLogin.controls;
+  ngAfterViewInit(): void {
+    requestAnimationFrame(() => this.focusInitial.nativeElement.focus());
   }
 }

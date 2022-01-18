@@ -1,22 +1,55 @@
-.is-invalidad {
-  border-color: red;
+.errorUsername {
+  border-color: #e91e63;
 }
-.invalid-feedback {
-  color: red;
-}
-/* input[type="text"],
-input[type="password"],
-input[type="email"],
-textarea,
-select {
-  outline: none;
-  box-shadow: none;
-} */
-input:focus {
-  outline: none !important;
-  /*   background-color: salmon;
-  color: mediumorchid; */
-  border-color: #253f75;
 
+.invalid-feedback {
+  color: #e91e63;
+  border-color: #e91e63;
+}
+.form-control:focus {
   box-shadow: none;
+}
+.is-invalid {
+  border-color: #e91e63;
+}
+button:disabled,
+button[disabled] {
+  background-color: #f1f2f7 !important;
+  color: #b8bcd5 !important;
+  outline: none;
+  font-size: 16px;
+  cursor: auto;
+  pointer-events: none;
+}
+
+.input.ng-invalid,
+.input.ng-untouched,
+.input.ng-dirty,
+.input.ng-pristine {
+  border-color: 1px solid #3ce759 !important;
+}
+.input.ng-touched.ng-dirty.ng-invalid {
+  border-color: 1px solid #e74c3c !important;
+}
+.input.ng-untouched.ng-dirty.ng-invalid {
+  border-color: 1px solid #e74c3c !important;
+}
+.ng-invalid {
+  border-color: 1px solid #3ce759 !important;
+}
+.ng-pristine {
+  border-color: 1px solid #3ce759 !important;
+}
+.ng-touched {
+  border-color: 1px solid #3ce759 !important;
+}
+
+.input.ng-pristine.ng-invalid.ng-touched {
+  border-color: 1px solid #e74c3c !important;
+}
+.ng-invalid:not(form) {
+  border-color: 5px solid #a94442; /* red */
+}
+.ng-touched:not(form) {
+  border-color: 5px solid #a94442; /* red */
 }

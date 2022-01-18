@@ -1,18 +1,24 @@
-<form class="mt-8" [formGroup]="formLogin" (ngSubmit)="submitLogin()">
+<form
+  class="mt-8"
+  [formGroup]="formLogin"
+  (ngSubmit)="submitLogin()"
+  novalidate
+>
   <input type="hidden" name="remember" value="true" />
 
-  <div class="content-center mt-6">
+  <div class="relative content-center mt-6">
     <label class="text-sm font-normal text-labelColorInput tracking-semi_normal"
       >Correo electrónico
     </label>
     <input
-      class="w-full px-4 text-base border-gray-300 rounded-lg  hover:border-allemantBlue"
-      type="email"
-      formControlName="usernameOrEmail"
+      class="w-full px-4 text-base border-gray-300 rounded-lg form-control hover:border-allemantBlue"
+      type="text"
+      required
+      formControlName="username"
       placeholder="Ingresa tu correo electrónico"
     />
   </div>
-  <div
+  <!-- <div
     class="invalid-feedback"
     *ngIf="
       (isFormSubmitted && formLogin.controls.usernameOrEmail.errors) ||
@@ -27,60 +33,40 @@
     <div *ngIf="formLogin.controls.usernameOrEmail.errors?.pattern">
       Ingrese un correo valido @
     </div>
-  </div>
-  <fa-icon
-    class="absolute inset-y-0 right-0 pr-3 top-22px"
-    [icon]="['fab', 'stack-overflow']"
-  ></fa-icon>
-  <fa-icon [icon]="['fab', 'github']" size="4x"></fa-icon>
-  <fa-icon [icon]="['far', 'square']" size="5x"></fa-icon>
+  </div> -->
 
-  <fa-icon [icon]="['fab', 'stack-overflow']"></fa-icon>
   <div class="relative mt-6">
     <label
-      class="text-sm font-normal text-labelColorInput tracking-semi_normal"
+      class="text-sm font-normal form-control text-labelColorInput tracking-semi_normal"
+      [ngClass]="{
+        error: isFormSubmitted && formLogin.controls.password.errors?.required
+      }"
     >
       Contraseña
     </label>
     <input
-      class="content-center w-full px-4 py-2 text-base border-gray-300 rounded-lg  hover:border-allemantBlue"
+      class="content-center w-full py-2 pl-4 pr-8 text-base border-gray-300 rounded-lg form-control hover:border-allemantBlue"
       required
       formControlName="password"
-      placeholder="Ingresa tu contraseña"
-      type="password"
+      placeholder="Ingrese tu contraseña"
+      [type]="showPassword ? 'text' : 'password'"
     />
-    <fa-icon
+
+    <button
+      (click)="showPassword = !showPassword"
       class="absolute inset-y-0 right-0 pr-3 top-22px"
-      [icon]="['fab', 'stack-overflow']"
-    ></fa-icon>
-
-    <!--   <button type="submit" class="absolute inset-y-0 right-0 pr-3 top-22px">
-      <svg
-        width="24"
-        height="24"
-        xmlns="http://www.w3.org/2000/svg"
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-      >
-        <path
-          d="M12.01 20c-5.065 0-9.586-4.211-12.01-8.424 2.418-4.103 6.943-7.576 12.01-7.576 5.135 0 9.635 3.453 11.999 7.564-2.241 4.43-6.726 8.436-11.999 8.436zm-10.842-8.416c.843 1.331 5.018 7.416 10.842 7.416 6.305 0 10.112-6.103 10.851-7.405-.772-1.198-4.606-6.595-10.851-6.595-6.116 0-10.025 5.355-10.842 6.584zm10.832-4.584c2.76 0 5 2.24 5 5s-2.24 5-5 5-5-2.24-5-5 2.24-5 5-5zm0 1c2.208 0 4 1.792 4 4s-1.792 4-4 4-4-1.792-4-4 1.792-4 4-4z"
-        />
-      </svg>
-    </button> -->
-
-    <!-- <div
-      class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none top-22px"
-    > -->
-    <!-- <svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
-        <path
-          fill-rule="evenodd"
-          d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
-          clip-rule="evenodd"
-        />
-      </svg> -->
-
-    <!--     </div>
- -->
+    >
+      <div *ngIf="!showPassword">
+        <i aria-hidden="true" alt="show" class="far fa-eye fa-lg eye-show"></i>
+      </div>
+      <div *ngIf="showPassword">
+        <i
+          aria-hidden="true"
+          alt="hide"
+          class="far fa-eye-slash fa-lg eye-hide"
+        ></i>
+      </div>
+    </button>
   </div>
   <!-- Validation messages -->
   <div
@@ -120,18 +106,19 @@
   <div>
     <button
       type="submit"
-      class="flex justify-center w-full p-4 font-semibold tracking-wide text-gray-100 transition duration-500 ease-in rounded-full shadow-lg cursor-pointer  bg-allemantBlue hover:bg-gradient-to-l hover:from-blue-500 hover:to-indigo-600"
+      [disabled]="!formLogin.valid"
+      class="flex justify-center w-full p-4 text-base font-medium tracking-wide text-gray-100 transition duration-500 ease-in shadow-lg cursor-pointer rounded-md01 bg-allemantBlue hover:bg-gradient-to-l hover:from-blue-500 hover:to-indigo-600"
     >
       Ingresar
     </button>
   </div>
   <p
-    class="flex flex-col items-center justify-center mt-10 text-center text-gray-500  text-md"
+    class="flex flex-col items-center justify-center mt-10 text-center text-gray-500 text-md"
   >
     <span class="font-normal tracking-semi_normal">¿No tienes cuenta?</span>
     <a
       href="#"
-      class="font-normal no-underline transition duration-300 ease-in cursor-pointer  text-allemantBlue tracking-semi_normal hover:underline"
+      class="font-normal no-underline transition duration-300 ease-in cursor-pointer text-allemantBlue tracking-semi_normal hover:underline"
       >Regístrate</a
     >
   </p>

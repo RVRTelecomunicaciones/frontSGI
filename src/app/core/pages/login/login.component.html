@@ -8,32 +8,16 @@
 
   <div class="relative content-center mt-6">
     <label class="text-sm font-normal text-labelColorInput tracking-semi_normal"
-      >Correo electrónico
+      >Usuario
     </label>
     <input
       class="w-full px-4 text-base border-gray-300 rounded-lg form-control hover:border-allemantBlue"
       type="text"
       required
       formControlName="username"
-      placeholder="Ingresa tu correo electrónico"
+      placeholder="Ingresa tu usuario"
     />
   </div>
-  <!-- <div
-    class="invalid-feedback"
-    *ngIf="
-      (isFormSubmitted && formLogin.controls.usernameOrEmail.errors) ||
-      (!formLogin.controls.usernameOrEmail.pristine &&
-        formLogin.controls.usernameOrEmail.invalid) ||
-      formLogin.controls.usernameOrEmail.touched
-    "
-  >
-    <div *ngIf="formLogin.controls.usernameOrEmail.errors?.required">
-      Correo electronico es requerido
-    </div>
-    <div *ngIf="formLogin.controls.usernameOrEmail.errors?.pattern">
-      Ingrese un correo valido @
-    </div>
-  </div> -->
 
   <div class="relative mt-6">
     <label
@@ -82,7 +66,7 @@
       Contraseña es requerida
     </div>
     <div *ngIf="formLogin.controls.password.errors?.minlength">
-      Requiere un minimo de 8 caracteres
+      Requiere un minimo de 6 caracteres
     </div>
   </div>
   <div class="flex items-center justify-between my-6">

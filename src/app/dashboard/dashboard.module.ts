@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { DashboardRoutingModule } from './dashboard-routing.module';
 import { PageReportComponent } from './pages/page-report/page-report.component';
 import { SharedModule } from '../shared/shared.module';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
@@ -14,7 +13,6 @@ import { IconsProviderModule } from '../icons-provider.module';
   declarations: [PageReportComponent],
   imports: [
     CommonModule,
-    DashboardRoutingModule,
     NzLayoutModule,
     NzMenuModule,
     NzAvatarModule,
@@ -22,7 +20,7 @@ import { IconsProviderModule } from '../icons-provider.module';
     SharedModule,
   ],
   exports: [
-    PageReportComponent,
+    /*PageReportComponent,*/
     IconsProviderModule,
     NzLayoutModule,
     NzAvatarModule,

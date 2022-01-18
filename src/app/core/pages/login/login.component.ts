@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
   public showPassword?: boolean = false;
 
   async submitLogin() {
-    console.log('A');
+    //console.log('A');
     // Set flag to true
     this.isFormSubmitted = true;
     // Return if form is invalid
@@ -76,6 +76,6 @@ export class LoginComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-    requestAnimationFrame(() => this.focusInitial.nativeElement.focus());
+    /*requestAnimationFrame(() => this.focusInitial.nativeElement.focus());*/
   }
 }

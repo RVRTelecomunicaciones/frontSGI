@@ -11,14 +11,7 @@ import { IconsProviderModule } from '../icons-provider.module';
 
 @NgModule({
   declarations: [PageReportComponent],
-  imports: [
-    CommonModule,
-    NzLayoutModule,
-    NzMenuModule,
-    NzAvatarModule,
-    NzBadgeModule,
-    SharedModule,
-  ],
+  imports: [CommonModule],
   exports: [
     PageReportComponent,
     IconsProviderModule,

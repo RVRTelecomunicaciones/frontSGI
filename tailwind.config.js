@@ -11,6 +11,7 @@ module.exports = {
   },
   darkMode: false, // or 'media' or 'class'
   theme: {
+
     inset: {
       '0': '0px',
       '22px':'22px',
@@ -23,6 +24,7 @@ module.exports = {
       fontFamily: {
         poppins: ["Poppins"],
       },
+
       colors: {
         allemantBlue : '#253F75',
         labelColorInput : '#697191',

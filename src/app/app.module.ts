@@ -16,7 +16,7 @@ import { StorageRepository } from './core/application/storage.repository';
 import { StorageInfraestructure } from './core/infraestructure/storage.infraestructure';
 import { TokenInterceptor } from './shared/interceptor/token.interceptor';
 import { NewComponentComponent } from './new-component/new-component.component';
-import { DashboardModule } from './dashboard/dashboard.module';
+/*import { DashboardModule } from './dashboard/dashboard.module';*/
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { SharedModule } from './shared/shared.module';
@@ -29,7 +29,7 @@ registerLocaleData(es);
   declarations: [AppComponent, NewComponentComponent],
   imports: [
     CoreModule,
-    DashboardModule,
+    /*DashboardModule,*/
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

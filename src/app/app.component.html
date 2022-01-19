@@ -1,7 +1,7 @@
 <nz-layout class="app-layout">
   <!--   <div class="common-layout is-default">
  -->
-  <nz-header>
+  <nz-header *ngIf="!config.header.hidden">
     <div
       class="logo logo-dark"
       [ngClass]="{ 'logo-in': isCollapsed, 'logo-out': !isCollapsed }"
@@ -98,7 +98,7 @@
                   </div>
                 </div>
               </li>
-              <li nz-menu-item>CERRAR SESIÓN</li>
+              <li nz-menu-item (click)="logout()">CERRAR SESIÓN</li>
               <li nz-menu-item>menu2 2nd menu item</li>
               <li nz-menu-item>menu2 3rd menu item</li>
             </ul>
@@ -125,6 +125,7 @@
     [(nzCollapsed)]="isCollapsed"
     [class.verify]="!isCollapsed"
     [nzTrigger]="null"
+    *ngIf="!config.sidebar.hidden"
   >
     <!--   <di v class="sidebar-logo">
       <a href="https://ng.ant.design/" target="_blank">

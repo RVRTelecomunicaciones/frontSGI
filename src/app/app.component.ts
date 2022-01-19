@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ConfigLayout } from './config/interfaces/config-layout.interface';
+import { ConfigService } from './config/services/config.service';
 import { AuthUseCase } from './core/application/auth.usecase';
 import { StorageRepository } from './core/application/storage.repository';
 import { StorageInfraestructure } from './core/infraestructure/storage.infraestructure';
@@ -11,12 +13,17 @@ import { StorageInfraestructure } from './core/infraestructure/storage.infraestr
 export class AppComponent {
   private roles: string[] = [];
   isLoggedIn = false;
-  showAdminBoard = false;
-  showModeratorBoard = false;
-  username?: string;
   isCollapsed = false;
+  config!: ConfigLayout;
 
-  constructor(private AuthUseCase: AuthUseCase) {}
+  constructor(
+    private configService: ConfigService,
+    private AuthUseCase: AuthUseCase
+  ) {
+    this.configService.configuration.subscribe(
+      (response: ConfigLayout) => (this.config = response)
+    );
+  }
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.AuthUseCase.isAuthenticated();
@@ -32,7 +39,9 @@ export class AppComponent {
   }
 
   logout(): void {
-    /*     this.tokenStorageService.clear();
-     */ window.location.reload();
+    this.AuthUseCase.logout();
+
+    /*this.tokenStorageService.clear();
+    window.location.reload();*/
   }
 }

@@ -52,6 +52,7 @@ export class AuthUseCase {
     this.storage.clear();
     this.userLogged = false;
     this.router.navigate(['/login']);
+
     return of();
   }
 

@@ -98,9 +98,20 @@
                   </div>
                 </div>
               </li>
-              <li nz-menu-item (click)="logout()">CERRAR SESIÓN</li>
-              <li nz-menu-item>menu2 2nd menu item</li>
-              <li nz-menu-item>menu2 3rd menu item</li>
+              <li nz-menu-item>
+                <a class="py-5px flex justify-between items-center">
+                  <i nz-icon nzType="user" nzTheme="outline" class="opacity-40 text-base text-center inline-block leading-none mb-0 font-medium text-textdark"></i>
+                  <span class="ml-2 text-dropdownTextMenu">Edit Profile</span>
+                </a>
+              </li>
+              <li nz-menu-item (click)="logout()">
+                <a class="py-5px flex justify-between items-center">
+                  <i nz-icon nzType="logout" nzTheme="outline" class="opacity-40 text-base text-center inline-block leading-none mb-0 font-medium text-textdark"></i>
+                  <span class="ml-2 text-dropdownTextMenu">Cerrar Sesión</span>
+                </a>
+              </li>
+              <!--<li nz-menu-item>menu2 2nd menu item</li>
+              <li nz-menu-item>menu2 3rd menu item</li>-->
             </ul>
           </nz-dropdown-menu>
         </li>

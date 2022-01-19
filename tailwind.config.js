@@ -24,12 +24,14 @@ module.exports = {
       fontFamily: {
         poppins: ["Poppins"],
       },
-
+      spacing: {
+        '5px': '5px'
+      },
       colors: {
         allemantBlue : '#253F75',
         labelColorInput : '#697191',
-        textdark: '#2a2a2a!important'
-
+        textdark: '#2a2a2a!important',
+        dropdownTextMenu: '#53535f'
       },
       letterSpacing: {
         semi_normal: '0.015em'

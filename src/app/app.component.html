@@ -118,6 +118,7 @@
     </div> -->
   </nz-header>
   <nz-sider
+    *ngIf="!config.sidebar.hidden"
     class="menu-sidebar"
     nzCollapsible
     nzWidth="280px"
@@ -125,7 +126,6 @@
     [(nzCollapsed)]="isCollapsed"
     [class.verify]="!isCollapsed"
     [nzTrigger]="null"
-    *ngIf="!config.sidebar.hidden"
   >
     <!--   <di v class="sidebar-logo">
       <a href="https://ng.ant.design/" target="_blank">

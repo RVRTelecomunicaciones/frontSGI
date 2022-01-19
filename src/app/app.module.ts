@@ -22,6 +22,9 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { SharedModule } from './shared/shared.module';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
+import { configLayout } from './config/constants/config.constant';
+import { ConfigModule } from './config/modules/config.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 registerLocaleData(es);
 
@@ -29,7 +32,7 @@ registerLocaleData(es);
   declarations: [AppComponent, NewComponentComponent],
   imports: [
     CoreModule,
-    /*DashboardModule,*/
+    DashboardModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -39,6 +42,7 @@ registerLocaleData(es);
     NzAvatarModule,
     NzBadgeModule,
     SharedModule,
+    ConfigModule.forRoot(configLayout),
   ],
   providers: [
     {

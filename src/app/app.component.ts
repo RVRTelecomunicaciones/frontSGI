@@ -25,18 +25,13 @@ export class AppComponent {
     );
   }
 
-  ngOnInit(): void {
+  /*  ngOnInit(): void {
     this.isLoggedIn = !!this.AuthUseCase.isAuthenticated();
     console.log(this.isLoggedIn);
 
-    if (this.isLoggedIn) {
-      /*   const user = this.tokenStorageService.;
+    if (this.isLoggedIn)
 
-
-
-      this.username = user.username; */
-    }
-  }
+  } */
 
   logout(): void {
     this.AuthUseCase.logout();

@@ -10,12 +10,12 @@ const routes: Routes = [
     pathMatch: 'full',
   },*/
   { path: '', component: PageLoginComponent },
-  /*{
+  {
     path: 'dashboard',
     canLoad: [AuthenticationGuard],
     loadChildren: () =>
       import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
-  },*/
+  },
   /*{
     path: 'user',
     canLoad: [AuthenticationGuard],

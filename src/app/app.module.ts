@@ -25,6 +25,7 @@ import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { configLayout } from './config/constants/config.constant';
 import { ConfigModule } from './config/modules/config.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 
 registerLocaleData(es);
 
@@ -32,12 +33,13 @@ registerLocaleData(es);
   declarations: [AppComponent, NewComponentComponent],
   imports: [
     CoreModule,
-    DashboardModule,
-    BrowserModule,
+    /*     DashboardModule,
+     */ BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
     NzLayoutModule,
+    NzBreadCrumbModule,
     NzMenuModule,
     NzAvatarModule,
     NzBadgeModule,

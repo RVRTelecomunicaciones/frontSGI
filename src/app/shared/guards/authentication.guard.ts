@@ -18,5 +18,6 @@ export class AuthenticationGuard implements CanLoad {
 
   canLoad(): boolean {
     return this.auth.isAuthenticated();
+    console.log('AUTHENTICADO');
   }
 }

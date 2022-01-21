@@ -1,0 +1,120 @@
+<nz-sider
+  class="menu-sidebar"
+  nzCollapsible
+  nzWidth="280px"
+  nzBreakpoint="lg"
+  [(nzCollapsed)]="isCollapsed"
+  [class.verify]="!isCollapsed"
+  [nzTrigger]="null"
+>
+  <ul nz-menu nzMode="inline" [nzInlineCollapsed]="isCollapsed" class="">
+    <li nz-submenu nzTitle="SEGURIDAD" nzIcon="lock">
+      <ul>
+        <li nz-menu-item nzMatchRouter>
+          <a routerLink="/usuario">USUARIOS</a>
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <a routerLink="/area">AREAS</a>
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <a routerLink="/rol">ROLES</a>
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <a routerLink="/rol-area">ROLES POR AREA</a>
+        </li>
+      </ul>
+    </li>
+    <li nz-submenu nzTitle="MANTENIMIENTO" nzIcon="appstore">
+      <ul>
+        <li nz-menu-item nzMatchRouter>
+          <a routerLink="/desglose">DESGLOSES</a>
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <a routerLink="/moneda">MONEDAS</a>
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <a routerLink="/tipo-servicio">TIPO DE SERVICIOS</a>
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <a routerLink="/servicio">SERVICIOS</a>
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <a routerLink="/requisito">REQUISITOS</a>
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <a routerLink="/requisito-por-servicio">REQUISITOS POR SERVICIO</a>
+        </li>
+        <li nz-submenu nzOpen nzTitle="INVOLUCRADOS">
+          <ul>
+            <li nz-menu-item nzMatchRouter>
+              <a routerLink="/involucrado-natural">NATURAL</a>
+            </li>
+            <li nz-menu-item nzMatchRouter>
+              <a routerLink="/involucrado-naturals">JURIDICO</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li nz-submenu nzOpen nzTitle="COMERCIAL" nzIcon="appstore">
+      <ul>
+        <li nz-menu-item nzMatchRouter>
+          <a routerLink="/cotizacion">COTIZACIÓN</a>
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <a routerLink="/coordinacion">COORDINACIÓN</a>
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <a routerLink="/inspeccion">INSPECCIONES</a>
+        </li>
+      </ul>
+    </li>
+    <li nz-submenu nzTitle="TASACIONES" nzIcon="appstore">
+      <ul>
+        <li nz-menu-item nzMatchRouter>
+          <a routerLink="/por_registrar">POR REGISTRAR</a>
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <a routerLink="/registradas">REGISTRADAS</a>
+        </li>
+      </ul>
+    </li>
+    <li nz-submenu nzTitle="REPORTES" nzIcon="appstore">
+      <ul>
+        <li nz-menu-item nzMatchRouter>
+          <a routerLink="/comercial">COMERCIAL</a>
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <a routerLink="/operaciones">OPERACIONES</a>
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <a routerLink="/sistemas">SISTEMAS</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nz-sider>
+
+<!-- <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+  <div class="logo"></div>
+  <ul nz-menu nzTheme="dark" nzMode="inline">
+    <li nz-submenu nzTitle="User" nzIcon="user">
+      <ul>
+        <li nz-menu-item>Tom</li>
+        <li nz-menu-item>Bill</li>
+        <li nz-menu-item>Alex</li>
+      </ul>
+    </li>
+    <li nz-submenu nzTitle="Team" nzIcon="team">
+      <ul>
+        <li nz-menu-item>Team 1</li>
+        <li nz-menu-item>Team 2</li>
+      </ul>
+    </li>
+    <li nz-menu-item>
+      <i nz-icon nzType="file"></i>
+      <span>File</span>
+    </li>
+  </ul>
+</nz-sider>
+ -->

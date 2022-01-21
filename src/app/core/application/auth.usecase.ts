@@ -59,6 +59,9 @@ export class AuthUseCase {
   isAuthenticated(): boolean {
     return this.userLogged || !!this.storage.getStorage('accessToken');
   }
+  public getToken(): string | null {
+    return window.sessionStorage.getItem('accessToken');
+  }
 
   isAuthorized(rolesAllowed: string[]): boolean {
     const rolesUser = this.storage.getFieldInToken('roles');

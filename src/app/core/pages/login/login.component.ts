@@ -48,11 +48,7 @@ export class LoginComponent implements OnInit {
     this.onLogin.emit(userInfo);
   }
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {}
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
     this.showPassword;

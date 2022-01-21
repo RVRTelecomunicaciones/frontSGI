@@ -15,6 +15,7 @@ export class ConfigService {
 
   set configuration(value: any) {
     let config = this.configSubject.getValue();
+
     config = Object.assign(config, value);
     this.configSubject.next(config);
   }

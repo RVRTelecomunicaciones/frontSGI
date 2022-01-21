@@ -1,0 +1,130 @@
+/* .trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.trigger:hover {
+  color: #1890ff;
+}
+ */
+nz-header {
+  background: #fff;
+  height: 70px;
+  border-bottom: 1px solid #edf2f9;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  padding: 0;
+}
+nz-header .logo {
+  width: 280px;
+  border-right: 1px solid #edf2f9;
+  -webkit-transition: all 0.2s ease;
+}
+nz-header .logo > a {
+  display: block;
+  text-align: center;
+}
+nz-header .nav-wrap {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+}
+
+nz-header .nav-wrap .nav-left {
+  margin-left: 10px;
+}
+nz-header .nav-wrap .nav-right {
+  margin-right: 10px;
+}
+nz-header .nav-wrap .nav-left,
+nz-header .nav-wrap .nav-right {
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 0;
+  align-items: center;
+  display: flex;
+}
+
+nz-header .nav-wrap .nav-left li > a {
+  padding: 5px 15px;
+  font-size: 18px;
+  color: #53535f;
+  display: block;
+  -webkit-transition: background-color 0.3s;
+  border-radius: 0.25rem;
+}
+nz-header .nav-wrap .nav-right li > a {
+  padding: 5px 15px;
+  font-size: 18px;
+  color: #53535f;
+  display: block;
+  -webkit-transition: background-color 0.3s;
+  border-radius: 0.25rem;
+}
+nz-header .nav-wrap .nav-right li > a .ant-badge {
+  color: #53535f;
+  font-size: 18px;
+}
+img {
+  max-width: 100%;
+  height: auto;
+  display: initial;
+}
+.ant-badge {
+  font-family: Poppins, -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC,
+    Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial,
+    sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #53535f;
+  position: relative;
+}
+.anticon {
+  color: inherit;
+  line-height: 0;
+  text-align: center;
+}
+
+.pointer {
+  cursor: pointer;
+}
+.p-h-10 {
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+}
+nz-avatar {
+  font-family: Poppins, -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC,
+    Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial,
+    sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #53535f;
+  text-align: center;
+  background: #f1f2f3;
+  color: #fff;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  vertical-align: middle;
+  width: 2.5rem;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  border-radius: 50%;
+}
+/* nz-avatar > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+} */
+@media only screen and (min-width: 992px) {
+  nz-header .nav-wrap .mobile-toggle {
+    display: none;
+  }
+}

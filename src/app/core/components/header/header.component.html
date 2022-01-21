@@ -1,0 +1,115 @@
+<nz-header>
+  <div
+    class="logo logo-dark"
+    [ngClass]="{ 'logo-in': isCollapsed, 'logo-out': !isCollapsed }"
+  >
+    <a href="">
+      <img
+        src="assets/images/logo/logo.png"
+        alt="Logo"
+        [ngClass]="{ 'logo-unfold': isCollapsed }"
+      />
+      <img
+        src="assets/images/logo/logo-fold.png"
+        alt="Logo"
+        class="logo-fold"
+        [ngClass]="{ 'logo-fold': !isCollapsed }"
+      />
+    </a>
+  </div>
+
+  <div class="nav-wrap">
+    <ul class="nav-left">
+      <li class="desktop-toggle">
+        <a class="header-trigger" (click)="isCollapsed = !isCollapsed"
+          ><i
+            nz-icon
+            theme="outline"
+            class="trigger"
+            [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+          ></i
+        ></a>
+      </li>
+      <li class="mobile-toggle">
+        <a class="header-trigger" (click)="isCollapsed = !isCollapsed"
+          ><i
+            nz-icon
+            theme="outline"
+            class="trigger"
+            [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+          ></i
+        ></a>
+      </li>
+      <li>
+        <a><i nz-icon nzType="search" nzTheme="outline"></i></a>
+      </li>
+    </ul>
+    <ul class="nav-right">
+      <li>
+        <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu1">
+          <nz-badge [nzDot]="true">
+            <i nz-icon nzType="bell" nzTheme="outline"></i>
+          </nz-badge>
+        </a>
+        <nz-dropdown-menu #menu1="nzDropdownMenu">
+          <ul nz-menu>
+            <li nz-menu-item>menu1 1st menu item</li>
+            <li nz-menu-item>menu1 2nd menu item</li>
+            <li nz-menu-item>menu1 3rd menu item</li>
+          </ul>
+        </nz-dropdown-menu>
+      </li>
+      <li>
+        <span
+          nz-dropdown
+          nzTrigger="click"
+          [nzDropdownMenu]="menu2"
+          class="p-h-10"
+        >
+          <nz-avatar
+            nzIcon="user"
+            nzSrc="assets/images/profile/thumb-3.jpg"
+          ></nz-avatar>
+        </span>
+        <nz-dropdown-menu #menu2="nzDropdownMenu">
+          <ul nz-menu class="pt-5 pb-4">
+            <li class="px-5 pb-4 mb-2">
+              <div class="flex mr-12">
+                <nz-avatar
+                  nzIcon="user"
+                  nzSrc="assets/images/profile/thumb-3.jpg"
+                ></nz-avatar>
+                <div class="ml-3">
+                  <p class="mb-0 font-medium text-textdark">Marshall Nichols</p>
+                  <p class="mb-0 opacity-5">UI/UX Desinger</p>
+                </div>
+              </div>
+            </li>
+            <li nz-menu-item>
+              <a class="flex items-center justify-between py-5px">
+                <i
+                  nz-icon
+                  nzType="user"
+                  nzTheme="outline"
+                  class="inline-block mb-0 text-base font-medium leading-none text-center opacity-40 text-textdark"
+                ></i>
+                <span class="ml-2 text-dropdownTextMenu">Edit Profile</span>
+              </a>
+            </li>
+            <li nz-menu-item (click)="logout()">
+              <a class="flex items-center justify-between py-5px">
+                <i
+                  nz-icon
+                  nzType="logout"
+                  nzTheme="outline"
+                  class="inline-block mb-0 text-base font-medium leading-none text-center opacity-40 text-textdark"
+                ></i>
+                <span class="ml-2 text-dropdownTextMenu">Cerrar Sesión</span>
+              </a>
+            </li>
+          </ul>
+        </nz-dropdown-menu>
+      </li>
+    </ul>
+  </div>
+</nz-header>

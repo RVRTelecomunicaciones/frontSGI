@@ -33,6 +33,7 @@ export class TokenInterceptor implements HttpInterceptor {
           return authUseCase.getNewAccessToken(refreshToken).pipe(
             retry(3),
             mergeMap((response: Tokens) => {
+              console.log(response.accessToken);
               authUseCase.setFieldValue('refreshToken', response.refreshToken);
               authUseCase.setFieldValue('accessToken', response.accessToken);
 

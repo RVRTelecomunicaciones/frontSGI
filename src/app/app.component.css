@@ -7,3 +7,10 @@ nz-content {
   padding: calc(70px + 25px) 25px 25px;
   min-height: calc(100vh - 65px);
 }
+nz-footer {
+  padding: 0 25px;
+  font-size: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -8,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class PageReportComponent implements OnInit {
   isCollapsed = false;
 
-  constructor() {}
+  constructor() {
+    console.log('SOY EL DASHBOARD');
+  }
 
   ngOnInit(): void {}
 }

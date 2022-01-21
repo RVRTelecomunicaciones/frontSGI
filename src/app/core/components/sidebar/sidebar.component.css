@@ -32,3 +32,7 @@ nz-sider .side-nav-menu {
 nz-menu {
   margin-bottom: 70px;
 }
+.ant-menu-item > a {
+  margin-left: 10px;
+}
+/* .ant-menu-inline.ant-menu-root .ant-menu-item>* */

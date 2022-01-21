@@ -1,34 +1,35 @@
-<!-- <div *ngTemplateOutlet="template"></div> -->
-<router-outlet></router-outlet>
-
-<!--
-<nz-layout class="flex-row h-full">
-  <header *ngIf="!config.header.hidden"></header>
-
-  <sidebar *ngIf="!config.sidebar.hidden"></sidebar>
-
-  <nz-content>
-    <div class="main-content">
-      <div *ngTemplateOutlet="template"></div>
-    </div>
-  </nz-content>
-</nz-layout> -->
-<ng-template #template>
-  <router-outlet></router-outlet>
-</ng-template>
-
-<!-- <nz-layout class="flex-row h-full">
-  <sidebar></sidebar>
+<div *ngIf="!config.header.hidden; then loggedIn; else loggedOut"></div>
+<ng-template #loggedIn>
   <nz-layout class="h-full">
-    <header></header>
+    <header *ngIf="!config.header.hidden"></header>
+
+    <sidebar *ngIf="!config.sidebar.hidden"></sidebar>
 
     <nz-content>
-      <div class="inner-content">Bill is a cat.</div>
+      <div class="main-content">
+        <nz-breadcrumb>
+          <nz-breadcrumb-item>User</nz-breadcrumb-item>
+          <nz-breadcrumb-item>Bill</nz-breadcrumb-item>
+        </nz-breadcrumb>
+        <div class="w-full bg-blue-300 components-container">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
     </nz-content>
-    <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>
+    <!-- <nz-footer
+      ><div>
+        <p class="m-b-0">Copyright © 2018 Theme_Nate. All rights reserved.</p>
+        <span
+          ><a href="" class="text-gray m-r-15">Term &amp; Conditions</a
+          ><a href="" class="text-gray">Privacy &amp; Policy</a></span
+        >
+      </div></nz-footer
+    > -->
   </nz-layout>
-</nz-layout>
- -->
+</ng-template>
+<ng-template #loggedOut>
+  <router-outlet></router-outlet>
+</ng-template>
 
 <!-- <nz-layout class="h-full">
   <nz-sider
@@ -174,7 +175,6 @@
       </nz-breadcrumb>
       <div class="inner-content">Bill is a cat.</div>
     </nz-content>
-    <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>
   </nz-layout>
 </nz-layout>
  -->

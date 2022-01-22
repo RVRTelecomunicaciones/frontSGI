@@ -17,6 +17,12 @@ const routes: Routes = [
     loadChildren: () =>
       import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
   },
+
+  {
+    path: 'area',
+    canLoad: [AuthenticationGuard],
+    loadChildren: () => import('./area/area.module').then((m) => m.AreaModule),
+  },
   /*{
     path: 'user',
     canLoad: [AuthenticationGuard],

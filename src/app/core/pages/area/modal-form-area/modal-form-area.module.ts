@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { ModalFormAreaComponent } from './modal-form-area.component';
+import { ModalFormAreasComponent } from './modal-form-area.component';
 
 @NgModule({
-  declarations: [ModalFormAreaComponent],
+  declarations: [ModalFormAreasComponent],
   imports: [CommonModule, SharedModule],
-  exports: [ModalFormAreaComponent],
+  exports: [ModalFormAreasComponent],
 })
 export class ModalFormAreaModule {}

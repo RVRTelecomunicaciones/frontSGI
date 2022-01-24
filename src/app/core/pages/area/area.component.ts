@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-import { ModalFormAreaComponent } from './modal-form-area/modal-form-area.component';
 import { Area } from './area.interface';
+import { ModalFormAreasComponent } from './modal-form-area/modal-form-area.component';
 
 @Component({
   selector: 'app-area',
@@ -52,7 +52,7 @@ export class AreaComponent implements OnInit {
   openModalWithComponent(position: Area, formMode: string, isAddNew: boolean) {
     const nzModalref = this.modal.create({
       nzTitle: 'MANTENIMIENTO DE AREAS',
-      nzContent: ModalFormAreaComponent,
+      nzContent: ModalFormAreasComponent,
       nzMaskClosable: false,
       nzClosable: false,
     });

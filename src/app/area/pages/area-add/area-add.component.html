@@ -1,11 +1,14 @@
-<!-- <div *nzModalTitle>
-    <div class="primary-col-text">CREAR SERVICIO</div>
-  </div> -->
 <form nz-form [formGroup]="validateForm">
   <div nz-row [nzGutter]="8">
-    <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="24" [nzLg]="8">
+    <div nz-col [nzXs]="24" [nzSm]="6" [nzMd]="8" [nzLg]="8">
       <nz-form-item>
-        <nz-form-label [nzXs]="24" [nzSm]="24" [nzMd]="24" nzFor="id" nzRequired
+        <nz-form-label
+          [nzXs]="24"
+          [nzSm]="24"
+          [nzMd]="24"
+          [nzXl]="24"
+          nzFor="id"
+          nzRequired
           >ID</nz-form-label
         >
         <nz-form-control [nzXs]="24" [nzSm]="24" [nzMd]="24" [nzXl]="24">
@@ -20,36 +23,34 @@
         </nz-form-control>
       </nz-form-item>
     </div>
-    <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="24" [nzLg]="8">
+    <div nz-col [nzXs]="24" [nzSm]="18" [nzMd]="16" [nzLg]="16">
       <nz-form-item>
         <nz-form-label
           [nzXs]="24"
           [nzSm]="24"
           [nzMd]="24"
           [nzXl]="24"
-          nzFor="descripcion"
+          nzFor="nombre"
           nzRequired
-          >Descripción</nz-form-label
+          >nombre</nz-form-label
         >
         <nz-form-control [nzXs]="24" [nzSm]="24" [nzMd]="24" [nzXl]="24">
           <input
             nz-input
-            name="descripcion"
+            name="nombre"
             type="text"
-            id="descripcion"
-            formControlName="descripcion"
+            id="nombrenombre"
+            formControlName="nombre"
           />
 
           <div
             *ngIf="
-              myForm.descripcion.invalid &&
-              (myForm.descripcion.dirty || myForm.descripcion.touched)
+              myForm.nombre.invalid &&
+              (myForm.nombre.dirty || myForm.nombre.touched)
             "
             class="invalid-touched"
           >
-            <div *ngIf="myForm.descripcion.errors?.required">
-              Campo Obligatorio
-            </div>
+            <div *ngIf="myForm.nombre.errors?.required">Campo Obligatorio</div>
           </div>
 
           <!--   <ng-template #errorTpl let-control>

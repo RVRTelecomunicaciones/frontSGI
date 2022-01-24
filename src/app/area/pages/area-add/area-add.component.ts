@@ -2,18 +2,23 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 import { FormResult } from 'src/app/shared/models/form-result-modal';
-import { Area } from '../area.interface';
+import { AreaModel } from '../../domain/area.model';
 
 @Component({
-  selector: 'app-area-modal-form',
-  templateUrl: './area-modal-form.component.html',
-  styleUrls: ['./area-modal-form.component.css'],
+  selector: 'modal-form-area',
+  styles: [
+    `
+      .invalid-touched {
+        color: #ff4d4f;
+      }
+    `,
+  ],
+  templateUrl: './area-add.component.html',
 })
-export class AreaModalFormComponent implements OnInit {
-  @Input() public position!: Area;
+export class ModalFormAreaComponent implements OnInit {
+  @Input() public position!: AreaModel;
   @Input() public formMode: string = 'New';
   @Input() public isAddNew!: boolean;
-
   validateForm!: FormGroup;
   error: string | undefined;
   id: any;
@@ -28,21 +33,20 @@ export class AreaModalFormComponent implements OnInit {
     if (this.position != undefined) {
       this.validateForm.setValue({
         id: this.position.id,
-        descripcion: this.position.descripcion,
+        nombre: this.position.nombre,
       });
     }
   }
   private createForm() {
     this.validateForm = this.fb.group({
       id: [''],
-      descripcion: ['', [Validators.required]],
+      nombre: ['', [Validators.required]],
     });
   }
 
   get myForm() {
     return this.validateForm.controls;
   }
-
   submitForm(values: any): void {
     this.modal.close({ data: values });
     for (const key in this.validateForm.controls) {
@@ -56,25 +60,6 @@ export class AreaModalFormComponent implements OnInit {
     /*     this.validateForm.reset();
      */
   }
-
-  /* create(data: any): void {
-    this.apiHttpService
-      .post(this.apiEndpointsService.postPositionsEndpoint(), data)
-      .subscribe(
-        (resp: any) => {
-          this.id = resp.data; //guid return in data
-          this.result = {
-            position: this.position,
-            crudType: 'c',
-            status: true,
-          };
-          this.activeModal.close(this.result);
-        },
-        (error) => {
-          log.debug(error);
-        }
-      );
-  } */
 
   destroyModal(): void {
     this.modal.destroy();

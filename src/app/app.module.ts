@@ -26,6 +26,8 @@ import { configLayout } from './config/constants/config.constant';
 import { ConfigModule } from './config/modules/config.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
+import { AreaRepository } from './area/application/area.repository';
+import { AreaInfraestructure } from './area/infraestructure/area.infraestructure';
 
 registerLocaleData(es);
 
@@ -52,6 +54,7 @@ registerLocaleData(es);
       useClass: TokenInterceptor,
       multi: true,
     },
+    { provide: AreaRepository, useClass: AreaInfraestructure },
     { provide: AuthRepository, useClass: AuthInfraestructure },
     { provide: StorageRepository, useClass: StorageInfraestructure },
     AuthUseCase,

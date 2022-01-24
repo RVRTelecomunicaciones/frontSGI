@@ -11,6 +11,7 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { LoginComponent } from './pages/login/login.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { LoginComponent } from './pages/login/login.component';
     NzAvatarModule,
     NzBadgeModule,
     SharedModule,
+    RouterModule,
   ],
 
   exports: [SidebarComponent, HeaderComponent, IconsProviderModule],

@@ -1,1 +1,89 @@
-<p>area-list works!</p>
+<nz-card
+  [nzBordered]="true"
+  nzTitle="LISTADO DE ÁREAS"
+  [nzExtra]="extraTemplate"
+>
+  <nz-table
+    nzShowSizeChanger
+    [nzFrontPagination]="false"
+    [nzLoading]="loading"
+    [nzData]="listOfAreas"
+    [nzTotal]="total"
+    [nzPageSize]="pageSize"
+    [nzPageIndex]="pageIndex"
+    (nzQueryParams)="onQueryParamsChange($event)"
+  >
+    <thead>
+      <tr>
+        <th>N°</th>
+        <th>Area</th>
+        <th>Fecha Creacións</th>
+        <th>Fecha Actualización</th>
+        <th>Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let data of listOfAreas; index as i"
+        (dblclick)="openModalWithComponent(data, 'Edit', false)"
+      >
+        <td>#{{ i + 1 }}</td>
+        <td>{{ data.nombre }}</td>
+        <td>{{ data.createdAt | date: "dd-MM-yyyy" }}</td>
+        <!--       <td>{{ data.createdAt | date: "dd-MM-yyyy h:mm:ss a" }}</td>-->
+        <td>{{ data.updatedAt | date: "dd-MM-yyyy" }}</td>
+        <td class="flex flex-row">
+          <a
+            nz-button
+            nzType="default"
+            nzShape="circle"
+            class="flex items-center justify-center mr-1"
+          >
+            <i
+              nz-icon
+              nzType="edit"
+              nzTheme="outline"
+              class="text-blue-500"
+            ></i>
+          </a>
+          <button
+            nz-button
+            nzType="default"
+            nzShape="circle"
+            class="flex items-center justify-center"
+          >
+            <i
+              nz-icon
+              nzType="delete"
+              nzTheme="outline"
+              class="text-red-500"
+            ></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</nz-card>
+<ng-template #extraTemplate>
+  <a
+    nz-button
+    nzType="primary"
+    nzType="primary"
+    (click)="openModalWithComponent(position, 'New', true)"
+  >
+    <i nz-icon nzType="plus" nzTheme="outline"></i>
+    Nueva Área
+  </a>
+</ng-template>
+<!-- {
+  "data": [
+  ],
+   "meta": {
+    "page": 1,
+    "take": 10,
+    "itemCount": 12,
+    "pageCount": 2,
+    "hasPreviousPage": false,
+    "hasNextPage": true
+  }
+} -->

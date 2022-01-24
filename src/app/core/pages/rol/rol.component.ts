@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-import { ModalFormAreaComponent } from '../area/modal-form-area/modal-form-area.component';
 import { ModalFormRolComponent } from './modal-form-rol/modal-form-rol.component';
 import { Rol } from './rol.interface';
 

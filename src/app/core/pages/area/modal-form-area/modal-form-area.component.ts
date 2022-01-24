@@ -15,7 +15,7 @@ import { Area } from '../area.interface';
   ],
   templateUrl: './modal-form-area.component.html',
 })
-export class ModalFormAreaComponent implements OnInit {
+export class ModalFormAreasComponent implements OnInit {
   @Input() public position!: Area;
   @Input() public formMode: string = 'New';
   @Input() public isAddNew!: boolean;

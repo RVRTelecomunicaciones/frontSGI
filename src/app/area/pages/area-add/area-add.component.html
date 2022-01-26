@@ -1,28 +1,5 @@
 <form nz-form [formGroup]="validateForm">
-  <div nz-row [nzGutter]="8">
-    <div nz-col [nzXs]="24" [nzSm]="6" [nzMd]="8" [nzLg]="8">
-      <nz-form-item>
-        <nz-form-label
-          [nzXs]="24"
-          [nzSm]="24"
-          [nzMd]="24"
-          [nzXl]="24"
-          nzFor="id"
-          nzRequired
-          >ID</nz-form-label
-        >
-        <nz-form-control [nzXs]="24" [nzSm]="24" [nzMd]="24" [nzXl]="24">
-          <input
-            nz-input
-            name="id"
-            type="number"
-            [placeholder]="'Auto Assigned Id'"
-            formControlName="id"
-            id="id"
-          />
-        </nz-form-control>
-      </nz-form-item>
-    </div>
+  <div nz-row [nzGutter]="24">
     <div nz-col [nzXs]="24" [nzSm]="18" [nzMd]="16" [nzLg]="16">
       <nz-form-item>
         <nz-form-label
@@ -39,7 +16,7 @@
             nz-input
             name="nombre"
             type="text"
-            id="nombrenombre"
+            id="nombre"
             formControlName="nombre"
           />
 
@@ -70,7 +47,30 @@
     nzType="primary"
     [disabled]="!validateForm.valid"
     (click)="submitForm(validateForm)"
+    [disabled]="validateForm.invalid || !isAddNew"
+    *ngIf="this.isAddNew"
   >
     Grabar
   </button>
+  <button
+    nz-button
+    (click)="onUpdate(validateForm)"
+    nzType="primary"
+    type="submit"
+    [disabled]="validateForm.invalid || isAddNew"
+    *ngIf="!this.isAddNew"
+  >
+    <i nz-icon nzType="edit" nzTheme="outline"></i>
+    Update
+  </button>
+  <!-- <button
+    (click)="onDelete()"
+    nzType="primary"
+    type="submit"
+    [disabled]="validateForm.invalid || isAddNew"
+    *ngIf="!this.isAddNew"
+  >
+    <i nz-icon nzType="trash" nzTheme="outline"></i>
+    Delete
+  </button> -->
 </div>

@@ -23,6 +23,7 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { IconsProviderModule } from '../icons-provider.module';
 import { PasswordInputComponent } from './component/password-input.component';
+import { NzNotificationModule } from 'ng-zorro-antd/notification';
 
 @NgModule({
   declarations: [],
@@ -40,7 +41,7 @@ import { PasswordInputComponent } from './component/password-input.component';
     NzSelectModule,
     NzButtonModule,
     NzGridModule,
-
+    NzNotificationModule,
     NzSpinModule,
     NzCascaderModule,
     NzDividerModule,
@@ -78,6 +79,7 @@ import { PasswordInputComponent } from './component/password-input.component';
     IconsProviderModule,
     NzLayoutModule,
     NzMenuModule,
+    NzNotificationModule,
   ],
 })
 export class SharedModule {}

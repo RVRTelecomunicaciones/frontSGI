@@ -24,14 +24,14 @@
     </thead>
     <tbody>
       <tr
-        *ngFor="let data of listOfAreas; index as i"
-        (dblclick)="openModalWithComponent(data, 'Edit', false)"
+        *ngFor="let position of listOfAreas; index as i"
+        (dblclick)="openModalWithComponent(position, 'Edit', false)"
       >
         <td>#{{ i + 1 }}</td>
-        <td>{{ data.nombre }}</td>
-        <td>{{ data.createdAt | date: "dd-MM-yyyy" }}</td>
-        <!--       <td>{{ data.createdAt | date: "dd-MM-yyyy h:mm:ss a" }}</td>-->
-        <td>{{ data.updatedAt | date: "dd-MM-yyyy" }}</td>
+        <td>{{ position.nombre }}</td>
+        <td>{{ position.createdAt | date: "dd-MM-yyyy" }}</td>
+        <!--       <td>{{ position.createdAt | date: "dd-MM-yyyy h:mm:ss a" }}</td>-->
+        <td>{{ position.updatedAt | date: "dd-MM-yyyy" }}</td>
         <td class="flex flex-row">
           <a
             nz-button
@@ -51,6 +51,7 @@
             nzType="default"
             nzShape="circle"
             class="flex items-center justify-center"
+            (click)="showConfirm(position.id!)"
           >
             <i
               nz-icon
@@ -68,22 +69,9 @@
   <a
     nz-button
     nzType="primary"
-    nzType="primary"
     (click)="openModalWithComponent(position, 'New', true)"
   >
     <i nz-icon nzType="plus" nzTheme="outline"></i>
     Nueva Área
   </a>
 </ng-template>
-<!-- {
-  "data": [
-  ],
-   "meta": {
-    "page": 1,
-    "take": 10,
-    "itemCount": 12,
-    "pageCount": 2,
-    "hasPreviousPage": false,
-    "hasNextPage": true
-  }
-} -->

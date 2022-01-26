@@ -1,6 +1,6 @@
 export interface AreaModel {
-  id: number;
+  id?: number;
   nombre: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 }

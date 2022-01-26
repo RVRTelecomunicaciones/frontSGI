@@ -1,7 +1,7 @@
-import { Servicio } from 'src/app/core/pages/servicio/servicio.interface';
+import { AreaModel } from 'src/app/area/domain/area.model';
 
 export interface FormResult {
-  position: Servicio;
+  position: AreaModel;
   crudType: string;
   status: boolean;
 }

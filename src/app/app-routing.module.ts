@@ -22,6 +22,18 @@ const routes: Routes = [
     loadChildren: () => import('./area/area.module').then((m) => m.AreaModule),
   },
   {
+    path: 'desglose',
+    canLoad: [AuthenticationGuard],
+    loadChildren: () =>
+      import('./desglose/desglose.module').then((m) => m.DesgloseModule),
+  },
+  {
+    path: 'moneda',
+    canLoad: [AuthenticationGuard],
+    loadChildren: () =>
+      import('./moneda/moneda.module').then((m) => m.MonedaModule),
+  },
+  {
     path: 'tipo-servicio',
     canLoad: [AuthenticationGuard],
     loadChildren: () =>

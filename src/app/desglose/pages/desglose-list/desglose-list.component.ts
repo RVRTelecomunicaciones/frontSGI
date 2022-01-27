@@ -2,62 +2,61 @@ import { Component, OnInit } from '@angular/core';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
-import { FormResult } from 'src/app/shared/models/form-result-modal';
-import { TipoServicioUseCase } from '../../application/tipo-servicio.usecase';
-import { TipoServicioModel } from '../../domain/tipo-servicio.model';
-import { ModalFormTipoServicioComponent } from '../tipo-servicio-add/tipo-servicio-add.component';
+import { DesgloseUseCase } from '../../application/desglose.usecase';
+import { DesgloseModel } from '../../domain/desglose.model';
+import { ModalFormDesgloseComponent } from '../desglose-add/desglose-add.component';
 
 @Component({
-  selector: 'app-tipo-servicio-list',
-  templateUrl: './tipo-servicio-list.component.html',
-  styleUrls: ['./tipo-servicio-list.component.css'],
+  selector: 'app-desglose-list',
+  templateUrl: './desglose-list.component.html',
+  styleUrls: ['./desglose-list.component.css'],
 })
-export class TipoServicioListComponent implements OnInit {
-  listOfTipoServicios: TipoServicioModel[] = [];
+export class DesgloseListComponent implements OnInit {
+  listOfDesgloses: DesgloseModel[] = [];
   pageIndex: number = 1;
   total: number = 1;
   pageSize = 10;
   loading = true;
-  position!: TipoServicioModel;
+  position!: DesgloseModel;
   ModalRef?: NzModalRef;
   newPageIndex!: number;
   newPageSize!: number;
 
   constructor(
-    private useCase: TipoServicioUseCase,
+    private useCase: DesgloseUseCase,
     private modal: NzModalService,
     private notification: NzNotificationService
   ) {}
 
-  getByPageTipoServicios(page_index: number, page_size: number) {
+  getByPageDesgloses(page_index: number, page_size: number) {
     this.loading = true;
 
     this.useCase.getByPageList(page_index, page_size).subscribe((data: any) => {
       console.log(data);
       this.loading = false;
       this.total = data.meta.itemCount;
-      this.listOfTipoServicios = data.data;
+      this.listOfDesgloses = data.data;
     });
   }
 
   ngOnInit(): void {
-    this.getByPageTipoServicios(this.pageIndex, this.pageSize);
+    this.getByPageDesgloses(this.pageIndex, this.pageSize);
   }
 
   onQueryParamsChange(params: NzTableQueryParams) {
     const { pageSize, pageIndex } = params;
     this.newPageIndex = params.pageIndex;
-    this.getByPageTipoServicios(pageIndex, pageSize);
+    this.getByPageDesgloses(pageIndex, pageSize);
   }
 
   openModalWithComponent(
-    position: TipoServicioModel,
+    position: DesgloseModel,
     formMode: string,
     isAddNew: boolean
   ) {
     const nzModalref = this.modal.create({
-      nzTitle: 'MANTENIMIENTO DE TIPO DE SERVICIOS',
-      nzContent: ModalFormTipoServicioComponent,
+      nzTitle: 'MANTENIMIENTO DE DESGLOSES',
+      nzContent: ModalFormDesgloseComponent,
       nzMaskClosable: false,
       nzClosable: false,
     });
@@ -84,8 +83,7 @@ export class TipoServicioListComponent implements OnInit {
 
         if (res.crudType == 'c') {
           if (res.status) {
-            this.getByPageTipoServicios(this.pageIndex, this.pageSize);
-            // toaster for CRUD\Create
+            this.getByPageDesgloses(this.pageIndex, this.pageSize);
             this.displayToaster('success', 'Confirmation', 'Data is saved');
           }
         }
@@ -122,7 +120,7 @@ export class TipoServicioListComponent implements OnInit {
                 'Se borro correctamente'
               );
             }
-            this.getByPageTipoServicios(this.pageIndex, this.pageSize);
+            this.getByPageDesgloses(this.pageIndex, this.pageSize);
           });
         }).catch(() => console.log('Error')),
     });

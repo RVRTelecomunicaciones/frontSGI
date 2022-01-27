@@ -1,13 +1,13 @@
 <nz-card
   [nzBordered]="true"
-  nzTitle="LISTADO DE TIPO DE SERVICIOS"
+  nzTitle="LISTADO DE DESGLOSES"
   [nzExtra]="extraTemplate"
 >
 <nz-table
     nzShowSizeChanger
     [nzFrontPagination]="false"
     [nzLoading]="loading"
-    [nzData]="listOfTipoServicios"
+    [nzData]="listOfDesgloses"
     [nzTotal]="total"
     [nzPageSize]="pageSize"
     [nzPageIndex]="pageIndex"
@@ -16,15 +16,15 @@
     <thead>
       <tr>
         <th>N°</th>
-        <th>Tipo Servicio</th>
-        <th>Fecha Creacións</th>
-        <th>Fecha Actualización</th>
-        <th>Acción</th>
+        <th>DESGLOSE</th>
+        <th>FECHA CREACIÓN</th>
+        <th>FECHA ACTUALIZACIÓN</th>
+        <th>ACCIÓN</th>
       </tr>
     </thead>
     <tbody>
       <tr
-        *ngFor="let position of listOfTipoServicios; index as i"
+        *ngFor="let position of listOfDesgloses; index as i"
       >
         <td>#{{ i + 1 }}</td>
         <td>{{ position.nombre }}</td>
@@ -71,6 +71,6 @@
     (click)="openModalWithComponent(position, 'New', true)"
   >
     <i nz-icon nzType="plus" nzTheme="outline"></i>
-    Nuevo Tipo de Servicio
+    Nuevo Desglose
   </a>
 </ng-template>

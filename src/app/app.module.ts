@@ -29,6 +29,10 @@ import { AreaRepository } from './area/application/area.repository';
 import { AreaInfraestructure } from './area/infraestructure/area.infraestructure';
 import { TipoServicioInfraestructure } from './tipo-servicio/infraestructure/tipo-servicio.infraestructure';
 import { TipoServicioRepository } from './tipo-servicio/application/tipo-servicio.repository';
+import { DesgloseRepository } from './desglose/application/desglose.repository';
+import { DesgloseInfraestructure } from './desglose/infraestructure/desglose.infraestructure';
+import { MonedaRepository } from './moneda/application/moneda.repository';
+import { MonedaInfraestructure } from './moneda/infraestructure/moneda.infraestructure';
 
 registerLocaleData(es);
 
@@ -58,8 +62,10 @@ registerLocaleData(es);
     { provide: AreaRepository, useClass: AreaInfraestructure },
     { provide: AuthRepository, useClass: AuthInfraestructure },
     { provide: StorageRepository, useClass: StorageInfraestructure },
-    /*IMPORTANTE*/
+    { provide: DesgloseRepository, useClass: DesgloseInfraestructure },
+    { provide: MonedaRepository, useClass: MonedaInfraestructure },
     { provide: TipoServicioRepository, useClass: TipoServicioInfraestructure },
+
     AuthUseCase,
     { provide: NZ_I18N, useValue: es_ES },
   ],

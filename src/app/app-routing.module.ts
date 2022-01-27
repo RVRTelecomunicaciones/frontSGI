@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { PageLoginComponent } from './core/pages/page-login/page-login.component';
-import { NewComponentComponent } from './new-component/new-component.component';
 import { AuthenticationGuard } from './shared/guards/authentication.guard';
 
 const routes: Routes = [
@@ -22,11 +21,14 @@ const routes: Routes = [
     canLoad: [AuthenticationGuard],
     loadChildren: () => import('./area/area.module').then((m) => m.AreaModule),
   },
-  /* {
-    path: 'area',
+  {
+    path: 'tipo-servicio',
     canLoad: [AuthenticationGuard],
-    loadChildren: () => import('./area/area.module').then((m) => m.AreaModule),
-  }, */
+    loadChildren: () =>
+      import('./tipo-servicio/tipo-servicio.module').then(
+        (m) => m.TipoServicioModule
+      ),
+  },
   /*{
     path: 'user',
     canLoad: [AuthenticationGuard],

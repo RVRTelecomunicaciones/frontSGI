@@ -3,63 +3,61 @@ import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { FormResult } from 'src/app/shared/models/form-result-modal';
-import { AreaRepository } from '../../application/area.repository';
-import { AreaUseCase } from '../../application/area.usecase';
-import { AreaModel } from '../../domain/area.model';
-import { ModalFormAreaComponent } from '../area-add/area-add.component';
+import { TipoServicioUseCase } from '../../application/tipo-servicio.usecase';
+import { TipoServicioModel } from '../../domain/tipo-servicio.model';
+import { ModalFormTipoServicioComponent } from '../tipo-servicio-add/tipo-servicio-add.component';
 
 @Component({
-  selector: 'app-area-list',
-  templateUrl: './area-list.component.html',
-  styleUrls: ['./area-list.component.css'],
+  selector: 'app-tipo-servicio-list',
+  templateUrl: './tipo-servicio-list.component.html',
+  styleUrls: ['./tipo-servicio-list.component.css'],
 })
-export class AreaListComponent implements OnInit {
-  listOfAreas: AreaModel[] = [];
+export class TipoServicioListComponent implements OnInit {
+  listOfTipoServicios: TipoServicioModel[] = [];
   pageIndex: number = 1;
   total: number = 1;
   pageSize = 10;
   loading = true;
-  position!: AreaModel;
+  position!: TipoServicioModel;
   ModalRef?: NzModalRef;
   newPageIndex!: number;
   newPageSize!: number;
 
   constructor(
-    private areUseCase: AreaUseCase,
+    private useCase: TipoServicioUseCase,
     private modal: NzModalService,
     private notification: NzNotificationService
   ) {}
 
-  getByPageAreas(page_index: number, page_size: number) {
+  getByPageTipoServicios(page_index: number, page_size: number) {
     this.loading = true;
 
-    this.areUseCase
-      .getByPageList(page_index, page_size)
-      .subscribe((data: any) => {
-        console.log(data);
-        this.loading = false;
-        this.total = data.meta.itemCount;
-        this.listOfAreas = data.data;
-      });
+    this.useCase.getByPageList(page_index, page_size).subscribe((data: any) => {
+      console.log(data);
+      this.loading = false;
+      this.total = data.meta.itemCount;
+      this.listOfTipoServicios = data.data;
+    });
   }
+
   ngOnInit(): void {
-    this.getByPageAreas(this.pageIndex, this.pageSize);
+    this.getByPageTipoServicios(this.pageIndex, this.pageSize);
   }
 
   onQueryParamsChange(params: NzTableQueryParams) {
     const { pageSize, pageIndex } = params;
     this.newPageIndex = params.pageIndex;
-    this.getByPageAreas(pageIndex, pageSize);
+    this.getByPageTipoServicios(pageIndex, pageSize);
   }
 
   openModalWithComponent(
-    position: AreaModel,
+    position: TipoServicioModel,
     formMode: string,
     isAddNew: boolean
   ) {
     const nzModalref = this.modal.create({
-      nzTitle: 'MANTENIMIENTO DE AREAS',
-      nzContent: ModalFormAreaComponent,
+      nzTitle: 'MANTENIMIENTO DE TIPO DE SERVICIOS',
+      nzContent: ModalFormTipoServicioComponent,
       nzMaskClosable: false,
       nzClosable: false,
     });
@@ -144,12 +142,6 @@ export class AreaListComponent implements OnInit {
   displayToaster(type: string, headerText: string, bodyText: string) {
     this.notification.create(type, headerText, bodyText);
   }
-  //refresh page after delete or create
-
-  /*  delete(value: any) {
-    console.log(value);
-    this.showConfirm();
-  } */
 
   showConfirm(idData: number): void {
     this.ModalRef = this.modal.confirm({
@@ -161,7 +153,7 @@ export class AreaListComponent implements OnInit {
       nzOkDanger: true,
       nzOnOk: () =>
         new Promise((resolve, reject) => {
-          this.areUseCase.delete(idData).subscribe((data: any) => {
+          this.useCase.delete(idData).subscribe((data: any) => {
             resolve(data);
             if (data.status === 200) {
               setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
@@ -171,24 +163,13 @@ export class AreaListComponent implements OnInit {
                 'Se borro correctamente'
               );
             }
-            this.getByPageAreas(this.pageIndex, this.pageSize);
+            this.getByPageTipoServicios(this.pageIndex, this.pageSize);
           });
         }).catch(() => console.log('Error')),
     });
   }
+
   refreshPage() {
     window.location.reload();
   }
 }
-
-/* "meta": {
-  "page": 1,
-  "take": 10,
-  "itemCount": 12,
-  "pageCount": 2,
-  "hasPreviousPage": true,
-  "hasNextPage": false
-
-  http://localhost:8080/areas/list?order=ASC&page=1&take=10
-
-} */

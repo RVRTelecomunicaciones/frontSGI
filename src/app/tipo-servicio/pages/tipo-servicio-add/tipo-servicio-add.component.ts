@@ -1,37 +1,35 @@
-import { Component, Input, OnInit, NgZone } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { FormResult } from 'src/app/shared/models/form-result-modal';
-import { AreaUseCase } from '../../application/area.usecase';
-import { AreaModel } from '../../domain/area.model';
+import { TipoServicioUseCase } from '../../application/tipo-servicio.usecase';
+import { TipoServicioModel } from '../../domain/tipo-servicio.model';
 
 @Component({
-  selector: 'modal-form-area',
-  styles: [
+  selector: 'modal-form-tipo-servicio',
+  styleUrls: [
     `
       .invalid-touched {
         color: #ff4d4f;
       }
     `,
   ],
-  templateUrl: './area-add.component.html',
+  templateUrl: './tipo-servicio-add.component.html',
 })
-export class ModalFormAreaComponent implements OnInit {
-  @Input() public position!: AreaModel;
+export class ModalFormTipoServicioComponent implements OnInit {
+  @Input() public position!: TipoServicioModel;
   @Input() public formMode: string = 'New';
   @Input() public isAddNew!: boolean;
   validateForm!: FormGroup;
   error: string | undefined;
   id: any;
   result?: FormResult;
-  /*   ModalRef?: NzModalRef;
-   */
+
   constructor(
     private modal: NzModalService,
     private ModalRef: NzModalRef,
     private fb: FormBuilder,
-    private useCase: AreaUseCase
+    private useCase: TipoServicioUseCase
   ) {}
 
   ngOnInit(): void {
@@ -46,6 +44,7 @@ export class ModalFormAreaComponent implements OnInit {
       });
     }
   }
+
   private createForm() {
     this.validateForm = this.fb.group({
       id: [''],
@@ -56,6 +55,7 @@ export class ModalFormAreaComponent implements OnInit {
   get myForm() {
     return this.validateForm.controls;
   }
+
   submitForm(mydata: any): void {
     const myform = this.validateForm.value;
 
@@ -98,7 +98,8 @@ export class ModalFormAreaComponent implements OnInit {
       }
     );
   }
-  onUpdate({}: { value: AreaModel; valid: boolean }) {
+
+  onUpdate({}: { value: TipoServicioModel; valid: boolean }) {
     this.update(this.validateForm.get('id')!.value, this.validateForm.value);
   }
 

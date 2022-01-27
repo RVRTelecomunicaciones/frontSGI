@@ -15,7 +15,6 @@ import { AuthUseCase } from './core/application/auth.usecase';
 import { StorageRepository } from './core/application/storage.repository';
 import { StorageInfraestructure } from './core/infraestructure/storage.infraestructure';
 import { TokenInterceptor } from './shared/interceptor/token.interceptor';
-import { NewComponentComponent } from './new-component/new-component.component';
 /*import { DashboardModule } from './dashboard/dashboard.module';*/
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
@@ -28,11 +27,13 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { AreaRepository } from './area/application/area.repository';
 import { AreaInfraestructure } from './area/infraestructure/area.infraestructure';
+import { TipoServicioInfraestructure } from './tipo-servicio/infraestructure/tipo-servicio.infraestructure';
+import { TipoServicioRepository } from './tipo-servicio/application/tipo-servicio.repository';
 
 registerLocaleData(es);
 
 @NgModule({
-  declarations: [AppComponent, NewComponentComponent],
+  declarations: [AppComponent],
   imports: [
     CoreModule,
     /*     DashboardModule,
@@ -57,6 +58,8 @@ registerLocaleData(es);
     { provide: AreaRepository, useClass: AreaInfraestructure },
     { provide: AuthRepository, useClass: AuthInfraestructure },
     { provide: StorageRepository, useClass: StorageInfraestructure },
+    /*IMPORTANTE*/
+    { provide: TipoServicioRepository, useClass: TipoServicioInfraestructure },
     AuthUseCase,
     { provide: NZ_I18N, useValue: es_ES },
   ],

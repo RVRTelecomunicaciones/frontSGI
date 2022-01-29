@@ -2,11 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { FormResult } from 'src/app/shared/models/form-result-modal';
-import { TipoServicioUseCase } from '../../application/tipo-servicio.usecase';
-import { TipoServicioModel } from '../../domain/tipo-servicio.model';
+import { EstadoCoordinacionUseCase } from '../../application/estado-coordinacion.usecase';
+import { EstadoCoordinacionModel } from '../../domain/estado-coordinacion.model';
 
 @Component({
-  selector: 'modal-form-tipo-servicio',
+  selector: 'app-estado-coordinacion-add',
   styles: [
     `
       .invalid-touched {
@@ -14,10 +14,10 @@ import { TipoServicioModel } from '../../domain/tipo-servicio.model';
       }
     `,
   ],
-  templateUrl: './tipo-servicio-add.component.html',
+  templateUrl: './estado-coordinacion-add.component.html',
 })
-export class ModalFormTipoServicioComponent implements OnInit {
-  @Input() public position!: TipoServicioModel;
+export class ModalFormEstadoCoordinacionComponent implements OnInit {
+  @Input() public position!: EstadoCoordinacionModel;
   @Input() public formMode: string = 'New';
   @Input() public isAddNew!: boolean;
   validateForm!: FormGroup;
@@ -29,7 +29,7 @@ export class ModalFormTipoServicioComponent implements OnInit {
     private modal: NzModalService,
     private ModalRef: NzModalRef,
     private fb: FormBuilder,
-    private useCase: TipoServicioUseCase
+    private useCase: EstadoCoordinacionUseCase
   ) {}
 
   ngOnInit(): void {
@@ -99,7 +99,7 @@ export class ModalFormTipoServicioComponent implements OnInit {
     );
   }
 
-  onUpdate({}: { value: TipoServicioModel; valid: boolean }) {
+  onUpdate({}: { value: EstadoCoordinacionModel; valid: boolean }) {
     this.update(this.validateForm.get('id')!.value, this.validateForm.value);
   }
 

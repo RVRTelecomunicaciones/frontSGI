@@ -33,6 +33,12 @@ import { DesgloseRepository } from './desglose/application/desglose.repository';
 import { DesgloseInfraestructure } from './desglose/infraestructure/desglose.infraestructure';
 import { MonedaRepository } from './moneda/application/moneda.repository';
 import { MonedaInfraestructure } from './moneda/infraestructure/moneda.infraestructure';
+import { TipoCotizacionRepository } from './tipo-cotizacion/application/tipo-cotizacion.repository';
+import { TipoCotizacionInfraestructure } from './tipo-cotizacion/infraestructure/tipo-cotizacion.infraestructure';
+import { EstadoCotizacionRepository } from './estado-cotizacion/application/estado-cotizacion.repository';
+import { EstadoCotizacionInfraestructure } from './estado-cotizacion/infraestructure/estado-cotizacion.infraestructure';
+import { EstadoCoordinacionRepository } from './estado-coordinacion/application/estado-coordinacion.repository';
+import { EstadoCoordinacionInfraestructure } from './estado-coordinacion/infraestructure/estado-coordinacion.infraestructure';
 
 registerLocaleData(es);
 
@@ -65,7 +71,18 @@ registerLocaleData(es);
     { provide: DesgloseRepository, useClass: DesgloseInfraestructure },
     { provide: MonedaRepository, useClass: MonedaInfraestructure },
     { provide: TipoServicioRepository, useClass: TipoServicioInfraestructure },
-
+    {
+      provide: TipoCotizacionRepository,
+      useClass: TipoCotizacionInfraestructure,
+    },
+    {
+      provide: EstadoCotizacionRepository,
+      useClass: EstadoCotizacionInfraestructure,
+    },
+    {
+      provide: EstadoCoordinacionRepository,
+      useClass: EstadoCoordinacionInfraestructure,
+    },
     AuthUseCase,
     { provide: NZ_I18N, useValue: es_ES },
   ],

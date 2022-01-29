@@ -1,0 +1,31 @@
+nz-pagination .ant-pagination-item > a {
+  border-radius: 50%;
+}
+
+::ng-deep .ant-pagination-item {
+  border-radius: 50%;
+}
+
+::ng-deep .ant-pagination-item-active {
+  border-color: #3f87f5;
+  font-weight: 400;
+  background-color: #3f87f5;
+}
+
+::ng-deep .ant-pagination-item-active > a {
+  color: #fff;
+}
+
+::ng-deep .ant-pagination-next .ant-pagination-item-link,
+::ng-deep .ant-pagination-prev .ant-pagination-item-link {
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.anticon {
+  color: inherit;
+  line-height: 0;
+  text-align: center;
+  display: inline-block;
+}

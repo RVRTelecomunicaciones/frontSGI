@@ -2,11 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { FormResult } from 'src/app/shared/models/form-result-modal';
-import { TipoServicioUseCase } from '../../application/tipo-servicio.usecase';
-import { TipoServicioModel } from '../../domain/tipo-servicio.model';
+import { TipoCotizacionUseCase } from '../../application/tipo-cotizacion.usecase';
+import { TipoCotizacionModel } from '../../domain/tipo-cotizacion.model';
 
 @Component({
-  selector: 'modal-form-tipo-servicio',
+  selector: 'modal-form-tipo-cotizacion',
   styles: [
     `
       .invalid-touched {
@@ -14,10 +14,10 @@ import { TipoServicioModel } from '../../domain/tipo-servicio.model';
       }
     `,
   ],
-  templateUrl: './tipo-servicio-add.component.html',
+  templateUrl: './tipo-cotizacion-add.component.html',
 })
-export class ModalFormTipoServicioComponent implements OnInit {
-  @Input() public position!: TipoServicioModel;
+export class ModalFormTipoCotizacionComponent implements OnInit {
+  @Input() public position!: TipoCotizacionModel;
   @Input() public formMode: string = 'New';
   @Input() public isAddNew!: boolean;
   validateForm!: FormGroup;
@@ -29,7 +29,7 @@ export class ModalFormTipoServicioComponent implements OnInit {
     private modal: NzModalService,
     private ModalRef: NzModalRef,
     private fb: FormBuilder,
-    private useCase: TipoServicioUseCase
+    private useCase: TipoCotizacionUseCase
   ) {}
 
   ngOnInit(): void {
@@ -99,7 +99,7 @@ export class ModalFormTipoServicioComponent implements OnInit {
     );
   }
 
-  onUpdate({}: { value: TipoServicioModel; valid: boolean }) {
+  onUpdate({}: { value: TipoCotizacionModel; valid: boolean }) {
     this.update(this.validateForm.get('id')!.value, this.validateForm.value);
   }
 

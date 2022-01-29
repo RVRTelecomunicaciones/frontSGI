@@ -41,6 +41,30 @@ const routes: Routes = [
         (m) => m.TipoServicioModule
       ),
   },
+  {
+    path: 'tipo-cotizacion',
+    canLoad: [AuthenticationGuard],
+    loadChildren: () =>
+      import('./tipo-cotizacion/tipo-cotizacion.module').then(
+        (m) => m.TipoCotizacionModule
+      ),
+  },
+  {
+    path: 'estado-cotizacion',
+    canLoad: [AuthenticationGuard],
+    loadChildren: () =>
+      import('./estado-cotizacion/estado-cotizacion.module').then(
+        (m) => m.EstadoCotizacionModule
+      ),
+  },
+  {
+    path: 'estado-coordinacion',
+    canLoad: [AuthenticationGuard],
+    loadChildren: () =>
+      import('./estado-coordinacion/estado-coordinacion.module').then(
+        (m) => m.EstadoCoordinacionModule
+      ),
+  },
   /*{
     path: 'user',
     canLoad: [AuthenticationGuard],

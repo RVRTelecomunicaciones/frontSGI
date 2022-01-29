@@ -18,17 +18,15 @@ export class TipoServicioUseCase implements UseCase<TipoServicioModel> {
     return this.tipoServicio.getByPageList(page_index, page_size);
   }
 
-  insert(
-    tipoServicio: Partial<TipoServicioModel>
-  ): Observable<TipoServicioModel> {
-    return this.tipoServicio.insert(tipoServicio);
+  insert(data: Partial<TipoServicioModel>): Observable<TipoServicioModel> {
+    return this.tipoServicio.insert(data);
   }
 
   update(
     id: number,
-    user: Partial<TipoServicioModel>
+    data: Partial<TipoServicioModel>
   ): Observable<TipoServicioModel> {
-    return this.tipoServicio.update(id, user);
+    return this.tipoServicio.update(id, data);
   }
 
   delete(id: number): Observable<TipoServicioModel> {

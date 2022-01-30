@@ -66,7 +66,9 @@ export class ModalFormMonedaComponent implements OnInit {
     this.useCase.insert(myform).subscribe(
       () => {
         console.log('Data added successfully!');
-        this.result = { position: this.position, crudType: 'c', status: true };
+        this.result = { crudType: 'c', status: true };
+        console.log('Soy Moneda');
+
         console.log(this.result);
         this.ModalRef!.close(this.result);
       },
@@ -90,7 +92,6 @@ export class ModalFormMonedaComponent implements OnInit {
           this.position.nombre = this.validateForm.get('nombre')!.value;
 
           this.result = {
-            position: this.position,
             crudType: 'u',
             status: true,
           };

@@ -65,6 +65,12 @@ const routes: Routes = [
         (m) => m.EstadoCoordinacionModule
       ),
   },
+  {
+    path: 'servicio',
+    canLoad: [AuthenticationGuard],
+    loadChildren: () =>
+      import('./servicio/servicio.module').then((m) => m.ServicioModule),
+  },
   /*{
     path: 'user',
     canLoad: [AuthenticationGuard],

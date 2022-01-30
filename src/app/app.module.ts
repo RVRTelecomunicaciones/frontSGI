@@ -39,6 +39,8 @@ import { EstadoCotizacionRepository } from './estado-cotizacion/application/esta
 import { EstadoCotizacionInfraestructure } from './estado-cotizacion/infraestructure/estado-cotizacion.infraestructure';
 import { EstadoCoordinacionRepository } from './estado-coordinacion/application/estado-coordinacion.repository';
 import { EstadoCoordinacionInfraestructure } from './estado-coordinacion/infraestructure/estado-coordinacion.infraestructure';
+import { ServicioRepository } from './servicio/application/servicio.repository';
+import { ServicioInfraestructure } from './servicio/infraestructure/servicio.infraestructure';
 
 registerLocaleData(es);
 
@@ -71,6 +73,7 @@ registerLocaleData(es);
     { provide: DesgloseRepository, useClass: DesgloseInfraestructure },
     { provide: MonedaRepository, useClass: MonedaInfraestructure },
     { provide: TipoServicioRepository, useClass: TipoServicioInfraestructure },
+    { provide: ServicioRepository, useClass: ServicioInfraestructure },
     {
       provide: TipoCotizacionRepository,
       useClass: TipoCotizacionInfraestructure,

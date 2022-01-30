@@ -163,13 +163,10 @@ export class AreaListComponent implements OnInit {
         new Promise((resolve, reject) => {
           this.areUseCase.delete(idData).subscribe((data: any) => {
             resolve(data);
+            console.log(data);
             if (data.status === 200) {
               setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
-              this.displayToaster(
-                'success',
-                'Confirmation',
-                'Se borro correctamente'
-              );
+              this.displayToaster('success', 'Confirmation', data.body);
             }
             this.getByPageAreas(this.pageIndex, this.pageSize);
           });

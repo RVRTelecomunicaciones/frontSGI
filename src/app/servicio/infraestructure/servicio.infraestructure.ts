@@ -5,47 +5,41 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError, map, retry } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { Page } from 'src/app/shared/interfaces/page.interface';
 import { environment } from 'src/environments/environment';
-import { AreaRepository } from '../application/area.repository';
-import { AreaModel } from '../domain/area.model';
+import { ServicioRepository } from '../application/servicio.repository';
+import { ServicioModel } from '../domain/servicio.model';
+import { Datos, ServicioResponse } from '../interfaces/servicio.interface';
 
 @Injectable()
-export class AreaInfraestructure extends AreaRepository {
-  // Http Header
+export class ServicioInfraestructure extends ServicioRepository {
   httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
   constructor(private http: HttpClient) {
     super();
   }
   getByPageList(
-    page: number = 1,
-    page_size: number = 10
-  ): Observable<Page<AreaModel>> {
-    return this.http.get<Page<AreaModel>>(
-      `${environment.API_URL}/areas/list?order=DESC&page=${page}&take=${page_size}`
+    page: number,
+    page_size: number
+  ): Observable<Page<ServicioModel>> {
+    return this.http.get<Page<ServicioModel>>(
+      `${environment.API_URL}/servicios/list?order=DESC&page=${page}&take=${page_size}`
     );
   }
-
-  // Agregar Area
-  insert(data: AreaModel): Observable<any> {
-    let API_URL = `${environment.API_URL}/areas`;
+  insert(data: Partial<ServicioModel>): Observable<any> {
+    let API_URL = `${environment.API_URL}/servicios`;
     return this.http
       .post(API_URL, data, { responseType: 'text' })
       .pipe(catchError(this.handleError));
   }
-
-  // Update Area
   update(id: number, data: any): Observable<any> {
-    let API_URL = `${environment.API_URL}/areas/${id}`;
+    let API_URL = `${environment.API_URL}/servicios/${id}`;
     return this.http
       .patch(API_URL, data, { headers: this.httpHeaders, responseType: 'text' })
       .pipe(catchError(this.handleError));
   }
-
-  // Delete Area
   delete(id: number): Observable<any> {
-    let API_URL = `${environment.API_URL}/areas/${id}`;
+    let API_URL = `${environment.API_URL}/servicios/${id}`;
     return this.http
       .delete(API_URL, {
         headers: this.httpHeaders,
@@ -55,7 +49,6 @@ export class AreaInfraestructure extends AreaRepository {
       .pipe(catchError(this.handleError));
   }
 
-  // Error
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

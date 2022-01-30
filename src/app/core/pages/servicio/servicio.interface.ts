@@ -1,4 +1,4 @@
-export interface Servicio {
+export interface Servicio3 {
   id: number;
   tiposervicio: number;
   descripcion: string;

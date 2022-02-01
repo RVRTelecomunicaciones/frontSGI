@@ -92,45 +92,45 @@ export class ModalFormServicioComponent implements OnInit {
   }
 
   update(id: number, formdata: any): void {
-    console.log('formdata');
+    console.log('LLEGUE');
+    console.log(this.validateForm);
+
+    if (this.validateForm.dirty) {
+      console.log('dirty');
+
+      this.position.id = this.validateForm.get('id')!.value;
+      this.position.nombre = this.validateForm.get('nombre')!.value;
+      this.position.tipoServicio.id =
+        this.validateForm.get('tipoServicio')!.value;
+      const myvar = this.listOfTipoServicios
+        .find((el) => el.id === this.position.tipoServicio.id)
+        ?.nombre.toString();
+      this.position.tipoServicio.nombre = myvar ? myvar : '';
+      this.useCase.update(id, this.position).subscribe((resp: any) => {
+        console.log('RESPUESTA' + JSON.stringify(resp));
+
+        this.result = {
+          crudType: 'u',
+          status: true,
+          message: resp,
+        };
+
+        this.ModalRef!.close(this.result);
+      }),
+        (error: any) => {
+          console.log(error);
+        };
+    }
+    /* console.log('formdata');
     console.log(formdata);
+    console.log('POSITION INICAL' + JSON.stringify(this.position));
 
     this.position.nombre = this.validateForm.get('nombre')!.value;
     this.position.tipoServicio.id =
-      this.validateForm.get('tipoServicio')!.value;
-
-    console.log('position');
-    console.log(this.position);
-
-    this.useCase.update(id, this.position).subscribe(
-      (resp: any) => {
-        console.log(resp);
-        this.id = resp.data; //guid return in data
-        if (this.validateForm.dirty) {
-          this.position.id = this.validateForm.get('id')!.value;
-          this.position.nombre = this.validateForm.get('nombre')!.value;
-          this.position.tipoServicio.id =
-            this.validateForm.get('tipoServicio')!.value;
-
-          this.result = {
-            crudType: 'u',
-            status: true,
-          };
-
-          // close the modal
-          this.ModalRef!.close(this.result);
-        }
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+      this.validateForm.get('tipoServicio')!.value; */
   }
 
   onUpdate({}: { value: ServicioModel; valid: boolean }) {
-    console.log('On Update');
-    console.log(this.validateForm.value);
-
     this.update(this.validateForm.get('id')!.value, this.validateForm.value);
   }
 

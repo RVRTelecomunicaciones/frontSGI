@@ -88,8 +88,7 @@
     nz-button
     (click)="onUpdate(validateForm)"
     nzType="primary"
-    type="submit"
-    [disabled]="validateForm.invalid || isAddNew"
+    [disabled]="!validateForm.dirty || isAddNew || validateForm.invalid"
     *ngIf="!this.isAddNew"
   >
     <i nz-icon nzType="edit" nzTheme="outline"></i>

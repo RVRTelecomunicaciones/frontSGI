@@ -39,7 +39,9 @@ export class ServicioListComponent implements OnInit {
     this.useCase.getByPageList(page_index, page_size).subscribe((data: any) => {
       this.loading = false;
       this.total = data.meta.itemCount;
-      this.listOfServicios = data.data;
+
+      console.log('ESTE ESDATA' + JSON.stringify(data));
+      this.listOfServicios = [...data.data];
     });
   }
 
@@ -76,9 +78,7 @@ export class ServicioListComponent implements OnInit {
 
         if (res.crudType == 'u') {
           if (res.status) {
-            /*             this.getByPageServicios(this.pageIndex, this.pageSize);
-             */ // toaster for CRUD\Update
-            this.displayToaster('success', 'Confirmation', 'Data is updated');
+            this.displayToaster('success', 'Confirmation', res.message);
           }
         }
 

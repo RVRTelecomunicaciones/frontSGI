@@ -92,18 +92,15 @@ export class ModalFormServicioComponent implements OnInit {
   }
 
   update(id: number, formdata: any): void {
-    /*console.log('data');
+    console.log('formdata');
     console.log(formdata);
-
-    console.log('position');
-    console.log(this.position);*/
 
     this.position.nombre = this.validateForm.get('nombre')!.value;
     this.position.tipoServicio.id =
       this.validateForm.get('tipoServicio')!.value;
 
-    /*console.log('position');
-    console.log(this.position);*/
+    console.log('position');
+    console.log(this.position);
 
     this.useCase.update(id, this.position).subscribe(
       (resp: any) => {
@@ -131,6 +128,9 @@ export class ModalFormServicioComponent implements OnInit {
   }
 
   onUpdate({}: { value: ServicioModel; valid: boolean }) {
+    console.log('On Update');
+    console.log(this.validateForm.value);
+
     this.update(this.validateForm.get('id')!.value, this.validateForm.value);
   }
 

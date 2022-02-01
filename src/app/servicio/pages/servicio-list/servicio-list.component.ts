@@ -2,6 +2,7 @@ import { Component, OnInit, Pipe } from '@angular/core';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
+import { Observable } from 'rxjs';
 import { ServicioUseCase } from '../../application/servicio.usecase';
 import { ServicioModel } from '../../domain/servicio.model';
 import { ModalFormServicioComponent } from '../servicio-add/servicio-add.component';
@@ -75,8 +76,8 @@ export class ServicioListComponent implements OnInit {
 
         if (res.crudType == 'u') {
           if (res.status) {
-            this.getByPageServicios(this.pageIndex, this.pageSize);
-            // toaster for CRUD\Update
+            /*             this.getByPageServicios(this.pageIndex, this.pageSize);
+             */ // toaster for CRUD\Update
             this.displayToaster('success', 'Confirmation', 'Data is updated');
           }
         }

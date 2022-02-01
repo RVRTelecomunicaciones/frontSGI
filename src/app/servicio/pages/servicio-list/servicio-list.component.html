@@ -42,6 +42,7 @@
               nzType="edit"
               nzTheme="outline"
               class="text-blue-500"
+              (click)="openModalWithComponent(position, 'Edit', false)"
             ></i>
           </a>
           <button
@@ -49,6 +50,7 @@
             nzType="default"
             nzShape="circle"
             class="flex items-center justify-center"
+            (click)="showConfirm(position.id!)"
           >
             <i
               nz-icon
@@ -63,7 +65,7 @@
   </nz-table>
 </nz-card>
 <ng-template #extraTemplate>
-  <a nz-button nzType="primary">
+  <a nz-button nzType="primary" (click)="openModalWithComponent(position, 'New', true)">
     <i nz-icon nzType="plus" nzTheme="outline"></i>
     Nuevo Servicio
   </a>

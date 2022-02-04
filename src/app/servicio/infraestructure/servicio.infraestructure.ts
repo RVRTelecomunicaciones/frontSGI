@@ -18,6 +18,7 @@ export class ServicioInfraestructure extends ServicioRepository {
   constructor(private http: HttpClient) {
     super();
   }
+
   getByPageList(
     page: number,
     page_size: number
@@ -26,12 +27,14 @@ export class ServicioInfraestructure extends ServicioRepository {
       `${environment.API_URL}/servicios/list?order=DESC&page=${page}&take=${page_size}`
     );
   }
+
   insert(data: Partial<ServicioModel>): Observable<any> {
     let API_URL = `${environment.API_URL}/servicios`;
     return this.http
       .post(API_URL, data, { responseType: 'text' })
       .pipe(catchError(this.handleError));
   }
+
   update(id: number, data: any): Observable<any> {
     let API_URL = `${environment.API_URL}/servicios/${id}`;
     return this.http

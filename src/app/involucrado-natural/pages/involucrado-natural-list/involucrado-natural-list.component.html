@@ -1,0 +1,136 @@
+<nz-card
+  [nzBordered]="true"
+  nzTitle="LISTADO DE INVOLUCRADOS NATURALES"
+  [nzExtra]="extraTemplate"
+>
+  <nz-table
+    nzShowSizeChanger
+    [nzFrontPagination]="false"
+    [nzLoading]="loading"
+    [nzData]="listOfInvolucrados"
+    [nzTotal]="total"
+    [nzPageSize]="pageSize"
+    [nzPageIndex]="pageIndex"
+    (nzQueryParams)="onQueryParamsChange($event)"
+  >
+    <thead>
+      <tr>
+        <th>N°</th>
+        <th>APELLIDOS Y NOMBRES</th>
+        <th>TIPO DOCUMENTO</th>
+        <th>NRO DOCUMENTO</th>
+        <th>FECHA CREACIÓN</th>
+        <th>FECHA ACTUALIZACIÓN</th>
+        <th>ACCIÓN</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let position of listOfInvolucrados; index as i">
+        <td>#{{ i + 1 }}</td>
+        <td>
+          {{
+            position.paterno +
+              "&nbsp;" +
+              position.materno +
+              "&nbsp;" +
+              position.nombre
+          }}
+        </td>
+        <td>{{position.tipoDocumento.abreviatura}}</td>
+        <td>{{position.nro_documento}}</td>
+        <!--<td>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center">
+              <div class="">
+                <span class="mb-0">
+                  {{
+                    position.paterno +
+                      "&nbsp;" +
+                      position.materno +
+                      "&nbsp;" +
+                      position.nombre
+                  }}
+                </span>
+                <p class="mb-0">
+                  {{ position.direccion }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center">
+              <div class="">
+                <span class="mb-0">
+                  {{
+                    position.tipoDocumento.abreviatura
+                  }}
+                </span>
+                <p class="mb-0">
+                  {{ position.nro_documento }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="flex items-center justify-between">
+            <div class="items-center">
+              <p class="text-black mb-0">
+                <i nz-icon nzType="phone" nzTheme="outline"></i>
+                {{ position.telefono }}
+              </p>
+              <p class="text-black mb-0">
+                <i nz-icon nzType="mobile" nzTheme="outline"></i>
+                {{ position.celular1 }}
+              </p>
+              <p class="text-black mb-0">
+                <i nz-icon nzType="mobile" nzTheme="outline"></i>
+                {{ position.celular2 }}
+              </p>
+            </div>
+          </div>
+        </td>-->
+        <td>{{ position.createdAt | date: "dd-MM-yyyy" }}</td>
+        <td>{{ position.updatedAt | date: "dd-MM-yyyy" }}</td>
+        <td class="flex flex-row">
+          <a
+            nz-button
+            nzType="default"
+            nzShape="circle"
+            class="flex items-center justify-center mr-1"
+          >
+            <i
+              nz-icon
+              nzType="edit"
+              nzTheme="outline"
+              class="text-blue-500"
+              (click)="openModalWithComponent(position, 'Edit', false)"
+            ></i>
+          </a>
+          <button
+            nz-button
+            nzType="default"
+            nzShape="circle"
+            class="flex items-center justify-center"
+            (click)="showConfirm(position.id!)"
+          >
+            <i
+              nz-icon
+              nzType="delete"
+              nzTheme="outline"
+              class="text-red-500"
+            ></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</nz-card>
+<ng-template #extraTemplate>
+  <a nz-button nzType="primary" (click)="openModalWithComponent(position, 'New', true)">
+    <i nz-icon nzType="plus" nzTheme="outline"></i>
+    Nuevo Involucrado
+  </a>
+</ng-template>

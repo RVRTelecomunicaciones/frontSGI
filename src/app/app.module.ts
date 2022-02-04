@@ -41,6 +41,18 @@ import { EstadoCoordinacionRepository } from './estado-coordinacion/application/
 import { EstadoCoordinacionInfraestructure } from './estado-coordinacion/infraestructure/estado-coordinacion.infraestructure';
 import { ServicioRepository } from './servicio/application/servicio.repository';
 import { ServicioInfraestructure } from './servicio/infraestructure/servicio.infraestructure';
+import { RequisitoRepository } from './requisito/application/requisito.repository';
+import { RequisitoInfraestructure } from './requisito/infraestructure/requisito.infraestructure';
+import { SectorInvolucradoRepository } from './sector-involucrado/application/sector-involucrado.repository';
+import { SectorInvolucradoInfraestructure } from './sector-involucrado/infraestructure/sector-involucrado.infraestructure';
+import { ClasificacionInvolucradoRepository } from './clasificacion-involucrado/application/clasificacion-involucrado.repository';
+import { ClasificacionInvolucradoInfraestructure } from './clasificacion-involucrado/infraestructure/clasificacion-involucrado.infraestructure';
+import { TipoDocumentoRepository } from './tipo-documento/application/tipo-documento.repository';
+import { TipoDocumentoInfraestructure } from './tipo-documento/infraestructure/tipo-documento.infraestructure';
+import { InvolucradoNaturalRepository } from './involucrado-natural/application/involucrado-natural.repository';
+import { InvolucradoNaturalInfraestructure } from './involucrado-natural/infraestructure/involucrado-natural.infraestructure';
+import { InvolucradoJuridicoRepository } from './involucrado-juridico/application/involucrado-juridico.repository';
+import { InvolucradoJuridicoInfraestructure } from './involucrado-juridico/infraestructure/involucrado-juridico.intraestructure';
 
 registerLocaleData(es);
 
@@ -73,6 +85,10 @@ registerLocaleData(es);
     { provide: DesgloseRepository, useClass: DesgloseInfraestructure },
     { provide: MonedaRepository, useClass: MonedaInfraestructure },
     { provide: TipoServicioRepository, useClass: TipoServicioInfraestructure },
+    {
+      provide: TipoDocumentoRepository,
+      useClass: TipoDocumentoInfraestructure,
+    },
     { provide: ServicioRepository, useClass: ServicioInfraestructure },
     {
       provide: TipoCotizacionRepository,
@@ -85,6 +101,23 @@ registerLocaleData(es);
     {
       provide: EstadoCoordinacionRepository,
       useClass: EstadoCoordinacionInfraestructure,
+    },
+    { provide: RequisitoRepository, useClass: RequisitoInfraestructure },
+    {
+      provide: SectorInvolucradoRepository,
+      useClass: SectorInvolucradoInfraestructure,
+    },
+    {
+      provide: ClasificacionInvolucradoRepository,
+      useClass: ClasificacionInvolucradoInfraestructure,
+    },
+    {
+      provide: InvolucradoNaturalRepository,
+      useClass: InvolucradoNaturalInfraestructure,
+    },
+    {
+      provide: InvolucradoJuridicoRepository,
+      useClass: InvolucradoJuridicoInfraestructure,
     },
     AuthUseCase,
     { provide: NZ_I18N, useValue: es_ES },

@@ -1,0 +1,76 @@
+<nz-card
+  [nzBordered]="true"
+  nzTitle="LISTADO DE SECTORES ECONOMICOS"
+  [nzExtra]="extraTemplate"
+>
+<nz-table
+    nzShowSizeChanger
+    [nzFrontPagination]="false"
+    [nzLoading]="loading"
+    [nzData]="listOfSectores"
+    [nzTotal]="total"
+    [nzPageSize]="pageSize"
+    [nzPageIndex]="pageIndex"
+    (nzQueryParams)="onQueryParamsChange($event)"
+  >
+    <thead>
+      <tr>
+        <th>N°</th>
+        <th>SECTOR ECONOMICO</th>
+        <th>FECHA CREACIÓN</th>
+        <th>FECHA ACTUALIZACIÓN</th>
+        <th>ACCIÓN</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let position of listOfSectores; index as i"
+      >
+        <td>#{{ i + 1 }}</td>
+        <td>{{ position.nombre }}</td>
+        <td>{{ position.createdAt | date: "dd-MM-yyyy" }}</td>
+        <td>{{ position.updatedAt | date: "dd-MM-yyyy" }}</td>
+        <td class="flex flex-row">
+          <a
+            nz-button
+            nzType="default"
+            nzShape="circle"
+            class="flex items-center justify-center mr-1"
+            (click)="openModalWithComponent(position, 'Edit', false)"
+          >
+            <i
+              nz-icon
+              nzType="edit"
+              nzTheme="outline"
+              class="text-blue-500"
+            ></i>
+          </a>
+          <button
+            nz-button
+            nzType="default"
+            nzShape="circle"
+            class="flex items-center justify-center"
+            (click)="showConfirm(position.id!)"
+          >
+            <i
+              nz-icon
+              nzType="delete"
+              nzTheme="outline"
+              class="text-red-500"
+            ></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</nz-card>
+<ng-template #extraTemplate>
+  <a
+    nz-button
+    nzType="primary"
+    (click)="openModalWithComponent(position, 'New', true)"
+  >
+    <i nz-icon nzType="plus" nzTheme="outline"></i>
+    Nuevo Sector
+  </a>
+</ng-template>

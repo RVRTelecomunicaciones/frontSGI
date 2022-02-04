@@ -24,6 +24,7 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { IconsProviderModule } from '../icons-provider.module';
 import { PasswordInputComponent } from './component/password-input.component';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
+import { NzSpaceModule } from 'ng-zorro-antd/space';
 
 @NgModule({
   declarations: [],
@@ -53,6 +54,7 @@ import { NzNotificationModule } from 'ng-zorro-antd/notification';
     IconsProviderModule,
     NzLayoutModule,
     NzMenuModule,
+    NzSpaceModule,
   ],
   exports: [
     CommonModule,
@@ -80,6 +82,7 @@ import { NzNotificationModule } from 'ng-zorro-antd/notification';
     NzLayoutModule,
     NzMenuModule,
     NzNotificationModule,
+    NzSpaceModule,
   ],
 })
 export class SharedModule {}

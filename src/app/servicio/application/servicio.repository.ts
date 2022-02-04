@@ -10,7 +10,7 @@ export abstract class ServicioRepository {
   abstract insert(data: Partial<ServicioModel>): Observable<ServicioModel>;
   abstract update(
     id: number,
-    servicio: Partial<ServicioModel>
+    data: Partial<ServicioModel>
   ): Observable<ServicioModel>;
   abstract delete(id: number): Observable<ServicioModel>;
 }

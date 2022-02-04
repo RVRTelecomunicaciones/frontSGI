@@ -18,16 +18,16 @@ export class AreaUseCase implements UseCase<AreaModel> {
     return this.area.getByPageList(page_index, page_size);
   }
 
-  update(id: number, user: Partial<AreaModel>): Observable<AreaModel> {
-    return this.area.update(id, user);
+  update(id: number, data: Partial<AreaModel>): Observable<AreaModel> {
+    return this.area.update(id, data);
   }
 
-  getByPage(
+  /*getByPage(
     page_index: number,
     page_size: number
   ): Observable<Page<AreaModel>> {
     return this.area.getByPageList(page_index, page_size);
-  }
+  }*/
 
   delete(id: number) {
     return this.area.delete(id);

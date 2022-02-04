@@ -6,7 +6,7 @@ export abstract class DesgloseRepository {
   abstract insert(data: Partial<DesgloseModel>): Observable<DesgloseModel>;
   abstract update(
     id: number,
-    desglose: Partial<DesgloseModel>
+    data: Partial<DesgloseModel>
   ): Observable<DesgloseModel>;
   abstract delete(id: number): Observable<DesgloseModel>;
 }

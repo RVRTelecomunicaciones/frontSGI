@@ -42,6 +42,14 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'tipo-documento',
+    canLoad: [AuthenticationGuard],
+    loadChildren: () =>
+      import('./tipo-documento/tipo-documento.module').then(
+        (m) => m.TipoDocumentoModule
+      ),
+  },
+  {
     path: 'tipo-cotizacion',
     canLoad: [AuthenticationGuard],
     loadChildren: () =>
@@ -70,6 +78,44 @@ const routes: Routes = [
     canLoad: [AuthenticationGuard],
     loadChildren: () =>
       import('./servicio/servicio.module').then((m) => m.ServicioModule),
+  },
+  {
+    path: 'requisito',
+    canLoad: [AuthenticationGuard],
+    loadChildren: () =>
+      import('./requisito/requisito.module').then((m) => m.RequisitoModule),
+  },
+  {
+    path: 'sector-involucrado',
+    canLoad: [AuthenticationGuard],
+    loadChildren: () =>
+      import('./sector-involucrado/sector-involucrado.module').then(
+        (m) => m.SectorInvolucradoModule
+      ),
+  },
+  {
+    path: 'clasificacion-involucrado',
+    canLoad: [AuthenticationGuard],
+    loadChildren: () =>
+      import(
+        './clasificacion-involucrado/clasificacion-involucrado.module'
+      ).then((m) => m.ClasificacionInvolucradoModule),
+  },
+  {
+    path: 'involucrado-natural',
+    canLoad: [AuthenticationGuard],
+    loadChildren: () =>
+      import('./involucrado-natural/involucrado-natural.module').then(
+        (m) => m.InvolucradoNaturalModule
+      ),
+  },
+  {
+    path: 'involucrado-juridico',
+    canLoad: [AuthenticationGuard],
+    loadChildren: () =>
+      import('./involucrado-juridico/involucrado-juridico.module').then(
+        (m) => m.InvolucradoJuridicoModule
+      ),
   },
   /*{
     path: 'user',

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NZ_I18N, es_ES } from 'ng-zorro-antd/i18n';
 import { IconsProviderModule } from '../icons-provider.module';
@@ -12,6 +12,8 @@ import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { LoginComponent } from './pages/login/login.component';
 import { RouterModule } from '@angular/router';
+import { FooterComponent } from './components/footer/footer.component';
+/* import { PerfectScrollComponent } from './components/sidebar/perfect-scroll/perfect-scroll.component'; */
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import { RouterModule } from '@angular/router';
     PageLoginComponent,
     HeaderComponent,
     SidebarComponent,
+    FooterComponent,
   ],
   imports: [
     CommonModule,
@@ -31,7 +34,13 @@ import { RouterModule } from '@angular/router';
     RouterModule,
   ],
 
-  exports: [SidebarComponent, HeaderComponent, IconsProviderModule],
+  exports: [
+    SidebarComponent,
+    HeaderComponent,
+    FooterComponent,
+    IconsProviderModule,
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [{ provide: NZ_I18N, useValue: es_ES }],
 })
 export class CoreModule {}

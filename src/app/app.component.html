@@ -1,180 +1,50 @@
 <div *ngIf="!config.header.hidden; then loggedIn; else loggedOut"></div>
 <ng-template #loggedIn>
-  <nz-layout class="h-full">
-    <header *ngIf="!config.header.hidden"></header>
+  <nz-layout class="common-layout h-full">
+    <header
+      *ngIf="!config.header.hidden"
+      (buttonExpand)="parentEventHandlerFunction($event)"
+      (buttonExpandMobile)="parentMobileEventHandlerFunction($event)"
+    ></header>
+    <sidebar
+      *ngIf="!config.sidebar.hidden"
+      [ngClass]="{
+        'is-folded': valueEmittedFromChildComponent
+      }"
+      [value]="valueEmittedFromChildComponent"
+      [valueMobile]="mobileEmittedFromChildComponent"
+    >
+    </sidebar>
 
-    <sidebar *ngIf="!config.sidebar.hidden"></sidebar>
-
-    <nz-content>
+    <nz-content
+      [className]="
+        valueEmittedFromChildComponent == true
+          ? 'is-folded page-container'
+          : 'page-container'
+      "
+    >
       <div class="main-content">
-        <nz-breadcrumb>
-          <nz-breadcrumb-item>User</nz-breadcrumb-item>
-          <nz-breadcrumb-item>Bill</nz-breadcrumb-item>
-        </nz-breadcrumb>
+        <div class="main-content-header">
+          <h4 class="page-title">Elaboración de Informe</h4>
+          <!---->
+          <nz-breadcrumb nzseparator=">" class="ant-breadcrumb">
+            <i nz-icon nzType="home" class="mr-[5px]"></i>
+            <nz-breadcrumb-item>
+              <span class="ant-breadcrumb-link"
+                ><a href="/"> Dashboard </a></span
+              >
+            </nz-breadcrumb-item>
+          </nz-breadcrumb>
+        </div>
+
         <div class="w-full bg-white components-container">
           <router-outlet></router-outlet>
         </div>
+        <my-footer *ngIf="!config.footer.hidden"> </my-footer>
       </div>
     </nz-content>
-    <!-- <nz-footer
-      ><div>
-        <p class="m-b-0">Copyright © 2018 Theme_Nate. All rights reserved.</p>
-        <span
-          ><a href="" class="text-gray m-r-15">Term &amp; Conditions</a
-          ><a href="" class="text-gray">Privacy &amp; Policy</a></span
-        >
-      </div></nz-footer
-    > -->
   </nz-layout>
 </ng-template>
 <ng-template #loggedOut>
   <router-outlet></router-outlet>
 </ng-template>
-
-<!-- <nz-layout class="h-full">
-  <nz-sider
-    nzCollapsible
-    [(nzCollapsed)]="isCollapsed"
-    [nzTrigger]="null"
-    *ngIf="!config.sidebar.hidden"
-  >
-    <div class="logo">
-      <a href="">
-        <img
-          src="assets/images/logo/logoA.png"
-          alt="Logo"
-          class="logo"
-          *ngIf="!isCollapsed"
-          [ngClass]="{ 'logo-unfold': isCollapsed }"
-        />
-        <img
-          src="assets/images/logo/logo_foldA.png"
-          alt="Logo"
-          *ngIf="isCollapsed"
-          class="logo-fold"
-          [ngClass]="{ 'logo-fold': !isCollapsed }"
-        />
-      </a>
-    </div>
-    <ul nz-menu nzTheme="dark" nzMode="inline">
-      <li nz-submenu nzTitle="User" nzIcon="user">
-        <ul>
-          <li nz-menu-item>Tom</li>
-          <li nz-menu-item>Bill</li>
-          <li nz-menu-item>Alex</li>
-        </ul>
-      </li>
-      <li nz-submenu nzTitle="Team" nzIcon="team">
-        <ul>
-          <li nz-menu-item>Team 1</li>
-          <li nz-menu-item>Team 2</li>
-        </ul>
-      </li>
-      <li nz-menu-item>
-        <i nz-icon nzType="file"></i>
-        <span>File</span>
-      </li>
-    </ul>
-  </nz-sider>
-  <nz-layout>
-    <nz-header *ngIf="!config.header.hidden">
-      <div class="nav-wrap">
-        <ul class="nav-left">
-          <li class="desktop-toggle">
-            <a class="header-trigger" (click)="isCollapsed = !isCollapsed"
-              ><i
-                nz-icon
-                theme="outline"
-                class="trigger"
-                [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
-              ></i
-            ></a>
-          </li>
-          <li>
-            <a><i nz-icon nzType="search" nzTheme="outline"></i></a>
-          </li>
-        </ul>
-        <ul class="nav-right">
-          <li>
-            <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu1">
-              <nz-badge [nzDot]="true">
-                <i nz-icon nzType="bell" nzTheme="outline"></i>
-              </nz-badge>
-            </a>
-            <nz-dropdown-menu #menu1="nzDropdownMenu">
-              <ul nz-menu>
-                <li nz-menu-item>menu1 1st menu item</li>
-                <li nz-menu-item>menu1 2nd menu item</li>
-                <li nz-menu-item>menu1 3rd menu item</li>
-              </ul>
-            </nz-dropdown-menu>
-          </li>
-          <li>
-            <span
-              nz-dropdown
-              nzTrigger="click"
-              [nzDropdownMenu]="menu2"
-              class="px-3 !important cursor-pointer"
-            >
-              <nz-avatar
-                nzIcon="user"
-                nzSrc="assets/images/profile/thumb-3.jpg"
-              ></nz-avatar>
-            </span>
-            <nz-dropdown-menu #menu2="nzDropdownMenu">
-              <ul nz-menu class="pt-5 pb-4">
-                <li class="px-5 pb-4 mb-2">
-                  <div class="flex mr-12">
-                    <nz-avatar
-                      nzIcon="user"
-                      nzSrc="assets/images/profile/thumb-3.jpg"
-                    ></nz-avatar>
-                    <div class="ml-3">
-                      <p class="mb-0 font-medium text-textdark">
-                        Marshall Nichols
-                      </p>
-                      <p class="mb-0 opacity-5">UI/UX Desinger</p>
-                    </div>
-                  </div>
-                </li>
-                <li nz-menu-item>
-                  <a class="flex items-center justify-between py-5px">
-                    <i
-                      nz-icon
-                      nzType="user"
-                      nzTheme="outline"
-                      class="inline-block mb-0 text-base font-medium leading-none text-center opacity-40 text-textdark"
-                    ></i>
-                    <span class="ml-2 text-dropdownTextMenu">Edit Profile</span>
-                  </a>
-                </li>
-                <li nz-menu-item (click)="logout()">
-                  <a class="flex items-center justify-between py-5px">
-                    <i
-                      nz-icon
-                      nzType="logout"
-                      nzTheme="outline"
-                      class="inline-block mb-0 text-base font-medium leading-none text-center opacity-40 text-textdark"
-                    ></i>
-                    <span class="ml-2 text-dropdownTextMenu"
-                      >Cerrar Sesión</span
-                    >
-                  </a>
-                </li>
-              </ul>
-            </nz-dropdown-menu>
-          </li>
-        </ul>
-      </div>
-    </nz-header>
-
-    <nz-content>
-      <nz-breadcrumb>
-        <nz-breadcrumb-item>User</nz-breadcrumb-item>
-        <nz-breadcrumb-item>Bill</nz-breadcrumb-item>
-      </nz-breadcrumb>
-      <div class="inner-content">Bill is a cat.</div>
-    </nz-content>
-  </nz-layout>
-</nz-layout>
- -->

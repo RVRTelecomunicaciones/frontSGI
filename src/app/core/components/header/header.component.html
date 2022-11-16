@@ -1,19 +1,20 @@
 <nz-header>
   <div
-    class="logo logo-dark"
+    class="logo"
     [ngClass]="{ 'logo-in': isCollapsed, 'logo-out': !isCollapsed }"
   >
     <a href="">
       <img
-        src="assets/images/logo/logo.png"
+        src="assets/images/logo/logoA.png"
         alt="Logo"
         [ngClass]="{ 'logo-unfold': isCollapsed }"
+        class="h-14"
       />
       <img
-        src="assets/images/logo/logo-fold.png"
+        src="assets/images/logo/logo_foldAP.png"
         alt="Logo"
-        class="logo-fold"
         [ngClass]="{ 'logo-fold': !isCollapsed }"
+        class="h-11"
       />
     </a>
   </div>
@@ -21,7 +22,7 @@
   <div class="nav-wrap">
     <ul class="nav-left">
       <li class="desktop-toggle">
-        <a class="header-trigger" (click)="isCollapsed = !isCollapsed"
+        <a class="header-trigger" (click)="clickExpand()"
           ><i
             nz-icon
             theme="outline"
@@ -31,12 +32,12 @@
         ></a>
       </li>
       <li class="mobile-toggle">
-        <a class="header-trigger" (click)="isCollapsed = !isCollapsed"
+        <a class="header-trigger" (click)="clickMobileExpand()"
           ><i
             nz-icon
             theme="outline"
             class="trigger"
-            [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+            [nzType]="isCollapsed ? 'menu-fold' : 'menu-unfold'"
           ></i
         ></a>
       </li>

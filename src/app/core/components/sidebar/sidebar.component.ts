@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ConfigLayout } from 'src/app/config/interfaces/config-layout.interface';
 
 @Component({
@@ -7,7 +7,14 @@ import { ConfigLayout } from 'src/app/config/interfaces/config-layout.interface'
   styleUrls: ['./sidebar.component.css'],
 })
 export class SidebarComponent implements OnInit {
-  isCollapsed = false;
+  @Input()
+  value: boolean | undefined;
+  @Input()
+  valueMobile: boolean | undefined;
+
+  addclass: any;
+
+  isCollapsedEmitted = '';
   config!: ConfigLayout;
   ngOnInit(): void {}
 }

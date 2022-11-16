@@ -3,8 +3,8 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { ConfigLayout } from './config/interfaces/config-layout.interface';
 import { ConfigService } from './config/services/config.service';
-import { AuthUseCase } from './core/application/auth.usecase';
-import { StorageRepository } from './core/application/storage.repository';
+import { AuthApplication } from './core/application/auth.application';
+import { StorageRepository } from './core/domain/storage.repository';
 import { StorageInfraestructure } from './core/infraestructure/storage.infraestructure';
 
 @Component({
@@ -14,13 +14,15 @@ import { StorageInfraestructure } from './core/infraestructure/storage.infraestr
 })
 export class AppComponent {
   private roles: string[] = [];
-  isCollapsed = false;
+  valueEmittedFromChildComponent: boolean = false;
+  mobileEmittedFromChildComponent: boolean = false;
+
   config!: ConfigLayout;
   isLoggedIn = false;
 
   constructor(
     private configService: ConfigService,
-    private authUseCase: AuthUseCase
+    private authUseCase: AuthApplication
   ) {
     this.configService.configuration
       .pipe(tap((data) => console.log('Data' + JSON.stringify(data))))
@@ -28,12 +30,23 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
-    this.isLoggedIn = !!this.authUseCase.getToken();
-    console.log(this.isLoggedIn);
+    /*  this.isLoggedIn = !!this.authUseCase.getToken();
+    console.log(this.isLoggedIn); */
     /* if (this.isLoggedIn)
      */
   }
   logout(): void {
     this.authUseCase.logout();
+  }
+
+  parentEventHandlerFunction(valueEmitted: any) {
+    valueEmitted === 'true'
+      ? (this.valueEmittedFromChildComponent = true)
+      : (this.valueEmittedFromChildComponent = false);
+  }
+  parentMobileEventHandlerFunction(valueEmitted: any) {
+    valueEmitted === 'true'
+      ? (this.mobileEmittedFromChildComponent = true)
+      : (this.mobileEmittedFromChildComponent = false);
   }
 }

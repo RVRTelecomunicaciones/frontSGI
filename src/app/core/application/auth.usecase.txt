@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { AuthModel } from 'src/app/core/domain/auth.model';
-import { Tokens } from 'src/app/helpers/interfaces/tokens';
-import { AuthRepository } from './auth.repository';
-import { StorageRepository } from './storage.repository';
+import { Auth } from 'src/app/core/domain/auth.model';
+import { AuthRepository } from '../domain/auth.repository';
+import { StorageRepository } from '../domain/storage.repository';
+import { ITokens } from '../domain/tokens.interface';
 
 @Injectable()
 export class AuthUseCase {
@@ -37,10 +37,10 @@ export class AuthUseCase {
      */
   }
 
-  login(auth: AuthModel) {
+  login(auth: Auth) {
     //this.router.navigate(['/dashboard']);
 
-    return this.repository.login(auth).subscribe((response: Tokens) => {
+    return this.repository.login(auth).subscribe((response: ITokens) => {
       this.storage.setStorage('accessToken', response.accessToken);
       this.storage.setStorage('refreshToken', response.refreshToken);
       this.userLogged = true;
@@ -68,7 +68,7 @@ export class AuthUseCase {
 
     let hasRoleAllowed = false;
     for (let ind = 0; ind < rolesAllowed.length; ind++) {
-      if (rolesUser.includes(rolesAllowed[ind])) {
+      if (rolesUser?.includes(rolesAllowed[ind])) {
         hasRoleAllowed = true;
         break;
       }
@@ -81,7 +81,7 @@ export class AuthUseCase {
     return '' + this.storage.getStorage('accessToken');
   }
 
-  getNewAccessToken(refreshToken: string): Observable<Tokens> {
+  getNewAccessToken(refreshToken: string): Observable<ITokens> {
     return this.repository.getNewAccessToken(refreshToken);
   }
 

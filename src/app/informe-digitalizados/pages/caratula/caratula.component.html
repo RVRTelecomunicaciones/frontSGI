@@ -1,0 +1,560 @@
+<h3>Valuación Comercial de Inmueble</h3>
+<div class="clearfix flex">
+  <nz-upload
+    nzListType="picture-card"
+    [(nzFileList)]="fileList"
+    [nzShowButton]="fileList.length < 8"
+    [nzPreview]="handlePreview"
+    class="flex lg:justify-center nz-upload"
+  >
+    <div>
+      <span nz-icon nzType="plus"></span>
+      <div style="margin-top: 8px">Upload</div>
+    </div>
+  </nz-upload>
+  <nz-modal
+    [nzVisible]="previewVisible"
+    [nzContent]="modalContent"
+    [nzFooter]="null"
+    (nzOnCancel)="previewVisible = false"
+  >
+    <ng-template #modalContent>
+      <img [src]="previewImage" [ngStyle]="{ width: '100%' }" />
+    </ng-template>
+  </nz-modal>
+</div>
+<form nz-form [formGroup]="validateForm">
+  <nz-form-item
+    *ngFor="let control of listOfControl; let i = index"
+    class="grid grid-cols-1 lg:grid-cols-6 gap-3 lg:gap-3 m-2"
+  >
+    <div class="flex justify-start">
+      <nz-form-label
+        *ngIf="i === 0"
+        [nzFor]="control.controlInstance"
+        for="first_name"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+        >Propietario</nz-form-label
+      >
+    </div>
+    <div class="col-span-1 lg:col-span-4">
+      <input
+        type="text"
+        id="first_name"
+        nz-input
+        [attr.id]="control.id"
+        [formControlName]="control.controlInstance"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Ingrese el Propietario"
+        required
+      />
+    </div>
+    <div class="flex items-center">
+      <i
+        nz-icon
+        nzType="delete-o"
+        class="dynamic-delete-button"
+        (click)="removeField(control, $event)"
+      ></i>
+    </div>
+    <div></div>
+  </nz-form-item>
+  <nz-form-item class="grid grid-cols-1 lg:grid-cols-6 gap-3 lg:gap-3 m-2">
+    <div class="col-start-2 col-span-4">
+      <button
+        nz-button
+        nzType="dashed"
+        class="add-button w-full"
+        (click)="addField($event)"
+      >
+        <i nz-icon nzType="plus"></i>
+        Agregar otro campo
+      </button>
+    </div>
+  </nz-form-item>
+
+  <nz-form-item class="grid grid-cols-1 lg:grid-cols-6 gap-3 lg:gap-3 m-2">
+    <div class="flex justify-start">
+      <nz-form-label
+        for="client"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+        >Cliente</nz-form-label
+      >
+    </div>
+    <div class="col-span-1 lg:col-span-5">
+      <input
+        type="text"
+        id="cliente"
+        nz-input
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Ingrese el nombre del cliente"
+        required
+      />
+    </div>
+  </nz-form-item>
+  <nz-form-item class="grid grid-cols-1 lg:grid-cols-6 gap-3 lg:gap-3 m-2">
+    <div class="flex justify-start">
+      <nz-form-label
+        for="solicitante"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+        >Solicitante</nz-form-label
+      >
+    </div>
+    <div class="col-span-1 lg:col-span-5">
+      <input
+        type="text"
+        id="solicitante"
+        value="BANBIF"
+        nz-input
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Ingrese el solicitante"
+        required
+      />
+    </div>
+  </nz-form-item>
+  <nz-form-item class="grid grid-cols-1 lg:grid-cols-6 gap-3 lg:gap-3 m-2">
+    <div class="flex justify-start">
+      <nz-form-label
+        for="ubicacion"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+        >DIRECCIÓN RRPP</nz-form-label
+      >
+    </div>
+    <div class="col-span-1 lg:col-span-5">
+      <textarea
+        id="ubicacion"
+        nz-input
+        [nzAutosize]="{ minRows: 2, maxRows: 6 }"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        required
+      ></textarea>
+    </div>
+  </nz-form-item>
+  <nz-form-item class="grid grid-cols-1 lg:grid-cols-6 gap-3 lg:gap-3 m-2">
+    <div class="flex justify-start">
+      <nz-form-label
+        for="ubicacion"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+        >DIRECCIÓN MUNICIPAL</nz-form-label
+      >
+    </div>
+    <div class="col-span-1 lg:col-span-5">
+      <textarea
+        id="ubicacion"
+        nz-input
+        [nzAutosize]="{ minRows: 2, maxRows: 6 }"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        required
+      ></textarea>
+    </div>
+  </nz-form-item>
+  <nz-form-item class="grid grid-cols-1 lg:grid-cols-6 gap-3 lg:gap-3 m-2">
+    <div class="flex justify-start">
+      <nz-form-label
+        for="ubicacion"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+        >DIRECCIÓN EN SITU</nz-form-label
+      >
+    </div>
+    <div class="col-span-1 lg:col-span-5">
+      <textarea
+        id="ubicacion"
+        nz-input
+        [nzAutosize]="{ minRows: 2, maxRows: 6 }"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        required
+      ></textarea>
+    </div>
+  </nz-form-item>
+
+  <nz-form-item class="grid grid-cols-1 lg:grid-cols-6 gap-3 lg:gap-3 m-2">
+    <div class="flex justify-start">
+      <nz-form-label
+        for="departamento"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+        >Departamento</nz-form-label
+      >
+    </div>
+    <div class="">
+      <nz-select
+        nzShowSearch
+        nzAllowClear
+        nzPlaceHolder="Seleccione el departamento"
+      >
+        <nz-option nzLabel="Lima" nzValue="Lima"></nz-option>
+        <nz-option nzLabel="Amazonas" nzValue="Amazonas"></nz-option>
+        <nz-option nzLabel="Madre de Dios" nzValue="Madre de Dios"></nz-option>
+        <nz-option nzLabel="Lambayeque" nzValue="Lambayeque"></nz-option>
+        <nz-option nzLabel="Arequipa" nzValue="Arequipa"></nz-option>
+        <nz-option nzLabel="Huancavelica" nzValue="Huancavelica"></nz-option>
+      </nz-select>
+    </div>
+    <div class="col-span-2">
+      <div class="grid grid-cols-4">
+        <div class="flex justify-start">
+          <nz-form-label
+            for="ubicacion"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+            >Provincia</nz-form-label
+          >
+        </div>
+        <div class="col-start-2 col-span-4">
+          <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select Provincia">
+            <nz-option nzLabel="Lima" nzValue="Lima"></nz-option>
+            <nz-option nzLabel="Barranca" nzValue="Barranca"></nz-option>
+            <nz-option
+              nzLabel="Rodríguez de Mendoza"
+              nzValue="Rodríguez de Mendoza"
+            ></nz-option>
+            <nz-option nzLabel="Camaná" nzValue="Camaná"></nz-option>
+            <nz-option nzLabel="Huarmey" nzValue="Huarmey"></nz-option>
+          </nz-select>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-span-2">
+      <div class="grid grid-cols-4">
+        <div class="flex justify-start">
+          <nz-form-label
+            for="ubicacion"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+            >Distrito</nz-form-label
+          >
+        </div>
+        <div class="col-start-2 col-span-4">
+          <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select Distrito">
+            <nz-option nzLabel="Jack" nzValue="jack"></nz-option>
+            <nz-option nzLabel="Lucy" nzValue="Ol"></nz-option>
+            <nz-option nzLabel="Tom" nzValue="tom"></nz-option>
+          </nz-select>
+        </div>
+      </div>
+    </div>
+  </nz-form-item>
+
+  <nz-form-item class="grid grid-cols-1 lg:grid-cols-6 gap-3 lg:gap-3 m-2">
+    <div class="flex justify-start">
+      <nz-form-label
+        for="tcambio"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+        >Tipo de cambio
+      </nz-form-label>
+    </div>
+    <div class="">
+      <input
+        type="number"
+        id="tcambio"
+        nz-input
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Tipo de cambio"
+        required
+      />
+    </div>
+  </nz-form-item>
+
+  <nz-form-item class="grid grid-cols-1 lg:grid-cols-6 gap-3 lg:gap-3 m-2">
+    <div class="col-span-1">
+      <nz-form-label
+        for="tcambio"
+        class="mb-2 text-sm font-medium text-gray-900 dark:text-gray-300 flex m-2"
+        >DESCRIPCIÓN
+      </nz-form-label>
+    </div>
+    <div class="col-span-2">
+      <div class="border shadow-md bg-allemantBlue rounded-t-3xl">
+        <div
+          class="flex justify-center items-center relative group w-full overflow-hidden bg-allemantBlue h-10 rounded-t-3xl"
+        >
+          <h1 class="font-normal text-base text-white mb-0">Tipo de Uso</h1>
+        </div>
+      </div>
+      <div class="bg-white flex">
+        <div class="text-center px-3 pb-3 pt-3">
+          <nz-form-control>
+            <nz-select
+              nzShowSearch
+              nzAllowClear
+              nzPlaceHolder="Seleccione"
+              name="tipoUso01"
+              id="tipoUso01"
+              formControlName="tipoUso01"
+            >
+              <nz-option
+                nzLabel="{{ item.descripcion }}"
+                nzValue="{{ item.id }}"
+                *ngFor="let item of listOfTipoUso"
+              ></nz-option>
+            </nz-select>
+            <div
+              *ngIf="
+                myForm.tipoUso01.invalid &&
+                (myForm.tipoUso01.dirty || myForm.tipoUso01.touched)
+              "
+              class="invalid-touched"
+            >
+              <div *ngIf="myForm.tipoUso01.errors?.required">
+                Campo Obligatorio
+              </div>
+            </div>
+          </nz-form-control>
+        </div>
+        <div class="text-center px-3 pb-3 pt-3">
+          <nz-form-control>
+            <nz-input-group nzAddOnBefore="Porcentaje" nzAddOnAfter="%">
+              <input
+                type="number"
+                class="p-2.5 text-center"
+                formControlName="porcetanje1"
+                nz-input
+              />
+            </nz-input-group>
+          </nz-form-control>
+        </div>
+      </div>
+    </div>
+    <div class="col-span-2">
+      <div class="border shadow-md bg-allemantBlue rounded-t-3xl">
+        <div
+          class="flex justify-center items-center relative group w-full overflow-hidden bg-allemantBlue h-10 rounded-t-3xl"
+        >
+          <h1 class="font-normal text-base text-white mb-0">Tipo de Uso</h1>
+        </div>
+      </div>
+      <div class="bg-white">
+        <div class="text-center px-3 pb-3 pt-3">
+          <nz-form-control>
+            <nz-select
+              nzShowSearch
+              nzAllowClear
+              nzPlaceHolder="Seleccione"
+              name="tipoUso02"
+              id="tipoUso02"
+              formControlName="tipoUso02"
+            >
+              <nz-option
+                nzLabel="{{ item.descripcion }}"
+                nzValue="{{ item.id }}"
+                *ngFor="let item of listOfTipoUso"
+              ></nz-option>
+            </nz-select>
+            <div
+              *ngIf="
+                myForm.tipoUso02.invalid &&
+                (myForm.tipoUso02.dirty || myForm.tipoUso02.touched)
+              "
+              class="invalid-touched"
+            >
+              <div *ngIf="myForm.tipoUso02.errors?.required">
+                Campo Obligatorio
+              </div>
+            </div>
+          </nz-form-control>
+        </div>
+        <div class="text-center px-3 pb-3 pt-3">
+          <nz-form-control>
+            <nz-input-group nzAddOnBefore="Porcentaje" nzAddOnAfter="%">
+              <input
+                type="number"
+                class="p-2.5 text-center"
+                formControlName="porcetanje2"
+                nz-input
+              />
+            </nz-input-group>
+          </nz-form-control>
+        </div>
+      </div>
+    </div>
+  </nz-form-item>
+  <nz-form-item class="grid grid-cols-1 lg:grid-cols-6 gap-3 lg:gap-3 m-2">
+    <div class="flex justify-start">
+      <nz-form-label
+        for="client"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+        >ANTIGUEDAD</nz-form-label
+      >
+    </div>
+    <div class="col-span-1 lg:col-span-2">
+      <input
+        type="number"
+        id="antiguedad"
+        nz-input
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 text-center"
+        required
+      />
+    </div>
+  </nz-form-item>
+  <nz-form-item class="grid grid-cols-1 lg:grid-cols-6 gap-3 lg:gap-3 m-2">
+    <div class="col-span-1">
+      <nz-form-label
+        for="cargas"
+        class="mb-2 text-sm font-medium text-gray-900 dark:text-gray-300 flex m-2"
+        >Cargas / Gravamenes
+      </nz-form-label>
+    </div>
+    <div class="col-span-2">
+      <div class="border shadow-md bg-allemantBlue rounded-t-3xl">
+        <div
+          class="flex justify-center items-center relative group w-full overflow-hidden bg-allemantBlue h-10 rounded-t-3xl"
+        >
+          <h1 class="font-normal text-base text-white mb-0">Cargas</h1>
+        </div>
+      </div>
+      <div class="bg-white">
+        <div class="text-center px-3 pb-3 pt-3">
+          <nz-form-control>
+            <nz-radio-group
+              nzName="radiogroup"
+              formControlName="option_cargas"
+              (ngModelChange)="changeCargas($event)"
+            >
+              <label nz-radio nzValue="true" formControlName="option_cargas"
+                >SI</label
+              >
+              <label nz-radio nzValue="false" formControlName="option_cargas"
+                >NO</label
+              >
+            </nz-radio-group>
+          </nz-form-control>
+        </div>
+      </div>
+    </div>
+    <div class="col-span-2">
+      <div
+        class="border shadow-md bg-allemantBlue rounded-t-3xl border-allemantBlue"
+      >
+        <div
+          class="flex justify-center items-center relative group w-full overflow-hidden bg-allemantBlue h-10 rounded-t-3xl"
+        >
+          <h1 class="font-normal text-base text-white mb-0">Gravamenes</h1>
+        </div>
+      </div>
+      <div class="bg-white">
+        <div class="text-center px-3 pb-3 pt-3">
+          <nz-form-control>
+            <nz-radio-group
+              nzName="radiogroup"
+              formControlName="option_gravamenes"
+              (ngModelChange)="changeGravamenes($event)"
+            >
+              <label nz-radio nzValue="true" formControlName="option_gravamenes"
+                >SI</label
+              >
+              <label
+                nz-radio
+                nzValue="false"
+                formControlName="option_gravamenes"
+                >NO</label
+              >
+            </nz-radio-group>
+          </nz-form-control>
+        </div>
+      </div>
+    </div>
+  </nz-form-item>
+  <nz-form-item class="grid grid-cols-1 lg:grid-cols-6 gap-3 lg:gap-3 m-2">
+    <div class="flex justify-start">
+      <nz-form-label
+        for="tcambio"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+        >Carga
+      </nz-form-label>
+    </div>
+    <div class="col-span-1 lg:col-span-5">
+      <textarea
+        name=""
+        id="carga"
+        cols="2"
+        rows="3"
+        nz-input
+        [disabled]="true"
+        [value]="optionCargas"
+        formControlName="cargas"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      ></textarea>
+    </div>
+  </nz-form-item>
+  <nz-form-item class="grid grid-cols-1 lg:grid-cols-6 gap-3 lg:gap-3 m-2">
+    <div class="flex justify-start">
+      <nz-form-label
+        for="tcambio"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+        >Gravamenes
+      </nz-form-label>
+    </div>
+    <div class="col-span-1 lg:col-span-5">
+      <textarea
+        name=""
+        id="carga"
+        cols="2"
+        rows="3"
+        nz-input
+        [disabled]="true"
+        [value]="optionGravamenes"
+        formControlName="gravamenes"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      ></textarea>
+    </div>
+  </nz-form-item>
+  <nz-form-item class="grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-3 m-2">
+    <div class="lg:col-start-1 col-span-2">
+      <nz-form-label
+        for="cargas"
+        class="mb-2 text-sm font-medium text-gray-900 dark:text-gray-300 flex m-2"
+        >Tipo de Tasación
+      </nz-form-label>
+    </div>
+    <div class="lg:col-start-3 col-span-5">
+      <div class="border shadow-md bg-allemantBlue rounded-t-3xl">
+        <div
+          class="flex justify-center items-center relative group w-full overflow-hidden bg-allemantBlue h-10 rounded-t-3xl"
+        >
+          <h1 class="font-normal text-base text-white mb-0">
+            Tipo de Tasación
+          </h1>
+        </div>
+      </div>
+      <div class="bg-white">
+        <div class="text-center px-3 pb-3 pt-3">
+          <nz-form-control>
+            <nz-select
+              nzShowSearch
+              nzAllowClear
+              nzPlaceHolder="Seleccione la tipo tasación"
+            >
+              <nz-option nzLabel="Comercial" nzValue="1"></nz-option>
+              <nz-option nzLabel="Hipotecaria" nzValue="2"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </div>
+      </div>
+    </div>
+    <div class="lg:col-start-8 col-span-5">
+      <div
+        class="border shadow-md bg-allemantBlue rounded-t-3xl border-allemantBlue"
+      >
+        <div
+          class="flex justify-center items-center relative group w-full overflow-hidden bg-allemantBlue h-10 rounded-t-3xl"
+        >
+          <h1 class="font-normal text-base text-white mb-0">
+            Instancia de Tasación
+          </h1>
+        </div>
+      </div>
+      <div class="bg-white">
+        <div class="text-center px-3 pb-3 pt-3">
+          <nz-form-control>
+            <input
+              type="text"
+              id=""
+              nz-input
+              [value]="validateForm"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 text-center"
+              required
+            />
+          </nz-form-control>
+        </div>
+      </div>
+    </div>
+  </nz-form-item>
+</form>

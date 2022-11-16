@@ -8,16 +8,30 @@ import {
   UrlSegment,
   UrlTree,
 } from '@angular/router';
-import { AuthUseCase } from 'src/app/core/application/auth.usecase';
+import { Observable } from 'rxjs';
+import { AuthApplication } from 'src/app/core/application/auth.application';
+import { AuthRepository } from 'src/app/core/domain/auth.repository';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationGuard implements CanLoad {
-  constructor(private auth: AuthUseCase) {}
+  constructor(private auth: AuthApplication) {}
+
+  canActivate(): boolean | Promise<boolean> | Observable<boolean> {
+    return this.validUserLogged();
+  }
 
   canLoad(): boolean {
-    return this.auth.isAuthenticated();
-    console.log('AUTHENTICADO');
+    return this.validUserLogged();
+  }
+
+  private validUserLogged(): boolean {
+    const isLogged = this.auth.isUserLogged;
+    if (!isLogged) {
+      this.auth.logout();
+    }
+
+    return isLogged;
   }
 }

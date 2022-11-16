@@ -7,4 +7,7 @@ export const configLayout: ConfigLayout = {
   sidebar: {
     hidden: false,
   },
+  footer: {
+    hidden: false,
+  },
 };

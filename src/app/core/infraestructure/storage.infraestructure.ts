@@ -1,5 +1,5 @@
 import jwt_decode from 'jwt-decode';
-import { StorageRepository } from '../application/storage.repository';
+import { StorageRepository } from '../domain/storage.repository';
 
 interface IPayload {
   iat: number;

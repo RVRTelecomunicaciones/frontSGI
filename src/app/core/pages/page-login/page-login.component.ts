@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigService } from 'src/app/config/services/config.service';
-import { AuthUseCase } from '../../application/auth.usecase';
-import { AuthModel } from '../../domain/auth.model';
+import { AuthApplication } from '../../application/auth.application';
 
 @Component({
   selector: 'app-page-login',
@@ -9,7 +8,10 @@ import { AuthModel } from '../../domain/auth.model';
   styleUrls: ['./page-login.component.css'],
 })
 export class PageLoginComponent implements OnInit {
-  constructor(private config: ConfigService, private authUseCase: AuthUseCase) {
+  constructor(
+    private config: ConfigService,
+    private authUseCase: AuthApplication
+  ) {
     console.log('INICIANDO');
 
     this.config.configuration = {

@@ -15,7 +15,7 @@ nz-sider {
   overflow-y: auto;
 }
  */
-nz-sider {
+/* nz-sider {
   width: 280px;
   background: #001529;
   top: 70px;
@@ -25,14 +25,75 @@ nz-sider {
   z-index: 1000;
   overflow-y: auto;
   position: fixed;
+} */
+
+.is-fold.side-navi {
+  width: 80px !important;
 }
-nz-sider .side-nav-menu {
+
+@media only screen and (min-width: 992px) and (max-width: 1440px) {
+  .side-navi {
+    width: 230px !important;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .is-expand .side-nav {
+    left: 0px;
+  }
+}
+
+.side-navi {
+  position: fixed;
+  top: 70px;
+  width: 280px;
+  background-color: #fff;
+  border-right: 1px solid #edf2f9;
+  height: 100%;
+  z-index: 1000;
+  overflow-y: auto;
+  transition: all 0.2s ease;
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  -ms-transition: all 0.2s ease;
+}
+
+@media only screen and (max-width: 992px) {
+  .side-navi {
+    left: -280px;
+  }
+}
+.side-navi-menu {
   margin-bottom: 70px;
 }
-nz-menu {
+.menu-nz-per {
   margin-bottom: 70px;
 }
 .ant-menu-item > a {
   margin-left: 10px;
+}
+
+.ant-menu {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  font-weight: 500;
+  color: #2a2a2abf;
+}
+.ant-menu-inline {
+  width: 100%;
+}
+.ant-menu-inline,
+.ant-menu-vertical,
+.ant-menu-vertical-left {
+  border-right: 1px solid #f0f0f0;
+}
+.ant-list-rtl .ant-list-pagination,
+.ant-menu {
+  text-align: left;
+}
+
+.side-navi .side-navi-menu {
+  margin-bottom: 70px;
 }
 /* .ant-menu-inline.ant-menu-root .ant-menu-item>* */

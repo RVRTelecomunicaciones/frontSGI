@@ -1,0 +1,15 @@
+.ant-upload-list .ant-upload-list-picture-card-container {
+  display: flex;
+  height: 300px;
+  width: 300px;
+}
+
+.ant-upload-list,
+.ant-upload-list-picture-card-container {
+  display: flex;
+  height: 300px;
+  width: 300px;
+}
+input[type="radio"]:checked + span {
+  display: block;
+}

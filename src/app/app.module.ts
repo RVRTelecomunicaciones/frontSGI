@@ -10,9 +10,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { es_ES, NZ_I18N } from 'ng-zorro-antd/i18n';
 import { CoreModule } from './core/core.module';
 import { AuthInfraestructure } from './core/infraestructure/auth.infraestructure';
-import { AuthRepository } from './core/application/auth.repository';
-import { AuthUseCase } from './core/application/auth.usecase';
-import { StorageRepository } from './core/application/storage.repository';
+import { AuthRepository } from './core/domain/auth.repository';
+import { StorageRepository } from './core/domain/storage.repository';
 import { StorageInfraestructure } from './core/infraestructure/storage.infraestructure';
 import { TokenInterceptor } from './shared/interceptor/token.interceptor';
 /*import { DashboardModule } from './dashboard/dashboard.module';*/
@@ -53,9 +52,22 @@ import { InvolucradoNaturalRepository } from './involucrado-natural/application/
 import { InvolucradoNaturalInfraestructure } from './involucrado-natural/infraestructure/involucrado-natural.infraestructure';
 import { InvolucradoJuridicoRepository } from './involucrado-juridico/application/involucrado-juridico.repository';
 import { InvolucradoJuridicoInfraestructure } from './involucrado-juridico/infraestructure/involucrado-juridico.intraestructure';
+import { AuthApplication } from './core/application/auth.application';
+import { StorageApplication } from './core/application/storage.application';
+import { InformeDigitalizadoRepository } from './informe-digitalizados/application/informe-digitalizado.repository';
+import { InformeDigitalizadoInfraestructure } from './informe-digitalizados/infraestructure/informe-digitalizado.infraestructure';
+import {
+  PerfectScrollbarConfigInterface,
+  PerfectScrollbarModule,
+  PERFECT_SCROLLBAR_CONFIG,
+} from 'ngx-perfect-scrollbar';
 
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  wheelPropagation: true,
+};
 registerLocaleData(es);
-
+const infrastructures = [AuthInfraestructure, StorageInfraestructure];
+const applications = [AuthApplication, StorageApplication];
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -72,15 +84,18 @@ registerLocaleData(es);
     NzBadgeModule,
     SharedModule,
     ConfigModule.forRoot(configLayout),
+    PerfectScrollbarModule,
   ],
+
   providers: [
+    ...infrastructures,
+    ...applications,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true,
     },
     { provide: AreaRepository, useClass: AreaInfraestructure },
-    { provide: AuthRepository, useClass: AuthInfraestructure },
     { provide: StorageRepository, useClass: StorageInfraestructure },
     { provide: DesgloseRepository, useClass: DesgloseInfraestructure },
     { provide: MonedaRepository, useClass: MonedaInfraestructure },
@@ -119,8 +134,15 @@ registerLocaleData(es);
       provide: InvolucradoJuridicoRepository,
       useClass: InvolucradoJuridicoInfraestructure,
     },
-    AuthUseCase,
+    {
+      provide: InformeDigitalizadoRepository,
+      useClass: InformeDigitalizadoInfraestructure,
+    },
     { provide: NZ_I18N, useValue: es_ES },
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG,
+    },
   ],
   bootstrap: [AppComponent],
 })

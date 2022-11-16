@@ -1,15 +1,25 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { NotFoundComponent } from './core/components/not-found/not-found.component';
 import { PageLoginComponent } from './core/pages/page-login/page-login.component';
 import { AuthenticationGuard } from './shared/guards/authentication.guard';
 
 const routes: Routes = [
-  /*{
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full',
-  },*/
   { path: '', component: PageLoginComponent },
+
+  // Other routes
+  /* { path: '404', component: NotFoundComponent },
+  { path: '**', component: NotFoundComponent }, */
+  /* {
+    path: '404',
+    loadChildren: () =>
+      import('./not-found/not-found.module').then((m) => m.NotFoundModule),
+  },
+  {
+    path: '**',
+    pathMatch: 'full',
+    redirectTo: '404',
+  }, */
   {
     path: 'dashboard',
     canLoad: [AuthenticationGuard],
@@ -20,6 +30,14 @@ const routes: Routes = [
     path: 'area',
     canLoad: [AuthenticationGuard],
     loadChildren: () => import('./area/area.module').then((m) => m.AreaModule),
+  },
+  {
+    path: 'informes-digitalizados',
+    canLoad: [AuthenticationGuard],
+    loadChildren: () =>
+      import('./informe-digitalizados/informe-digitalizados.module').then(
+        (m) => m.InformeDigitalizadosModule
+      ),
   },
   {
     path: 'desglose',

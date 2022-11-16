@@ -14,8 +14,8 @@
       class="w-full px-4 text-base border-gray-300 rounded-lg form-control hover:border-allemantBlue"
       type="text"
       required
-      formControlName="username"
-      placeholder="Ingresa tu usuario"
+      formControlName="email"
+      placeholder="Ingresa su correo"
     />
   </div>
 
@@ -89,7 +89,7 @@
   </div>
   <div>
     <button
-      type="submit"
+      (click)="submitLogin()"
       [disabled]="!formLogin.valid"
       class="flex justify-center w-full p-4 text-base font-medium tracking-wide text-gray-100 transition duration-500 ease-in shadow-lg cursor-pointer rounded-md01 bg-allemantBlue hover:bg-gradient-to-l hover:from-blue-500 hover:to-indigo-600"
     >

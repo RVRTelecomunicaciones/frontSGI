@@ -1,13 +1,20 @@
-<nz-sider
-  class="menu-sidebar"
+<!-- <nz-sider
+  class="menu-sidebar w-72"
   nzCollapsible
-  nzWidth="280px"
   nzBreakpoint="lg"
   [(nzCollapsed)]="isCollapsed"
   [class.verify]="!isCollapsed"
   [nzTrigger]="null"
+    class="side-navi"
+    [ngClass]="{ 'is-fold': value }"
+   [ngClass]="{ 'is-folded ': !isCollapsedEmitted }"
+     <div [className]="value == true ? 'is-fold side-navi' : 'side-navi'">
+
+> -->
+<perfect-scrollbar
+  [className]="value == true ? 'is-fold side-navi' : 'side-navi'"
 >
-  <ul nz-menu nzMode="inline" [nzInlineCollapsed]="isCollapsed" class="menu-nz">
+  <ul nz-menu nzMode="inline" [nzInlineCollapsed]="value" class="menu-nz-per">
     <li nz-menu-item>
       <i nz-icon nzType="dashboard" nzTheme="outline"></i>
       <a routerLink="/dashboard">DASHBOARD</a>
@@ -64,16 +71,16 @@
         <li nz-submenu nzOpen nzTitle="INVOLUCRADOS">
           <ul>
             <li nz-menu-item nzMatchRouter>
-              <a routerLink="/sector-involucrado">SECTOR</a>
+              <a>SECTOR</a>
             </li>
             <li nz-menu-item nzMatchRouter>
-              <a routerLink="/clasificacion-involucrado">CLASIFICACIÓN</a>
+              <a routerLink="/#">CLASIFICACIÓN</a>
             </li>
             <li nz-menu-item nzMatchRouter>
-              <a routerLink="/involucrado-juridico">JURIDICO</a>
+              <a routerLink="/#">JURIDICO</a>
             </li>
             <li nz-menu-item nzMatchRouter>
-              <a routerLink="/involucrado-natural">NATURAL</a>
+              <a routerLink="/#">NATURAL</a>
             </li>
           </ul>
         </li>
@@ -115,9 +122,17 @@
         </li>
       </ul>
     </li>
+    <li nz-submenu nzTitle="INFORMES" nzIcon="file-text" nzTheme="outline">
+      <ul>
+        <li nz-menu-item nzMatchRouter>
+          <a routerLink="/informes-digitalizados">ELABORACIÓN</a>
+        </li>
+      </ul>
+    </li>
   </ul>
-</nz-sider>
-
+</perfect-scrollbar>
+<!-- </nz-sider>
+ -->
 <!-- <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
   <div class="logo"></div>
   <ul nz-menu nzTheme="dark" nzMode="inline">

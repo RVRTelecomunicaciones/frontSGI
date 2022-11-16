@@ -14,7 +14,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthModel } from '../../domain/auth.model';
+import { AuthApplication } from '../../application/auth.application';
+import { AuthFactory } from '../../domain/auth.factory';
 
 @Component({
   selector: 'app-login',
@@ -23,8 +24,8 @@ import { AuthModel } from '../../domain/auth.model';
 })
 export class LoginComponent implements OnInit {
   formLogin!: FormGroup;
-  @Output() onLogin: EventEmitter<AuthModel> = new EventEmitter<AuthModel>();
-
+  /*   @Output() onLogin: EventEmitter<AuthModel> = new EventEmitter<AuthModel>();
+   */
   isFormSubmitted = false;
 
   @ViewChild('focusInitial')
@@ -42,13 +43,21 @@ export class LoginComponent implements OnInit {
     if (this.formLogin.invalid) {
       return;
     }
-    const userInfo: AuthModel = this.formLogin.value;
+
+    const values = this.formLogin.value;
+    const auth = AuthFactory.create(values.email, values.password);
+    this.authApplication.login(auth);
+
+    /* const userInfo: AuthModel = this.formLogin.value;
     console.log(userInfo);
 
-    this.onLogin.emit(userInfo);
+    this.onLogin.emit(userInfo); */
   }
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private readonly authApplication: AuthApplication
+  ) {}
 
   ngOnInit(): void {
     this.showPassword;
@@ -57,7 +66,7 @@ export class LoginComponent implements OnInit {
     const PAT_EMAIL = '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+[.][a-zA-Z]{2,4}$';
 
     this.formLogin = this.formBuilder.group({
-      username: ['', [Validators.required]],
+      email: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
 

@@ -3,7 +3,7 @@
   nzTitle="LISTADO DE MONEDAS"
   [nzExtra]="extraTemplate"
 >
-<nz-table
+  <nz-table
     nzShowSizeChanger
     [nzFrontPagination]="false"
     [nzLoading]="loading"
@@ -25,9 +25,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr
-        *ngFor="let position of listOfMonedas; index as i"
-      >
+      <tr *ngFor="let position of listOfMonedas; index as i">
         <td>#{{ i + 1 }}</td>
         <td>{{ position.codigo }}</td>
         <td>{{ position.simbolo }}</td>

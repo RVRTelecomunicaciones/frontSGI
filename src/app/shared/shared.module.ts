@@ -25,7 +25,7 @@ import { IconsProviderModule } from '../icons-provider.module';
 import { PasswordInputComponent } from './component/password-input.component';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
-
+import { NzMessageModule } from 'ng-zorro-antd/message';
 @NgModule({
   declarations: [],
   imports: [
@@ -54,6 +54,7 @@ import { NzSpaceModule } from 'ng-zorro-antd/space';
     IconsProviderModule,
     NzLayoutModule,
     NzMenuModule,
+    NzMessageModule,
     NzSpaceModule,
   ],
   exports: [
@@ -81,6 +82,7 @@ import { NzSpaceModule } from 'ng-zorro-antd/space';
     IconsProviderModule,
     NzLayoutModule,
     NzMenuModule,
+    NzMessageModule,
     NzNotificationModule,
     NzSpaceModule,
   ],

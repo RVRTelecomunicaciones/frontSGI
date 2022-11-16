@@ -1,0 +1,17 @@
+.footer {
+  font-size: 90%;
+}
+.footer .footer-content {
+  display: flex;
+  height: 65px;
+  align-items: center;
+  border-top: 1px solid #edf2f9;
+}
+p {
+  color: #72849a;
+  line-height: 1.8;
+}
+
+.text-gray {
+  color: #72849a !important;
+}
